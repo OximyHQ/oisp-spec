@@ -1,0 +1,72 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X8T9U0V1W2X3Y4Z5A6B",
+  "event_type": "file.write",
+  "ts": "2025-12-22T14:30:19.012345Z",
+  "ts_mono": 1703254219012345000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice"
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3",
+    "cmdline": "python3 /Users/alice/projects/agent/main.py --mode=production"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "ebpf_tracepoint",
+    "capture_point": "vfs_write"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "full",
+    "reasons": ["kernel_tracepoint", "content_hashed"],
+    "process_attribution": "direct"
+  },
+  
+  "data": {
+    "path": "/Users/alice/projects/agent/output/generated_code.py",
+    "bytes_written": 4523,
+    "created": true,
+    "file": {
+      "path": "/Users/alice/projects/agent/output/generated_code.py",
+      "name": "generated_code.py",
+      "extension": "py",
+      "mode": "0644"
+    },
+    "content_hash": "sha256:abc123def456",
+    "detected_type": "source_code"
+  },
+  
+  "ext": {
+    "oximy.agent_attribution": {
+      "agent_session": "sess_abc123",
+      "triggered_by_llm": true,
+      "tool_call_id": "call_def456"
+    }
+  },
+  
+  "related_events": [
+    {
+      "event_id": "01JFWK8X5S6T7U8V9W0X1Y2Z3A",
+      "relationship": "caused_by"
+    }
+  ]
+}
+

@@ -1,0 +1,118 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X9C0D1E2F3G4H5I6J7K",
+  "event_type": "ai.request",
+  "ts": "2025-12-22T15:45:30.123456Z",
+  "ts_mono": 1703258730123456000,
+  
+  "host": {
+    "hostname": "prod-server-01",
+    "device_id": "660f9500-f30c-52e5-b827-557766550000",
+    "os": "linux",
+    "os_version": "Ubuntu 22.04",
+    "arch": "x86_64",
+    "k8s": {
+      "cluster_name": "prod-cluster",
+      "namespace": "ai-services",
+      "pod_name": "chatbot-7b8c9d0e-abc12",
+      "deployment": "chatbot"
+    }
+  },
+  
+  "actor": {
+    "service_account": {
+      "name": "chatbot-sa",
+      "type": "kubernetes"
+    },
+    "is_human": false
+  },
+  
+  "process": {
+    "pid": 1,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3",
+    "container_id": "abc123def456",
+    "cgroup": "/kubepods/burstable/pod-abc123/abc123def456"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "ebpf_uprobe",
+    "capture_point": "ssl_write"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "redacted",
+    "reasons": ["tls_boundary_capture", "pii_redaction_applied"],
+    "content_source": "tls_boundary",
+    "ai_detection_method": "known_endpoint",
+    "redaction_applied": true,
+    "redaction_profile": "default_safe"
+  },
+  
+  "data": {
+    "request_id": "req_01JFWK8X9C0D1E2F",
+    "provider": {
+      "name": "anthropic",
+      "endpoint": "https://api.anthropic.com/v1/messages"
+    },
+    "model": {
+      "id": "claude-3-5-sonnet-20241022",
+      "family": "claude-3.5",
+      "capabilities": {
+        "vision": true,
+        "function_calling": true,
+        "streaming": true
+      }
+    },
+    "auth": {
+      "type": "api_key",
+      "account_type": "corporate",
+      "key_prefix": "sk-ant-a"
+    },
+    "request_type": "chat",
+    "streaming": true,
+    "messages": [
+      {
+        "role": "system",
+        "content": {
+          "$redacted": {
+            "reason": "policy",
+            "original_length": 1250,
+            "hash": "sha256:sys123abc",
+            "preview": "You are a helpful customer service..."
+          }
+        }
+      },
+      {
+        "role": "user",
+        "content": {
+          "$redacted": {
+            "reason": "pii_detected",
+            "detector": "regex_email",
+            "original_length": 523,
+            "hash": "sha256:usr456def",
+            "preview": "I need help with my order...",
+            "findings": [
+              { "type": "email", "count": 2 },
+              { "type": "phone", "count": 1 }
+            ]
+          }
+        }
+      }
+    ],
+    "messages_count": 2,
+    "has_system_prompt": true,
+    "tools_count": 0,
+    "parameters": {
+      "temperature": 0.3,
+      "max_tokens": 1024
+    },
+    "has_rag_context": true,
+    "has_images": false,
+    "estimated_tokens": 1850
+  }
+}
+

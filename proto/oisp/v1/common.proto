@@ -1,0 +1,332 @@
+// OISP Common Types
+// Protocol Buffer definitions for shared types used across OISP events.
+
+syntax = "proto3";
+
+package oisp.v1;
+
+option go_package = "github.com/oximyHQ/oisp-spec/proto/oisp/v1;oispv1";
+
+import "google/protobuf/timestamp.proto";
+
+// Host context - information about the device/host where an event originated
+message Host {
+  string hostname = 1;
+  string device_id = 2;
+  
+  enum OS {
+    OS_UNSPECIFIED = 0;
+    OS_LINUX = 1;
+    OS_DARWIN = 2;
+    OS_WINDOWS = 3;
+    OS_FREEBSD = 4;
+    OS_OTHER = 5;
+  }
+  OS os = 3;
+  string os_version = 4;
+  
+  enum Arch {
+    ARCH_UNSPECIFIED = 0;
+    ARCH_X86_64 = 1;
+    ARCH_AARCH64 = 2;
+    ARCH_ARM = 3;
+    ARCH_I686 = 4;
+    ARCH_OTHER = 5;
+  }
+  Arch arch = 5;
+  string kernel_version = 6;
+  
+  CloudContext cloud = 7;
+  ContainerContext container = 8;
+  K8sContext k8s = 9;
+  
+  bool managed = 10;
+  repeated string tags = 11;
+}
+
+message CloudContext {
+  enum Provider {
+    CLOUD_PROVIDER_UNSPECIFIED = 0;
+    CLOUD_PROVIDER_AWS = 1;
+    CLOUD_PROVIDER_GCP = 2;
+    CLOUD_PROVIDER_AZURE = 3;
+    CLOUD_PROVIDER_DIGITALOCEAN = 4;
+    CLOUD_PROVIDER_OTHER = 5;
+  }
+  Provider provider = 1;
+  string region = 2;
+  string instance_id = 3;
+  string instance_type = 4;
+}
+
+message ContainerContext {
+  string id = 1;
+  string name = 2;
+  string image = 3;
+  
+  enum Runtime {
+    CONTAINER_RUNTIME_UNSPECIFIED = 0;
+    CONTAINER_RUNTIME_DOCKER = 1;
+    CONTAINER_RUNTIME_CONTAINERD = 2;
+    CONTAINER_RUNTIME_CRIO = 3;
+    CONTAINER_RUNTIME_PODMAN = 4;
+    CONTAINER_RUNTIME_OTHER = 5;
+  }
+  Runtime runtime = 4;
+}
+
+message K8sContext {
+  string cluster_name = 1;
+  string namespace = 2;
+  string pod_name = 3;
+  string pod_uid = 4;
+  string node_name = 5;
+  string deployment = 6;
+  string service_account = 7;
+  map<string, string> labels = 8;
+}
+
+// Actor context - information about the user/identity
+message Actor {
+  uint32 uid = 1;
+  uint32 gid = 2;
+  string user = 3;
+  repeated string groups = 4;
+  string session_id = 5;
+  string terminal = 6;
+  
+  IdentityContext identity = 7;
+  ServiceAccountContext service_account = 8;
+  
+  enum AuthMethod {
+    AUTH_METHOD_UNSPECIFIED = 0;
+    AUTH_METHOD_PASSWORD = 1;
+    AUTH_METHOD_SSO = 2;
+    AUTH_METHOD_MFA = 3;
+    AUTH_METHOD_SSH_KEY = 4;
+    AUTH_METHOD_CERTIFICATE = 5;
+    AUTH_METHOD_TOKEN = 6;
+    AUTH_METHOD_API_KEY = 7;
+    AUTH_METHOD_NONE = 8;
+    AUTH_METHOD_UNKNOWN = 9;
+  }
+  AuthMethod auth_method = 9;
+  
+  bool is_elevated = 10;
+  bool is_human = 11;
+}
+
+message IdentityContext {
+  enum Provider {
+    IDENTITY_PROVIDER_UNSPECIFIED = 0;
+    IDENTITY_PROVIDER_OKTA = 1;
+    IDENTITY_PROVIDER_AZURE_AD = 2;
+    IDENTITY_PROVIDER_GOOGLE_WORKSPACE = 3;
+    IDENTITY_PROVIDER_ONELOGIN = 4;
+    IDENTITY_PROVIDER_JUMPCLOUD = 5;
+    IDENTITY_PROVIDER_OTHER = 6;
+  }
+  Provider provider = 1;
+  string email = 2;
+  string upn = 3;
+  string employee_id = 4;
+  string department = 5;
+  string job_title = 6;
+  string manager = 7;
+}
+
+message ServiceAccountContext {
+  string name = 1;
+  
+  enum Type {
+    SERVICE_ACCOUNT_TYPE_UNSPECIFIED = 0;
+    SERVICE_ACCOUNT_TYPE_KUBERNETES = 1;
+    SERVICE_ACCOUNT_TYPE_IAM = 2;
+    SERVICE_ACCOUNT_TYPE_SERVICE_PRINCIPAL = 3;
+    SERVICE_ACCOUNT_TYPE_API_KEY = 4;
+    SERVICE_ACCOUNT_TYPE_OTHER = 5;
+  }
+  Type type = 2;
+  string owner = 3;
+}
+
+// Process context - information about the process
+message Process {
+  uint32 pid = 1;
+  uint32 ppid = 2;
+  uint32 pgid = 3;
+  uint32 sid = 4;
+  
+  string exe = 5;
+  string name = 6;
+  string cmdline = 7;
+  repeated string cmdline_args = 8;
+  string cwd = 9;
+  map<string, string> env = 10;
+  
+  google.protobuf.Timestamp start_time = 11;
+  
+  CodeSignature code_signature = 12;
+  FileHashes hash = 13;
+  
+  ProcessRef parent = 14;
+  repeated ProcessRef ancestors = 15;
+  
+  uint32 thread_id = 16;
+  repeated string capabilities = 17;
+  string container_id = 18;
+  string cgroup = 19;
+}
+
+message CodeSignature {
+  bool signed = 1;
+  bool valid = 2;
+  string signer = 3;
+  string team_id = 4;
+  bool notarized = 5;
+}
+
+message FileHashes {
+  string sha256 = 1;
+  string sha1 = 2;
+  string md5 = 3;
+}
+
+message ProcessRef {
+  uint32 pid = 1;
+  string exe = 2;
+  string name = 3;
+  string cmdline = 4;
+}
+
+// Confidence metadata - what we know and don't know
+message Confidence {
+  enum Level {
+    CONFIDENCE_LEVEL_UNSPECIFIED = 0;
+    CONFIDENCE_LEVEL_HIGH = 1;
+    CONFIDENCE_LEVEL_MEDIUM = 2;
+    CONFIDENCE_LEVEL_LOW = 3;
+    CONFIDENCE_LEVEL_INFERRED = 4;
+  }
+  Level level = 1;
+  
+  enum Completeness {
+    COMPLETENESS_UNSPECIFIED = 0;
+    COMPLETENESS_FULL = 1;
+    COMPLETENESS_PARTIAL = 2;
+    COMPLETENESS_METADATA_ONLY = 3;
+    COMPLETENESS_REDACTED = 4;
+    COMPLETENESS_SAMPLED = 5;
+    COMPLETENESS_VENDOR_REPORTED = 6;
+  }
+  Completeness completeness = 2;
+  
+  repeated string reasons = 3;
+  repeated string missing = 4;
+  repeated string limitations = 5;
+  
+  enum ProcessAttribution {
+    PROCESS_ATTRIBUTION_UNSPECIFIED = 0;
+    PROCESS_ATTRIBUTION_DIRECT = 1;
+    PROCESS_ATTRIBUTION_SOCKET_INODE = 2;
+    PROCESS_ATTRIBUTION_CGROUP = 3;
+    PROCESS_ATTRIBUTION_TIMING_CORRELATION = 4;
+    PROCESS_ATTRIBUTION_HEURISTIC = 5;
+    PROCESS_ATTRIBUTION_UNKNOWN = 6;
+  }
+  ProcessAttribution process_attribution = 6;
+  
+  enum ContentSource {
+    CONTENT_SOURCE_UNSPECIFIED = 0;
+    CONTENT_SOURCE_PLAINTEXT_CAPTURE = 1;
+    CONTENT_SOURCE_TLS_BOUNDARY = 2;
+    CONTENT_SOURCE_MITM_DECRYPTION = 3;
+    CONTENT_SOURCE_VENDOR_API = 4;
+    CONTENT_SOURCE_LOG_EXTRACTION = 5;
+    CONTENT_SOURCE_INFERENCE = 6;
+    CONTENT_SOURCE_NONE = 7;
+  }
+  ContentSource content_source = 7;
+  
+  enum AIDetectionMethod {
+    AI_DETECTION_METHOD_UNSPECIFIED = 0;
+    AI_DETECTION_METHOD_KNOWN_ENDPOINT = 1;
+    AI_DETECTION_METHOD_PAYLOAD_INSPECTION = 2;
+    AI_DETECTION_METHOD_HEADER_FINGERPRINT = 3;
+    AI_DETECTION_METHOD_CONTENT_PATTERN = 4;
+    AI_DETECTION_METHOD_MODEL_STRING_MATCH = 5;
+    AI_DETECTION_METHOD_HEURISTIC = 6;
+    AI_DETECTION_METHOD_VENDOR_REPORTED = 7;
+  }
+  AIDetectionMethod ai_detection_method = 8;
+  
+  double sample_rate = 9;
+  bool redaction_applied = 10;
+  string redaction_profile = 11;
+}
+
+// Source provenance - how the event was captured
+message Source {
+  string collector = 1;
+  string collector_version = 2;
+  
+  enum CaptureMethod {
+    CAPTURE_METHOD_UNSPECIFIED = 0;
+    CAPTURE_METHOD_EBPF_TRACEPOINT = 1;
+    CAPTURE_METHOD_EBPF_KPROBE = 2;
+    CAPTURE_METHOD_EBPF_UPROBE = 3;
+    CAPTURE_METHOD_DTRACE = 4;
+    CAPTURE_METHOD_ETW = 5;
+    CAPTURE_METHOD_SYSCALL_INTERCEPT = 6;
+    CAPTURE_METHOD_TLS_BOUNDARY = 7;
+    CAPTURE_METHOD_MITM_PROXY = 8;
+    CAPTURE_METHOD_BROWSER_EXTENSION = 9;
+    CAPTURE_METHOD_SDK_INSTRUMENTATION = 10;
+    CAPTURE_METHOD_VENDOR_API = 11;
+    CAPTURE_METHOD_VENDOR_AUDIT_LOG = 12;
+    CAPTURE_METHOD_LOG_PARSING = 13;
+    CAPTURE_METHOD_OTHER = 14;
+  }
+  CaptureMethod capture_method = 3;
+  string capture_point = 4;
+  string sensor_host = 5;
+}
+
+// Related event reference
+message RelatedEvent {
+  string event_id = 1;
+  
+  enum Relationship {
+    RELATIONSHIP_UNSPECIFIED = 0;
+    RELATIONSHIP_PARENT = 1;
+    RELATIONSHIP_CHILD = 2;
+    RELATIONSHIP_CAUSED_BY = 3;
+    RELATIONSHIP_CAUSES = 4;
+    RELATIONSHIP_RELATED = 5;
+  }
+  Relationship relationship = 2;
+}
+
+// OpenTelemetry trace context
+message TraceContext {
+  bytes trace_id = 1;  // 16 bytes
+  bytes span_id = 2;   // 8 bytes
+  uint32 trace_flags = 3;
+}
+
+// Redaction marker
+message RedactedContent {
+  string reason = 1;
+  string detector = 2;
+  uint64 original_length = 3;
+  string hash = 4;
+  string preview = 5;
+  string redaction_profile = 6;
+  repeated PIIFinding findings = 7;
+}
+
+message PIIFinding {
+  string type = 1;
+  uint32 count = 2;
+}
+

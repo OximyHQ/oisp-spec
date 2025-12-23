@@ -1,0 +1,66 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X7K8L9M0N1O2P3Q4R5S",
+  "event_type": "agent.tool_result",
+  "ts": "2025-12-22T14:30:18.890123Z",
+  "ts_mono": 1703254218890123000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice"
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "ebpf_uprobe"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "partial",
+    "reasons": ["tool_result_captured", "content_hashed"],
+    "missing": ["full_file_content"]
+  },
+  
+  "data": {
+    "agent": {
+      "name": "custom-agent",
+      "type": "server",
+      "session_id": "sess_abc123"
+    },
+    "tool": {
+      "name": "read_file",
+      "type": "file_read"
+    },
+    "call_id": "call_abc123",
+    "success": true,
+    "result_hash": "sha256:9a8b7c6d5e4f",
+    "result_size_bytes": 2048,
+    "duration_ms": 12,
+    "side_effects": []
+  },
+  
+  "related_events": [
+    {
+      "event_id": "01JFWK8X6B7C8D9E0F1G2H3I4J",
+      "relationship": "parent"
+    }
+  ]
+}
+

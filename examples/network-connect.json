@@ -1,0 +1,65 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X3A4B5C6D7E8F9G0H1I",
+  "event_type": "network.connect",
+  "ts": "2025-12-22T14:30:16.234567Z",
+  "ts_mono": 1703254216234567000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice"
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3",
+    "cmdline": "python3 /Users/alice/projects/agent/main.py --mode=production"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "ebpf_kprobe",
+    "capture_point": "tcp_connect"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "metadata_only",
+    "reasons": ["socket_inode_match", "process_verified"],
+    "process_attribution": "socket_inode",
+    "content_source": "none"
+  },
+  
+  "data": {
+    "dest": {
+      "ip": "104.18.7.192",
+      "port": 443,
+      "domain": "api.openai.com",
+      "is_private": false
+    },
+    "src": {
+      "ip": "192.168.1.100",
+      "port": 54321
+    },
+    "protocol": "tcp",
+    "success": true,
+    "latency_ms": 45.2,
+    "tls": {
+      "version": "TLSv1.3",
+      "sni": "api.openai.com",
+      "alpn": "h2"
+    }
+  }
+}
+

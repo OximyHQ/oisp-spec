@@ -1,0 +1,92 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X5S6T7U8V9W0X1Y2Z3A",
+  "event_type": "ai.response",
+  "ts": "2025-12-22T14:30:18.567890Z",
+  "ts_mono": 1703254218567890000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice"
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "tls_boundary",
+    "capture_point": "ssl_read"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "full",
+    "reasons": ["tls_boundary_capture", "streaming_reassembled", "usage_from_api"],
+    "content_source": "tls_boundary",
+    "ai_detection_method": "known_endpoint"
+  },
+  
+  "data": {
+    "request_id": "req_01JFWK8X4J5K6L7M",
+    "provider_request_id": "chatcmpl-abc123xyz789",
+    "provider": {
+      "name": "openai",
+      "endpoint": "https://api.openai.com/v1/chat/completions"
+    },
+    "model": {
+      "id": "gpt-4o-2024-11-20",
+      "family": "gpt-4o"
+    },
+    "status_code": 200,
+    "success": true,
+    "finish_reason": "tool_calls",
+    "tool_calls": [
+      {
+        "id": "call_abc123",
+        "name": "read_file",
+        "type": "function",
+        "arguments_hash": "sha256:1a2b3c4d"
+      },
+      {
+        "id": "call_def456",
+        "name": "write_file",
+        "type": "function",
+        "arguments_hash": "sha256:5e6f7g8h"
+      }
+    ],
+    "tool_calls_count": 2,
+    "usage": {
+      "prompt_tokens": 1823,
+      "completion_tokens": 156,
+      "total_tokens": 1979,
+      "input_cost_usd": 0.00456,
+      "output_cost_usd": 0.00156,
+      "total_cost_usd": 0.00612
+    },
+    "latency_ms": 2222,
+    "time_to_first_token_ms": 187,
+    "was_cached": false
+  },
+  
+  "related_events": [
+    {
+      "event_id": "01JFWK8X4J5K6L7M8N9O0P1Q2R",
+      "relationship": "parent"
+    }
+  ]
+}
+

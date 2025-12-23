@@ -1,0 +1,120 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X4J5K6L7M8N9O0P1Q2R",
+  "event_type": "ai.request",
+  "ts": "2025-12-22T14:30:16.345678Z",
+  "ts_mono": 1703254216345678000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice",
+    "identity": {
+      "provider": "okta",
+      "email": "alice@company.com"
+    }
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3",
+    "cmdline": "python3 /Users/alice/projects/agent/main.py --mode=production",
+    "cwd": "/Users/alice/projects/agent"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "tls_boundary",
+    "capture_point": "ssl_write"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "full",
+    "reasons": ["tls_boundary_capture", "known_endpoint", "payload_parsed"],
+    "content_source": "tls_boundary",
+    "ai_detection_method": "known_endpoint"
+  },
+  
+  "data": {
+    "request_id": "req_01JFWK8X4J5K6L7M",
+    "provider": {
+      "name": "openai",
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "organization_id": "org-abc123"
+    },
+    "model": {
+      "id": "gpt-4o",
+      "family": "gpt-4o",
+      "capabilities": {
+        "vision": true,
+        "function_calling": true,
+        "streaming": true
+      },
+      "context_window": 128000,
+      "max_output_tokens": 16384
+    },
+    "auth": {
+      "type": "api_key",
+      "account_type": "corporate",
+      "key_prefix": "sk-proj-"
+    },
+    "request_type": "chat",
+    "streaming": true,
+    "messages": [
+      {
+        "role": "system",
+        "content_length": 245,
+        "content_hash": "sha256:a1b2c3d4e5f6"
+      },
+      {
+        "role": "user",
+        "content_length": 1547,
+        "content_hash": "sha256:f6e5d4c3b2a1"
+      }
+    ],
+    "messages_count": 2,
+    "has_system_prompt": true,
+    "tools": [
+      {
+        "name": "read_file",
+        "type": "function"
+      },
+      {
+        "name": "write_file",
+        "type": "function"
+      },
+      {
+        "name": "execute_command",
+        "type": "function"
+      }
+    ],
+    "tools_count": 3,
+    "tool_choice": "auto",
+    "parameters": {
+      "temperature": 0.7,
+      "max_tokens": 4096
+    },
+    "has_rag_context": false,
+    "has_images": false,
+    "estimated_tokens": 1850
+  },
+  
+  "related_events": [
+    {
+      "event_id": "01JFWK8X3A4B5C6D7E8F9G0H1I",
+      "relationship": "caused_by"
+    }
+  ]
+}
+

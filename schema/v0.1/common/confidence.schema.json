@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/common/confidence.schema.json",
+  "title": "OISP Confidence Metadata",
+  "description": "Metadata about the confidence and completeness of an event. This is a key differentiator of OISP - we explicitly declare what we know and don't know.",
+  "type": "object",
+  "required": ["level", "completeness"],
+  "properties": {
+    "level": {
+      "type": "string",
+      "description": "Overall confidence level in the event's accuracy",
+      "enum": ["high", "medium", "low", "inferred"],
+      "examples": ["high"]
+    },
+    "completeness": {
+      "type": "string",
+      "description": "How complete the captured data is",
+      "enum": [
+        "full",
+        "partial",
+        "metadata_only",
+        "redacted",
+        "sampled",
+        "vendor_reported"
+      ],
+      "examples": ["full", "metadata_only"]
+    },
+    "reasons": {
+      "type": "array",
+      "description": "Reasons supporting the confidence assessment",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        ["tls_boundary_capture", "process_attribution_verified"],
+        ["heuristic_detection", "incomplete_response"]
+      ]
+    },
+    "missing": {
+      "type": "array",
+      "description": "Fields or data that are known to be missing",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        ["response_body", "request_headers"],
+        ["prompt_content"]
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "description": "Known limitations that affect this event",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        ["response_truncated_at_64kb", "timing_approximate"],
+        ["could_not_decrypt_tls"]
+      ]
+    },
+    "process_attribution": {
+      "type": "string",
+      "description": "How the process was attributed to this network event",
+      "enum": [
+        "direct",
+        "socket_inode",
+        "cgroup",
+        "timing_correlation",
+        "heuristic",
+        "unknown"
+      ]
+    },
+    "content_source": {
+      "type": "string",
+      "description": "How the content/payload was obtained",
+      "enum": [
+        "plaintext_capture",
+        "tls_boundary",
+        "mitm_decryption",
+        "vendor_api",
+        "log_extraction",
+        "inference",
+        "none"
+      ]
+    },
+    "ai_detection_method": {
+      "type": "string",
+      "description": "How AI activity was detected",
+      "enum": [
+        "known_endpoint",
+        "payload_inspection",
+        "header_fingerprint",
+        "content_pattern",
+        "model_string_match",
+        "heuristic",
+        "vendor_reported"
+      ]
+    },
+    "sample_rate": {
+      "type": "number",
+      "description": "If sampled, the sampling rate (1.0 = 100%, 0.1 = 10%)",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "redaction_applied": {
+      "type": "boolean",
+      "description": "Whether any redaction was applied to this event"
+    },
+    "redaction_profile": {
+      "type": "string",
+      "description": "Name of the redaction profile applied",
+      "examples": ["default_safe", "full_content", "metadata_only"]
+    }
+  },
+  "additionalProperties": true
+}
+

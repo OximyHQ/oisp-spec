@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/events/agent.schema.json",
+  "title": "OISP Agent Events",
+  "description": "AI agent and tool execution events",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/tool_call" },
+    { "$ref": "#/$defs/tool_result" },
+    { "$ref": "#/$defs/plan_step" },
+    { "$ref": "#/$defs/rag_retrieve" },
+    { "$ref": "#/$defs/session" }
+  ],
+  "$defs": {
+    "agent_info": {
+      "type": "object",
+      "description": "Information about the AI agent",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Agent name or identifier",
+          "examples": ["cursor", "aider", "claude-code", "autogpt", "custom-agent"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of agent",
+          "enum": ["ide", "cli", "browser", "server", "autonomous", "workflow", "other"]
+        },
+        "version": {
+          "type": "string"
+        },
+        "framework": {
+          "type": "string",
+          "description": "Agent framework if known",
+          "examples": ["langchain", "autogen", "crewai", "custom"]
+        },
+        "session_id": {
+          "type": "string",
+          "description": "Agent session identifier"
+        },
+        "task_id": {
+          "type": "string",
+          "description": "Current task identifier"
+        }
+      }
+    },
+    "tool_info": {
+      "type": "object",
+      "description": "Information about a tool",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Tool name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Tool category",
+          "enum": [
+            "file_read",
+            "file_write",
+            "file_edit",
+            "terminal",
+            "shell",
+            "browser",
+            "http",
+            "database",
+            "code_execution",
+            "search",
+            "retrieval",
+            "api_call",
+            "computer_use",
+            "other"
+          ]
+        },
+        "provider": {
+          "type": "string",
+          "description": "Tool provider (e.g., 'mcp', 'langchain', 'native')"
+        },
+        "server": {
+          "type": "string",
+          "description": "MCP server name if applicable"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "tool_call": {
+      "type": "object",
+      "title": "agent.tool_call",
+      "description": "Agent invoking a tool",
+      "required": ["tool"],
+      "properties": {
+        "agent": {
+          "$ref": "#/$defs/agent_info"
+        },
+        "tool": {
+          "$ref": "#/$defs/tool_info"
+        },
+        "call_id": {
+          "type": "string",
+          "description": "Unique identifier for this tool call"
+        },
+        "triggered_by": {
+          "type": "string",
+          "description": "What triggered this tool call",
+          "enum": ["llm_decision", "user_approval", "automatic", "workflow", "retry"]
+        },
+        "arguments": {
+          "type": "object",
+          "description": "Tool arguments (may be partially redacted)",
+          "additionalProperties": true
+        },
+        "arguments_hash": {
+          "type": "string",
+          "description": "Hash of arguments for correlation"
+        },
+        "requires_approval": {
+          "type": "boolean",
+          "description": "Whether this tool call required user approval"
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Whether user approved (if approval was required)"
+        },
+        "approver": {
+          "type": "string",
+          "description": "Who approved the action"
+        },
+        "risk_level": {
+          "type": "string",
+          "description": "Assessed risk level of this tool call",
+          "enum": ["low", "medium", "high", "critical"]
+        },
+        "risk_reasons": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Reasons for the risk assessment"
+        }
+      }
+    },
+    "tool_result": {
+      "type": "object",
+      "title": "agent.tool_result",
+      "description": "Result of a tool execution",
+      "required": ["call_id"],
+      "properties": {
+        "agent": {
+          "$ref": "#/$defs/agent_info"
+        },
+        "tool": {
+          "$ref": "#/$defs/tool_info"
+        },
+        "call_id": {
+          "type": "string",
+          "description": "Links back to the tool_call event"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "message": { "type": "string" }
+          }
+        },
+        "result": {
+          "description": "Tool result (may be redacted)",
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object" },
+            { "type": "array" },
+            { "$ref": "ai.schema.json#/$defs/redacted_content" }
+          ]
+        },
+        "result_hash": {
+          "type": "string"
+        },
+        "result_size_bytes": {
+          "type": "integer"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Tool execution time"
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Known side effects of this tool execution",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["file_created", "file_modified", "file_deleted", "process_spawned", "network_request", "database_write", "other"]
+              },
+              "target": {
+                "type": "string",
+                "description": "What was affected"
+              }
+            }
+          }
+        }
+      }
+    },
+    "plan_step": {
+      "type": "object",
+      "title": "agent.plan_step",
+      "description": "Agent planning/reasoning step",
+      "properties": {
+        "agent": {
+          "$ref": "#/$defs/agent_info"
+        },
+        "step_index": {
+          "type": "integer",
+          "description": "Step number in the plan"
+        },
+        "step_type": {
+          "type": "string",
+          "enum": ["planning", "reasoning", "decision", "reflection", "revision"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this step"
+        },
+        "planned_actions": {
+          "type": "array",
+          "description": "Actions the agent plans to take",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string" },
+              "tool": { "type": "string" },
+              "rationale": { "type": "string" }
+            }
+          }
+        },
+        "context_files": {
+          "type": "array",
+          "description": "Files the agent is considering",
+          "items": { "type": "string" }
+        },
+        "iteration": {
+          "type": "integer",
+          "description": "Iteration number (for loops/retries)"
+        }
+      }
+    },
+    "rag_retrieve": {
+      "type": "object",
+      "title": "agent.rag_retrieve",
+      "description": "RAG context retrieval event",
+      "properties": {
+        "agent": {
+          "$ref": "#/$defs/agent_info"
+        },
+        "source": {
+          "type": "object",
+          "description": "RAG source information",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["vector_db", "knowledge_base", "file_search", "web_search", "database", "api", "other"]
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the source"
+            },
+            "provider": {
+              "type": "string",
+              "description": "Provider (e.g., 'pinecone', 'weaviate', 'chromadb')"
+            }
+          }
+        },
+        "query": {
+          "type": "string",
+          "description": "Search query (may be redacted)"
+        },
+        "query_hash": {
+          "type": "string"
+        },
+        "results_count": {
+          "type": "integer",
+          "description": "Number of results returned"
+        },
+        "results": {
+          "type": "array",
+          "description": "Retrieved results (may be summarized/redacted)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "score": { "type": "number" },
+              "content_preview": { "type": "string" },
+              "content_hash": { "type": "string" },
+              "metadata": { "type": "object" }
+            }
+          }
+        },
+        "latency_ms": {
+          "type": "integer"
+        },
+        "tokens_retrieved": {
+          "type": "integer",
+          "description": "Estimated tokens in retrieved context"
+        }
+      }
+    },
+    "session": {
+      "type": "object",
+      "title": "agent.session",
+      "description": "Agent session lifecycle events",
+      "required": ["action"],
+      "properties": {
+        "agent": {
+          "$ref": "#/$defs/agent_info"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["start", "end", "pause", "resume", "error"],
+          "description": "Session lifecycle action"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "task_description": {
+          "type": "string",
+          "description": "High-level task description"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Session duration (for end events)"
+        },
+        "stats": {
+          "type": "object",
+          "description": "Session statistics",
+          "properties": {
+            "llm_calls": { "type": "integer" },
+            "tool_calls": { "type": "integer" },
+            "files_read": { "type": "integer" },
+            "files_written": { "type": "integer" },
+            "tokens_used": { "type": "integer" },
+            "estimated_cost_usd": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
+

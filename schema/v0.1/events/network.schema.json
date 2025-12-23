@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/events/network.schema.json",
+  "title": "OISP Network Events",
+  "description": "Network activity events - connections, flows, DNS",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/connect" },
+    { "$ref": "#/$defs/accept" },
+    { "$ref": "#/$defs/flow" },
+    { "$ref": "#/$defs/dns" }
+  ],
+  "$defs": {
+    "endpoint": {
+      "type": "object",
+      "description": "Network endpoint (source or destination)",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "description": "IP address",
+          "examples": ["192.168.1.100", "2001:db8::1"]
+        },
+        "port": {
+          "type": "integer",
+          "description": "Port number",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "domain": {
+          "type": "string",
+          "description": "Domain name (from DNS, SNI, or Host header)",
+          "examples": ["api.openai.com", "claude.ai"]
+        },
+        "is_private": {
+          "type": "boolean",
+          "description": "Whether this is a private/internal IP"
+        },
+        "geo": {
+          "type": "object",
+          "description": "Geolocation data",
+          "properties": {
+            "country": { "type": "string" },
+            "region": { "type": "string" },
+            "city": { "type": "string" },
+            "asn": { "type": "integer" },
+            "org": { "type": "string" }
+          }
+        }
+      }
+    },
+    "connect": {
+      "type": "object",
+      "title": "network.connect",
+      "description": "Outbound connection attempt",
+      "required": ["dest"],
+      "properties": {
+        "dest": {
+          "$ref": "#/$defs/endpoint",
+          "description": "Destination endpoint"
+        },
+        "src": {
+          "$ref": "#/$defs/endpoint",
+          "description": "Source endpoint"
+        },
+        "protocol": {
+          "type": "string",
+          "enum": ["tcp", "udp", "unix", "other"],
+          "description": "Transport protocol"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "Whether the connection succeeded"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message if connection failed",
+          "examples": ["connection refused", "timeout", "dns resolution failed"]
+        },
+        "latency_ms": {
+          "type": "number",
+          "description": "Connection establishment time in milliseconds"
+        },
+        "tls": {
+          "$ref": "#/$defs/tls_info",
+          "description": "TLS/SSL information if encrypted"
+        }
+      }
+    },
+    "accept": {
+      "type": "object",
+      "title": "network.accept",
+      "description": "Inbound connection accepted",
+      "required": ["src"],
+      "properties": {
+        "src": {
+          "$ref": "#/$defs/endpoint",
+          "description": "Source endpoint (the connecting client)"
+        },
+        "dest": {
+          "$ref": "#/$defs/endpoint",
+          "description": "Destination endpoint (local)"
+        },
+        "protocol": {
+          "type": "string",
+          "enum": ["tcp", "udp", "unix", "other"]
+        }
+      }
+    },
+    "flow": {
+      "type": "object",
+      "title": "network.flow",
+      "description": "Network flow summary (aggregated connection metrics)",
+      "required": ["dest"],
+      "properties": {
+        "dest": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "src": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "protocol": {
+          "type": "string",
+          "enum": ["tcp", "udp", "unix", "other"]
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["outbound", "inbound", "bidirectional"]
+        },
+        "bytes_sent": {
+          "type": "integer",
+          "description": "Bytes sent",
+          "minimum": 0
+        },
+        "bytes_received": {
+          "type": "integer",
+          "description": "Bytes received",
+          "minimum": 0
+        },
+        "packets_sent": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packets_received": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Flow duration in milliseconds"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tls": {
+          "$ref": "#/$defs/tls_info"
+        },
+        "http": {
+          "$ref": "#/$defs/http_info",
+          "description": "HTTP layer information if available"
+        }
+      }
+    },
+    "dns": {
+      "type": "object",
+      "title": "network.dns",
+      "description": "DNS query/response",
+      "required": ["query_name", "query_type"],
+      "properties": {
+        "query_name": {
+          "type": "string",
+          "description": "Domain name queried"
+        },
+        "query_type": {
+          "type": "string",
+          "description": "DNS record type",
+          "enum": ["A", "AAAA", "CNAME", "MX", "TXT", "NS", "PTR", "SRV", "other"]
+        },
+        "response_code": {
+          "type": "string",
+          "description": "DNS response code",
+          "enum": ["NOERROR", "NXDOMAIN", "SERVFAIL", "REFUSED", "other"]
+        },
+        "answers": {
+          "type": "array",
+          "description": "DNS answers",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "value": { "type": "string" },
+              "ttl": { "type": "integer" }
+            }
+          }
+        },
+        "resolver": {
+          "type": "string",
+          "description": "DNS resolver used"
+        },
+        "latency_ms": {
+          "type": "number"
+        }
+      }
+    },
+    "tls_info": {
+      "type": "object",
+      "description": "TLS/SSL connection information",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "TLS version",
+          "examples": ["TLSv1.3", "TLSv1.2"]
+        },
+        "cipher_suite": {
+          "type": "string",
+          "description": "Cipher suite used"
+        },
+        "sni": {
+          "type": "string",
+          "description": "Server Name Indication"
+        },
+        "alpn": {
+          "type": "string",
+          "description": "Application-Layer Protocol Negotiation result",
+          "examples": ["h2", "http/1.1"]
+        },
+        "certificate": {
+          "type": "object",
+          "description": "Server certificate information",
+          "properties": {
+            "subject": { "type": "string" },
+            "issuer": { "type": "string" },
+            "not_before": { "type": "string", "format": "date-time" },
+            "not_after": { "type": "string", "format": "date-time" },
+            "fingerprint_sha256": { "type": "string" },
+            "san": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Subject Alternative Names"
+            }
+          }
+        },
+        "ja3_fingerprint": {
+          "type": "string",
+          "description": "JA3 fingerprint of the TLS client"
+        },
+        "ja3s_fingerprint": {
+          "type": "string",
+          "description": "JA3S fingerprint of the TLS server"
+        }
+      }
+    },
+    "http_info": {
+      "type": "object",
+      "description": "HTTP layer information",
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "HTTP method",
+          "examples": ["GET", "POST", "PUT"]
+        },
+        "path": {
+          "type": "string",
+          "description": "Request path",
+          "examples": ["/v1/chat/completions"]
+        },
+        "status_code": {
+          "type": "integer",
+          "description": "HTTP response status code"
+        },
+        "host": {
+          "type": "string",
+          "description": "Host header value"
+        },
+        "user_agent": {
+          "type": "string",
+          "description": "User-Agent header"
+        },
+        "content_type": {
+          "type": "string",
+          "description": "Content-Type header"
+        },
+        "content_length": {
+          "type": "integer",
+          "description": "Content-Length header value"
+        },
+        "request_headers": {
+          "type": "object",
+          "description": "Selected request headers",
+          "additionalProperties": { "type": "string" }
+        },
+        "response_headers": {
+          "type": "object",
+          "description": "Selected response headers",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+

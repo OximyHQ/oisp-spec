@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/common/actor.schema.json",
+  "title": "OISP Actor Context",
+  "description": "Information about the user or identity associated with an event",
+  "type": "object",
+  "properties": {
+    "uid": {
+      "type": "integer",
+      "description": "Unix user ID (UID) on POSIX systems",
+      "minimum": 0,
+      "examples": [501, 1000, 0]
+    },
+    "gid": {
+      "type": "integer",
+      "description": "Unix group ID (GID) on POSIX systems",
+      "minimum": 0
+    },
+    "user": {
+      "type": "string",
+      "description": "Username or login name",
+      "examples": ["alice", "deploy-bot", "DOMAIN\\alice"]
+    },
+    "groups": {
+      "type": "array",
+      "description": "Group memberships",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["staff", "developers", "docker"]]
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Session identifier (login session, SSH session, etc.)"
+    },
+    "terminal": {
+      "type": "string",
+      "description": "TTY or terminal device",
+      "examples": ["pts/0", "ttys001", "console"]
+    },
+    "identity": {
+      "type": "object",
+      "description": "Enterprise identity information (from IdP/SSO)",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "Identity provider",
+          "enum": ["okta", "azure_ad", "google_workspace", "onelogin", "jumpcloud", "other"],
+          "examples": ["okta", "azure_ad"]
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Corporate email address"
+        },
+        "upn": {
+          "type": "string",
+          "description": "User Principal Name (Azure AD, etc.)"
+        },
+        "employee_id": {
+          "type": "string",
+          "description": "Employee ID from HR system"
+        },
+        "department": {
+          "type": "string",
+          "description": "Department or team"
+        },
+        "job_title": {
+          "type": "string",
+          "description": "Job title"
+        },
+        "manager": {
+          "type": "string",
+          "description": "Manager's email or ID"
+        }
+      }
+    },
+    "service_account": {
+      "type": "object",
+      "description": "Service account details if this is a non-human actor",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Service account name"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["kubernetes", "iam", "service_principal", "api_key", "other"],
+          "description": "Type of service account"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Owner/creator of the service account"
+        }
+      }
+    },
+    "auth_method": {
+      "type": "string",
+      "description": "How the actor authenticated",
+      "enum": [
+        "password",
+        "sso",
+        "mfa",
+        "ssh_key",
+        "certificate",
+        "token",
+        "api_key",
+        "none",
+        "unknown"
+      ]
+    },
+    "is_elevated": {
+      "type": "boolean",
+      "description": "Whether the actor has elevated privileges (sudo, admin, etc.)"
+    },
+    "is_human": {
+      "type": "boolean",
+      "description": "Whether this is believed to be a human actor (vs automation)"
+    }
+  },
+  "additionalProperties": true
+}
+

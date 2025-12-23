@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/common/process.schema.json",
+  "title": "OISP Process Context",
+  "description": "Information about the process associated with an event",
+  "type": "object",
+  "properties": {
+    "pid": {
+      "type": "integer",
+      "description": "Process ID",
+      "minimum": 0,
+      "examples": [1234, 56789]
+    },
+    "ppid": {
+      "type": "integer",
+      "description": "Parent process ID",
+      "minimum": 0
+    },
+    "pgid": {
+      "type": "integer",
+      "description": "Process group ID",
+      "minimum": 0
+    },
+    "sid": {
+      "type": "integer",
+      "description": "Session ID",
+      "minimum": 0
+    },
+    "exe": {
+      "type": "string",
+      "description": "Path to the executable",
+      "examples": ["/usr/bin/python3", "/usr/bin/node", "C:\\Windows\\System32\\cmd.exe"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Process name (basename of exe or comm)",
+      "examples": ["python3", "node", "cmd.exe"]
+    },
+    "cmdline": {
+      "type": "string",
+      "description": "Full command line. May be redacted.",
+      "examples": ["python3 agent.py --config prod.yaml"]
+    },
+    "cmdline_args": {
+      "type": "array",
+      "description": "Command line as array of arguments",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["python3", "agent.py", "--config", "prod.yaml"]]
+    },
+    "cwd": {
+      "type": "string",
+      "description": "Current working directory",
+      "examples": ["/home/alice/projects/myapp"]
+    },
+    "env": {
+      "type": "object",
+      "description": "Relevant environment variables (filtered, not full env)",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "examples": [{"OPENAI_API_KEY": "[REDACTED]", "NODE_ENV": "production"}]
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Process start time"
+    },
+    "code_signature": {
+      "type": "object",
+      "description": "Code signing information (macOS/Windows)",
+      "properties": {
+        "signed": {
+          "type": "boolean",
+          "description": "Whether the binary is signed"
+        },
+        "valid": {
+          "type": "boolean",
+          "description": "Whether the signature is valid"
+        },
+        "signer": {
+          "type": "string",
+          "description": "Signing identity",
+          "examples": ["Apple Inc.", "Microsoft Corporation"]
+        },
+        "team_id": {
+          "type": "string",
+          "description": "Team identifier (macOS)"
+        },
+        "notarized": {
+          "type": "boolean",
+          "description": "Whether the binary is notarized (macOS)"
+        }
+      }
+    },
+    "hash": {
+      "type": "object",
+      "description": "Hashes of the executable",
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 hash of the executable"
+        },
+        "sha1": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$",
+          "description": "SHA-1 hash of the executable"
+        },
+        "md5": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$",
+          "description": "MD5 hash of the executable"
+        }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "description": "Parent process context (for process tree)",
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exe": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "cmdline": {
+          "type": "string"
+        }
+      }
+    },
+    "ancestors": {
+      "type": "array",
+      "description": "Process ancestry chain (parent, grandparent, etc.)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "exe": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "thread_id": {
+      "type": "integer",
+      "description": "Thread ID if event is thread-specific",
+      "minimum": 0
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "Linux capabilities (if applicable)",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["CAP_NET_ADMIN", "CAP_SYS_PTRACE"]]
+    },
+    "container_id": {
+      "type": "string",
+      "description": "Container ID if process is running in a container"
+    },
+    "cgroup": {
+      "type": "string",
+      "description": "Cgroup path (for container/workload identification)"
+    }
+  },
+  "additionalProperties": true
+}
+

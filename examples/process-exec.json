@@ -1,0 +1,61 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X2N3M4P5Q6R7S8T9U0V",
+  "event_type": "process.exec",
+  "ts": "2025-12-22T14:30:15.123456Z",
+  "ts_mono": 1703254215123456000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice",
+    "groups": ["staff", "developers"],
+    "is_human": true
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3",
+    "cmdline": "python3 /Users/alice/projects/agent/main.py --mode=production",
+    "cwd": "/Users/alice/projects/agent",
+    "parent": {
+      "pid": 1234,
+      "exe": "/bin/zsh",
+      "name": "zsh"
+    }
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "ebpf_tracepoint",
+    "capture_point": "sched_process_exec"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "full",
+    "reasons": ["kernel_tracepoint", "full_cmdline_captured"]
+  },
+  
+  "data": {
+    "exe": "/usr/local/bin/python3",
+    "args": ["python3", "/Users/alice/projects/agent/main.py", "--mode=production"],
+    "cwd": "/Users/alice/projects/agent",
+    "interpreter": "/usr/local/bin/python3",
+    "script_path": "/Users/alice/projects/agent/main.py",
+    "is_shell": false,
+    "is_script": true,
+    "is_interactive": false
+  }
+}
+

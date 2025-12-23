@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/events/file.schema.json",
+  "title": "OISP File Events",
+  "description": "File system operation events",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/open" },
+    { "$ref": "#/$defs/read" },
+    { "$ref": "#/$defs/write" },
+    { "$ref": "#/$defs/delete" },
+    { "$ref": "#/$defs/rename" }
+  ],
+  "$defs": {
+    "file_info": {
+      "type": "object",
+      "description": "File metadata",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "File path (may be absolute or relative)"
+        },
+        "name": {
+          "type": "string",
+          "description": "File name (basename)"
+        },
+        "extension": {
+          "type": "string",
+          "description": "File extension",
+          "examples": ["py", "js", "json", "md"]
+        },
+        "size": {
+          "type": "integer",
+          "description": "File size in bytes",
+          "minimum": 0
+        },
+        "inode": {
+          "type": "integer",
+          "description": "Inode number (Unix)"
+        },
+        "mode": {
+          "type": "string",
+          "description": "File permissions (octal)",
+          "examples": ["0644", "0755"]
+        },
+        "uid": {
+          "type": "integer",
+          "description": "Owner user ID"
+        },
+        "gid": {
+          "type": "integer",
+          "description": "Owner group ID"
+        },
+        "mtime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification time"
+        },
+        "ctime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last status change time"
+        },
+        "is_directory": {
+          "type": "boolean"
+        },
+        "is_symlink": {
+          "type": "boolean"
+        },
+        "symlink_target": {
+          "type": "string",
+          "description": "Target path if symlink"
+        },
+        "hash": {
+          "type": "object",
+          "description": "File content hashes",
+          "properties": {
+            "sha256": { "type": "string" },
+            "sha1": { "type": "string" },
+            "md5": { "type": "string" }
+          }
+        }
+      }
+    },
+    "open": {
+      "type": "object",
+      "title": "file.open",
+      "description": "File open event",
+      "required": ["path", "flags"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "File path"
+        },
+        "flags": {
+          "type": "array",
+          "description": "Open flags",
+          "items": {
+            "type": "string",
+            "enum": ["read", "write", "append", "create", "truncate", "exclusive"]
+          }
+        },
+        "fd": {
+          "type": "integer",
+          "description": "File descriptor assigned"
+        },
+        "file": {
+          "$ref": "#/$defs/file_info"
+        }
+      }
+    },
+    "read": {
+      "type": "object",
+      "title": "file.read",
+      "description": "File read event",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "bytes_read": {
+          "type": "integer",
+          "description": "Number of bytes read",
+          "minimum": 0
+        },
+        "offset": {
+          "type": "integer",
+          "description": "File offset where read started"
+        },
+        "complete": {
+          "type": "boolean",
+          "description": "Whether the entire file was read"
+        },
+        "file": {
+          "$ref": "#/$defs/file_info"
+        },
+        "content_hash": {
+          "type": "string",
+          "description": "Hash of the content that was read"
+        },
+        "content_preview": {
+          "type": "string",
+          "description": "Preview of content (if safe and enabled)",
+          "maxLength": 256
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "title": "file.write",
+      "description": "File write event",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "bytes_written": {
+          "type": "integer",
+          "description": "Number of bytes written",
+          "minimum": 0
+        },
+        "offset": {
+          "type": "integer",
+          "description": "File offset where write started"
+        },
+        "truncated": {
+          "type": "boolean",
+          "description": "Whether the file was truncated"
+        },
+        "created": {
+          "type": "boolean",
+          "description": "Whether this write created a new file"
+        },
+        "file": {
+          "$ref": "#/$defs/file_info"
+        },
+        "content_hash": {
+          "type": "string",
+          "description": "Hash of content written"
+        },
+        "content_preview": {
+          "type": "string",
+          "description": "Preview of content written (if safe and enabled)",
+          "maxLength": 256
+        },
+        "detected_type": {
+          "type": "string",
+          "description": "Detected content type",
+          "examples": ["source_code", "config", "binary", "text", "image"]
+        }
+      }
+    },
+    "delete": {
+      "type": "object",
+      "title": "file.delete",
+      "description": "File deletion event",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/$defs/file_info",
+          "description": "File info captured before deletion"
+        },
+        "recursive": {
+          "type": "boolean",
+          "description": "Whether this was a recursive directory deletion"
+        }
+      }
+    },
+    "rename": {
+      "type": "object",
+      "title": "file.rename",
+      "description": "File rename/move event",
+      "required": ["old_path", "new_path"],
+      "properties": {
+        "old_path": {
+          "type": "string"
+        },
+        "new_path": {
+          "type": "string"
+        },
+        "overwrote": {
+          "type": "boolean",
+          "description": "Whether the rename overwrote an existing file"
+        },
+        "file": {
+          "$ref": "#/$defs/file_info"
+        }
+      }
+    }
+  }
+}
+

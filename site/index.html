@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OISP - Open Instrumentation for Security and Privacy</title>
+  <meta name="description" content="A universal event schema for AI activity observability">
+  
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #2a2a3a;
+      --text: #e4e4e7;
+      --text-muted: #71717a;
+      --accent: #f97316;
+      --accent-dim: #ea580c;
+      --accent-light: #fdba74;
+      --green: #4ade80;
+      --cyan: #22d3ee;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .logo {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .tagline {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+    
+    .version {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 4px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+    
+    .hero {
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .hero h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .hero h2 strong {
+      color: var(--accent);
+    }
+    
+    .links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    
+    .links a:hover {
+      border-color: var(--accent);
+      background: rgba(34, 211, 238, 0.1);
+    }
+    
+    .links a.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+    
+    .links a.primary:hover {
+      background: var(--accent-dim);
+    }
+    
+    .schemas {
+      padding: 60px 0;
+    }
+    
+    .schemas h3 {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .schema-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    
+    .schema-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    
+    .schema-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    
+    .schema-card .name {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .schema-card .path {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+    
+    .event-types {
+      padding: 40px 0;
+    }
+    
+    .event-types h3 {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .event-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .event-tag {
+      padding: 6px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--cyan);
+    }
+    
+    .providers {
+      padding: 40px 0;
+    }
+    
+    .providers h3 {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .provider-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .provider-tag {
+      padding: 6px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--green);
+    }
+    
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    code {
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">OISP</div>
+      <div class="tagline">Open Instrumentation for Security and Privacy</div>
+      <span class="version">v0.1</span>
+    </header>
+    
+    <section class="hero">
+      <h2>
+        A universal <strong>event schema</strong> for AI activity observability.
+        Make <strong>"what AI is happening here?"</strong> answerable on day one.
+      </h2>
+      
+      <div class="links">
+        <a href="https://github.com/oximyHQ/oisp-spec" class="primary">
+          View on GitHub
+        </a>
+        <a href="/schema/v0.1/envelope.schema.json">
+          Envelope Schema
+        </a>
+        <a href="/semconv/providers/_generated/models.json">
+          Model Registry
+        </a>
+      </div>
+    </section>
+    
+    <section class="schemas">
+      <h3>JSON Schemas</h3>
+      <div class="schema-grid">
+        <a href="/schema/v0.1/envelope.schema.json" class="schema-card">
+          <div class="name">Event Envelope</div>
+          <div class="path">/schema/v0.1/envelope.schema.json</div>
+        </a>
+        <a href="/schema/v0.1/events/ai.schema.json" class="schema-card">
+          <div class="name">AI Events</div>
+          <div class="path">/schema/v0.1/events/ai.schema.json</div>
+        </a>
+        <a href="/schema/v0.1/events/agent.schema.json" class="schema-card">
+          <div class="name">Agent Events</div>
+          <div class="path">/schema/v0.1/events/agent.schema.json</div>
+        </a>
+        <a href="/schema/v0.1/events/process.schema.json" class="schema-card">
+          <div class="name">Process Events</div>
+          <div class="path">/schema/v0.1/events/process.schema.json</div>
+        </a>
+        <a href="/schema/v0.1/events/network.schema.json" class="schema-card">
+          <div class="name">Network Events</div>
+          <div class="path">/schema/v0.1/events/network.schema.json</div>
+        </a>
+        <a href="/schema/v0.1/events/file.schema.json" class="schema-card">
+          <div class="name">File Events</div>
+          <div class="path">/schema/v0.1/events/file.schema.json</div>
+        </a>
+      </div>
+    </section>
+    
+    <section class="event-types">
+      <h3>Event Types</h3>
+      <div class="event-list">
+        <span class="event-tag">process.exec</span>
+        <span class="event-tag">process.exit</span>
+        <span class="event-tag">network.connect</span>
+        <span class="event-tag">network.flow</span>
+        <span class="event-tag">file.read</span>
+        <span class="event-tag">file.write</span>
+        <span class="event-tag">ai.request</span>
+        <span class="event-tag">ai.response</span>
+        <span class="event-tag">ai.streaming_chunk</span>
+        <span class="event-tag">agent.tool_call</span>
+        <span class="event-tag">agent.tool_result</span>
+        <span class="event-tag">agent.rag_retrieve</span>
+      </div>
+    </section>
+    
+    <section class="providers">
+      <h3>Supported Providers (2,200+ models)</h3>
+      <div class="provider-list">
+        <span class="provider-tag">OpenAI</span>
+        <span class="provider-tag">Anthropic</span>
+        <span class="provider-tag">Google</span>
+        <span class="provider-tag">Azure OpenAI</span>
+        <span class="provider-tag">AWS Bedrock</span>
+        <span class="provider-tag">Cohere</span>
+        <span class="provider-tag">Mistral</span>
+        <span class="provider-tag">Groq</span>
+        <span class="provider-tag">Together</span>
+        <span class="provider-tag">Fireworks</span>
+        <span class="provider-tag">Ollama</span>
+        <span class="provider-tag">+80 more</span>
+      </div>
+    </section>
+    
+    <footer>
+      <p>
+        Apache 2.0 License &middot; 
+        Part of <a href="https://oximy.com">Oximy</a> &middot;
+        Model data synced from <a href="https://github.com/BerriAI/litellm">LiteLLM</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
+

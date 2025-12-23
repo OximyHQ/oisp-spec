@@ -1,0 +1,74 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8X6B7C8D9E0F1G2H3I4J",
+  "event_type": "agent.tool_call",
+  "ts": "2025-12-22T14:30:18.789012Z",
+  "ts_mono": 1703254218789012000,
+  
+  "host": {
+    "hostname": "dev-laptop",
+    "device_id": "550e8400-e29b-41d4-a716-446655440000",
+    "os": "darwin",
+    "os_version": "macOS 14.2",
+    "arch": "aarch64"
+  },
+  
+  "actor": {
+    "uid": 501,
+    "user": "alice"
+  },
+  
+  "process": {
+    "pid": 12345,
+    "ppid": 1234,
+    "exe": "/usr/local/bin/python3",
+    "name": "python3",
+    "cmdline": "python3 /Users/alice/projects/agent/main.py --mode=production"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "ebpf_uprobe",
+    "capture_point": "file_open"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "full",
+    "reasons": ["llm_tool_call_observed", "file_access_correlated"],
+    "process_attribution": "direct"
+  },
+  
+  "data": {
+    "agent": {
+      "name": "custom-agent",
+      "type": "server",
+      "version": "1.2.0",
+      "framework": "langchain",
+      "session_id": "sess_abc123",
+      "task_id": "task_xyz789"
+    },
+    "tool": {
+      "name": "read_file",
+      "type": "file_read",
+      "provider": "native"
+    },
+    "call_id": "call_abc123",
+    "triggered_by": "llm_decision",
+    "arguments": {
+      "path": "/Users/alice/projects/agent/config.yaml"
+    },
+    "requires_approval": false,
+    "risk_level": "low",
+    "risk_reasons": ["read_only_operation", "within_project_directory"]
+  },
+  
+  "related_events": [
+    {
+      "event_id": "01JFWK8X5S6T7U8V9W0X1Y2Z3A",
+      "relationship": "caused_by"
+    }
+  ]
+}
+

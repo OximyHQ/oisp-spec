@@ -1,0 +1,753 @@
+// OISP Event Definitions
+// Protocol Buffer definitions for all OISP event types.
+
+syntax = "proto3";
+
+package oisp.v1;
+
+option go_package = "github.com/oximyHQ/oisp-spec/proto/oisp/v1;oispv1";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "oisp/v1/common.proto";
+
+// ====================
+// Event Envelope
+// ====================
+
+message Event {
+  string oisp_version = 1;
+  string event_id = 2;
+  string event_type = 3;
+  google.protobuf.Timestamp ts = 4;
+  uint64 ts_mono = 5;  // Monotonic nanoseconds
+  
+  Host host = 6;
+  Actor actor = 7;
+  Process process = 8;
+  Source source = 9;
+  Confidence confidence = 10;
+  
+  oneof data {
+    ProcessExecData process_exec = 20;
+    ProcessExitData process_exit = 21;
+    ProcessForkData process_fork = 22;
+    
+    NetworkConnectData network_connect = 30;
+    NetworkAcceptData network_accept = 31;
+    NetworkFlowData network_flow = 32;
+    NetworkDNSData network_dns = 33;
+    
+    FileOpenData file_open = 40;
+    FileReadData file_read = 41;
+    FileWriteData file_write = 42;
+    FileDeleteData file_delete = 43;
+    FileRenameData file_rename = 44;
+    
+    AIRequestData ai_request = 50;
+    AIResponseData ai_response = 51;
+    AIStreamingChunkData ai_streaming_chunk = 52;
+    AIEmbeddingData ai_embedding = 53;
+    
+    AgentToolCallData agent_tool_call = 60;
+    AgentToolResultData agent_tool_result = 61;
+    AgentPlanStepData agent_plan_step = 62;
+    AgentRAGRetrieveData agent_rag_retrieve = 63;
+    AgentSessionData agent_session = 64;
+  }
+  
+  google.protobuf.Struct attrs = 100;
+  google.protobuf.Struct ext = 101;
+  repeated RelatedEvent related_events = 102;
+  TraceContext trace_context = 103;
+}
+
+// ====================
+// Process Events
+// ====================
+
+message ProcessExecData {
+  string exe = 1;
+  repeated string args = 2;
+  string cwd = 3;
+  map<string, string> env = 4;
+  string interpreter = 5;
+  string script_path = 6;
+  bool is_shell = 7;
+  bool is_script = 8;
+  bool is_interactive = 9;
+  FileHashes binary_hash = 10;
+  CodeSignature code_signature = 11;
+}
+
+message ProcessExitData {
+  int32 exit_code = 1;
+  int32 signal = 2;
+  string signal_name = 3;
+  uint64 runtime_ms = 4;
+  uint64 cpu_user_ms = 5;
+  uint64 cpu_system_ms = 6;
+  uint64 max_rss_kb = 7;
+  
+  enum TerminationType {
+    TERMINATION_TYPE_UNSPECIFIED = 0;
+    TERMINATION_TYPE_NORMAL = 1;
+    TERMINATION_TYPE_SIGNALED = 2;
+    TERMINATION_TYPE_COREDUMP = 3;
+    TERMINATION_TYPE_UNKNOWN = 4;
+  }
+  TerminationType termination_type = 8;
+}
+
+message ProcessForkData {
+  uint32 child_pid = 1;
+  uint64 clone_flags = 2;
+  bool is_thread = 3;
+}
+
+// ====================
+// Network Events
+// ====================
+
+message NetworkEndpoint {
+  string ip = 1;
+  uint32 port = 2;
+  string domain = 3;
+  bool is_private = 4;
+  GeoLocation geo = 5;
+}
+
+message GeoLocation {
+  string country = 1;
+  string region = 2;
+  string city = 3;
+  uint32 asn = 4;
+  string org = 5;
+}
+
+message TLSInfo {
+  string version = 1;
+  string cipher_suite = 2;
+  string sni = 3;
+  string alpn = 4;
+  CertificateInfo certificate = 5;
+  string ja3_fingerprint = 6;
+  string ja3s_fingerprint = 7;
+}
+
+message CertificateInfo {
+  string subject = 1;
+  string issuer = 2;
+  google.protobuf.Timestamp not_before = 3;
+  google.protobuf.Timestamp not_after = 4;
+  string fingerprint_sha256 = 5;
+  repeated string san = 6;
+}
+
+message HTTPInfo {
+  string method = 1;
+  string path = 2;
+  int32 status_code = 3;
+  string host = 4;
+  string user_agent = 5;
+  string content_type = 6;
+  int64 content_length = 7;
+  map<string, string> request_headers = 8;
+  map<string, string> response_headers = 9;
+}
+
+enum Protocol {
+  PROTOCOL_UNSPECIFIED = 0;
+  PROTOCOL_TCP = 1;
+  PROTOCOL_UDP = 2;
+  PROTOCOL_UNIX = 3;
+  PROTOCOL_OTHER = 4;
+}
+
+message NetworkConnectData {
+  NetworkEndpoint dest = 1;
+  NetworkEndpoint src = 2;
+  Protocol protocol = 3;
+  bool success = 4;
+  string error = 5;
+  double latency_ms = 6;
+  TLSInfo tls = 7;
+}
+
+message NetworkAcceptData {
+  NetworkEndpoint src = 1;
+  NetworkEndpoint dest = 2;
+  Protocol protocol = 3;
+}
+
+message NetworkFlowData {
+  NetworkEndpoint dest = 1;
+  NetworkEndpoint src = 2;
+  Protocol protocol = 3;
+  
+  enum Direction {
+    DIRECTION_UNSPECIFIED = 0;
+    DIRECTION_OUTBOUND = 1;
+    DIRECTION_INBOUND = 2;
+    DIRECTION_BIDIRECTIONAL = 3;
+  }
+  Direction direction = 4;
+  
+  uint64 bytes_sent = 5;
+  uint64 bytes_received = 6;
+  uint64 packets_sent = 7;
+  uint64 packets_received = 8;
+  uint64 duration_ms = 9;
+  google.protobuf.Timestamp start_time = 10;
+  google.protobuf.Timestamp end_time = 11;
+  TLSInfo tls = 12;
+  HTTPInfo http = 13;
+}
+
+message NetworkDNSData {
+  string query_name = 1;
+  
+  enum QueryType {
+    DNS_QUERY_TYPE_UNSPECIFIED = 0;
+    DNS_QUERY_TYPE_A = 1;
+    DNS_QUERY_TYPE_AAAA = 2;
+    DNS_QUERY_TYPE_CNAME = 3;
+    DNS_QUERY_TYPE_MX = 4;
+    DNS_QUERY_TYPE_TXT = 5;
+    DNS_QUERY_TYPE_NS = 6;
+    DNS_QUERY_TYPE_PTR = 7;
+    DNS_QUERY_TYPE_SRV = 8;
+    DNS_QUERY_TYPE_OTHER = 9;
+  }
+  QueryType query_type = 2;
+  
+  enum ResponseCode {
+    DNS_RESPONSE_CODE_UNSPECIFIED = 0;
+    DNS_RESPONSE_CODE_NOERROR = 1;
+    DNS_RESPONSE_CODE_NXDOMAIN = 2;
+    DNS_RESPONSE_CODE_SERVFAIL = 3;
+    DNS_RESPONSE_CODE_REFUSED = 4;
+    DNS_RESPONSE_CODE_OTHER = 5;
+  }
+  ResponseCode response_code = 3;
+  
+  repeated DNSAnswer answers = 4;
+  string resolver = 5;
+  double latency_ms = 6;
+}
+
+message DNSAnswer {
+  string type = 1;
+  string value = 2;
+  uint32 ttl = 3;
+}
+
+// ====================
+// File Events
+// ====================
+
+message FileInfo {
+  string path = 1;
+  string name = 2;
+  string extension = 3;
+  uint64 size = 4;
+  uint64 inode = 5;
+  string mode = 6;
+  uint32 uid = 7;
+  uint32 gid = 8;
+  google.protobuf.Timestamp mtime = 9;
+  google.protobuf.Timestamp ctime = 10;
+  bool is_directory = 11;
+  bool is_symlink = 12;
+  string symlink_target = 13;
+  FileHashes hash = 14;
+}
+
+message FileOpenData {
+  string path = 1;
+  repeated string flags = 2;
+  int32 fd = 3;
+  FileInfo file = 4;
+}
+
+message FileReadData {
+  string path = 1;
+  uint64 bytes_read = 2;
+  uint64 offset = 3;
+  bool complete = 4;
+  FileInfo file = 5;
+  string content_hash = 6;
+  string content_preview = 7;
+}
+
+message FileWriteData {
+  string path = 1;
+  uint64 bytes_written = 2;
+  uint64 offset = 3;
+  bool truncated = 4;
+  bool created = 5;
+  FileInfo file = 6;
+  string content_hash = 7;
+  string content_preview = 8;
+  string detected_type = 9;
+}
+
+message FileDeleteData {
+  string path = 1;
+  FileInfo file = 2;
+  bool recursive = 3;
+}
+
+message FileRenameData {
+  string old_path = 1;
+  string new_path = 2;
+  bool overwrote = 3;
+  FileInfo file = 4;
+}
+
+// ====================
+// AI Events
+// ====================
+
+message AIProviderInfo {
+  enum Provider {
+    AI_PROVIDER_UNSPECIFIED = 0;
+    AI_PROVIDER_OPENAI = 1;
+    AI_PROVIDER_ANTHROPIC = 2;
+    AI_PROVIDER_GOOGLE = 3;
+    AI_PROVIDER_AZURE_OPENAI = 4;
+    AI_PROVIDER_AWS_BEDROCK = 5;
+    AI_PROVIDER_COHERE = 6;
+    AI_PROVIDER_MISTRAL = 7;
+    AI_PROVIDER_GROQ = 8;
+    AI_PROVIDER_TOGETHER = 9;
+    AI_PROVIDER_FIREWORKS = 10;
+    AI_PROVIDER_REPLICATE = 11;
+    AI_PROVIDER_HUGGINGFACE = 12;
+    AI_PROVIDER_OLLAMA = 13;
+    AI_PROVIDER_LMSTUDIO = 14;
+    AI_PROVIDER_VLLM = 15;
+    AI_PROVIDER_OTHER = 16;
+  }
+  Provider name = 1;
+  string endpoint = 2;
+  string region = 3;
+  string organization_id = 4;
+  string project_id = 5;
+}
+
+message AIModelInfo {
+  string id = 1;
+  string name = 2;
+  string family = 3;
+  string version = 4;
+  AIModelCapabilities capabilities = 5;
+  uint32 context_window = 6;
+  uint32 max_output_tokens = 7;
+}
+
+message AIModelCapabilities {
+  bool vision = 1;
+  bool function_calling = 2;
+  bool streaming = 3;
+  bool json_mode = 4;
+  bool system_messages = 5;
+  bool reasoning = 6;
+  bool web_search = 7;
+  bool code_execution = 8;
+}
+
+message AIAuthInfo {
+  enum Type {
+    AI_AUTH_TYPE_UNSPECIFIED = 0;
+    AI_AUTH_TYPE_API_KEY = 1;
+    AI_AUTH_TYPE_OAUTH = 2;
+    AI_AUTH_TYPE_SERVICE_ACCOUNT = 3;
+    AI_AUTH_TYPE_SESSION = 4;
+    AI_AUTH_TYPE_NONE = 5;
+    AI_AUTH_TYPE_UNKNOWN = 6;
+  }
+  Type type = 1;
+  
+  enum AccountType {
+    AI_ACCOUNT_TYPE_UNSPECIFIED = 0;
+    AI_ACCOUNT_TYPE_PERSONAL = 1;
+    AI_ACCOUNT_TYPE_CORPORATE = 2;
+    AI_ACCOUNT_TYPE_SHARED = 3;
+    AI_ACCOUNT_TYPE_UNKNOWN = 4;
+  }
+  AccountType account_type = 2;
+  
+  string key_prefix = 3;
+  string key_hash = 4;
+}
+
+message AIMessage {
+  enum Role {
+    AI_MESSAGE_ROLE_UNSPECIFIED = 0;
+    AI_MESSAGE_ROLE_SYSTEM = 1;
+    AI_MESSAGE_ROLE_USER = 2;
+    AI_MESSAGE_ROLE_ASSISTANT = 3;
+    AI_MESSAGE_ROLE_TOOL = 4;
+    AI_MESSAGE_ROLE_FUNCTION = 5;
+  }
+  Role role = 1;
+  
+  oneof content_type {
+    string content = 2;
+    RedactedContent redacted_content = 3;
+  }
+  
+  string content_hash = 4;
+  uint64 content_length = 5;
+  bool has_images = 6;
+  uint32 image_count = 7;
+  string tool_call_id = 8;
+  string name = 9;
+}
+
+message AIToolDefinition {
+  string name = 1;
+  
+  enum Type {
+    AI_TOOL_TYPE_UNSPECIFIED = 0;
+    AI_TOOL_TYPE_FUNCTION = 1;
+    AI_TOOL_TYPE_CODE_INTERPRETER = 2;
+    AI_TOOL_TYPE_FILE_SEARCH = 3;
+    AI_TOOL_TYPE_COMPUTER_USE = 4;
+    AI_TOOL_TYPE_OTHER = 5;
+  }
+  Type type = 2;
+  string description = 3;
+}
+
+message AIToolCall {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  
+  oneof arguments_type {
+    string arguments = 4;
+    google.protobuf.Struct arguments_struct = 5;
+    RedactedContent redacted_arguments = 6;
+  }
+  
+  string arguments_hash = 7;
+}
+
+message AIUsage {
+  uint32 prompt_tokens = 1;
+  uint32 completion_tokens = 2;
+  uint32 total_tokens = 3;
+  uint32 cached_tokens = 4;
+  uint32 reasoning_tokens = 5;
+  double input_cost_usd = 6;
+  double output_cost_usd = 7;
+  double total_cost_usd = 8;
+}
+
+message AIModelParameters {
+  double temperature = 1;
+  double top_p = 2;
+  uint32 max_tokens = 3;
+  double frequency_penalty = 4;
+  double presence_penalty = 5;
+  repeated string stop = 6;
+}
+
+message AIRequestData {
+  string request_id = 1;
+  AIProviderInfo provider = 2;
+  AIModelInfo model = 3;
+  AIAuthInfo auth = 4;
+  
+  enum RequestType {
+    AI_REQUEST_TYPE_UNSPECIFIED = 0;
+    AI_REQUEST_TYPE_CHAT = 1;
+    AI_REQUEST_TYPE_COMPLETION = 2;
+    AI_REQUEST_TYPE_EMBEDDING = 3;
+    AI_REQUEST_TYPE_IMAGE = 4;
+    AI_REQUEST_TYPE_AUDIO = 5;
+    AI_REQUEST_TYPE_MODERATION = 6;
+    AI_REQUEST_TYPE_OTHER = 7;
+  }
+  RequestType request_type = 5;
+  
+  bool streaming = 6;
+  repeated AIMessage messages = 7;
+  uint32 messages_count = 8;
+  bool has_system_prompt = 9;
+  string system_prompt_hash = 10;
+  repeated AIToolDefinition tools = 11;
+  uint32 tools_count = 12;
+  string tool_choice = 13;
+  AIModelParameters parameters = 14;
+  bool has_rag_context = 15;
+  bool has_images = 16;
+  uint32 image_count = 17;
+  uint32 estimated_tokens = 18;
+}
+
+message AIResponseData {
+  string request_id = 1;
+  string provider_request_id = 2;
+  AIProviderInfo provider = 3;
+  AIModelInfo model = 4;
+  int32 status_code = 5;
+  bool success = 6;
+  
+  message Error {
+    string type = 1;
+    string message = 2;
+    string code = 3;
+  }
+  Error error = 7;
+  
+  message Choice {
+    uint32 index = 1;
+    AIMessage message = 2;
+    string finish_reason = 3;
+  }
+  repeated Choice choices = 8;
+  
+  repeated AIToolCall tool_calls = 9;
+  uint32 tool_calls_count = 10;
+  AIUsage usage = 11;
+  uint64 latency_ms = 12;
+  uint64 time_to_first_token_ms = 13;
+  bool was_cached = 14;
+  string finish_reason = 15;
+}
+
+message AIStreamingChunkData {
+  string request_id = 1;
+  uint32 chunk_index = 2;
+  
+  message Delta {
+    string content = 1;
+    string role = 2;
+    repeated AIToolCall tool_calls = 3;
+  }
+  Delta delta = 3;
+  
+  string finish_reason = 4;
+}
+
+message AIEmbeddingData {
+  AIProviderInfo provider = 1;
+  AIModelInfo model = 2;
+  uint32 input_count = 3;
+  uint32 total_tokens = 4;
+  uint32 dimensions = 5;
+  uint64 latency_ms = 6;
+}
+
+// ====================
+// Agent Events
+// ====================
+
+message AgentInfo {
+  string name = 1;
+  
+  enum Type {
+    AGENT_TYPE_UNSPECIFIED = 0;
+    AGENT_TYPE_IDE = 1;
+    AGENT_TYPE_CLI = 2;
+    AGENT_TYPE_BROWSER = 3;
+    AGENT_TYPE_SERVER = 4;
+    AGENT_TYPE_AUTONOMOUS = 5;
+    AGENT_TYPE_WORKFLOW = 6;
+    AGENT_TYPE_OTHER = 7;
+  }
+  Type type = 2;
+  
+  string version = 3;
+  string framework = 4;
+  string session_id = 5;
+  string task_id = 6;
+}
+
+message ToolInfo {
+  string name = 1;
+  
+  enum Type {
+    TOOL_TYPE_UNSPECIFIED = 0;
+    TOOL_TYPE_FILE_READ = 1;
+    TOOL_TYPE_FILE_WRITE = 2;
+    TOOL_TYPE_FILE_EDIT = 3;
+    TOOL_TYPE_TERMINAL = 4;
+    TOOL_TYPE_SHELL = 5;
+    TOOL_TYPE_BROWSER = 6;
+    TOOL_TYPE_HTTP = 7;
+    TOOL_TYPE_DATABASE = 8;
+    TOOL_TYPE_CODE_EXECUTION = 9;
+    TOOL_TYPE_SEARCH = 10;
+    TOOL_TYPE_RETRIEVAL = 11;
+    TOOL_TYPE_API_CALL = 12;
+    TOOL_TYPE_COMPUTER_USE = 13;
+    TOOL_TYPE_OTHER = 14;
+  }
+  Type type = 2;
+  
+  string provider = 3;
+  string server = 4;
+  string description = 5;
+}
+
+message AgentToolCallData {
+  AgentInfo agent = 1;
+  ToolInfo tool = 2;
+  string call_id = 3;
+  
+  enum TriggeredBy {
+    TRIGGERED_BY_UNSPECIFIED = 0;
+    TRIGGERED_BY_LLM_DECISION = 1;
+    TRIGGERED_BY_USER_APPROVAL = 2;
+    TRIGGERED_BY_AUTOMATIC = 3;
+    TRIGGERED_BY_WORKFLOW = 4;
+    TRIGGERED_BY_RETRY = 5;
+  }
+  TriggeredBy triggered_by = 4;
+  
+  google.protobuf.Struct arguments = 5;
+  string arguments_hash = 6;
+  bool requires_approval = 7;
+  bool approved = 8;
+  string approver = 9;
+  
+  enum RiskLevel {
+    RISK_LEVEL_UNSPECIFIED = 0;
+    RISK_LEVEL_LOW = 1;
+    RISK_LEVEL_MEDIUM = 2;
+    RISK_LEVEL_HIGH = 3;
+    RISK_LEVEL_CRITICAL = 4;
+  }
+  RiskLevel risk_level = 10;
+  repeated string risk_reasons = 11;
+}
+
+message AgentToolResultData {
+  AgentInfo agent = 1;
+  ToolInfo tool = 2;
+  string call_id = 3;
+  bool success = 4;
+  
+  message Error {
+    string type = 1;
+    string message = 2;
+  }
+  Error error = 5;
+  
+  oneof result_type {
+    string result_string = 6;
+    google.protobuf.Struct result_struct = 7;
+    RedactedContent redacted_result = 8;
+  }
+  
+  string result_hash = 9;
+  uint64 result_size_bytes = 10;
+  uint64 duration_ms = 11;
+  
+  message SideEffect {
+    string type = 1;
+    string target = 2;
+  }
+  repeated SideEffect side_effects = 12;
+}
+
+message AgentPlanStepData {
+  AgentInfo agent = 1;
+  uint32 step_index = 2;
+  
+  enum StepType {
+    STEP_TYPE_UNSPECIFIED = 0;
+    STEP_TYPE_PLANNING = 1;
+    STEP_TYPE_REASONING = 2;
+    STEP_TYPE_DECISION = 3;
+    STEP_TYPE_REFLECTION = 4;
+    STEP_TYPE_REVISION = 5;
+  }
+  StepType step_type = 3;
+  
+  string description = 4;
+  
+  message PlannedAction {
+    string action = 1;
+    string tool = 2;
+    string rationale = 3;
+  }
+  repeated PlannedAction planned_actions = 5;
+  
+  repeated string context_files = 6;
+  uint32 iteration = 7;
+}
+
+message AgentRAGRetrieveData {
+  AgentInfo agent = 1;
+  
+  message Source {
+    enum Type {
+      RAG_SOURCE_TYPE_UNSPECIFIED = 0;
+      RAG_SOURCE_TYPE_VECTOR_DB = 1;
+      RAG_SOURCE_TYPE_KNOWLEDGE_BASE = 2;
+      RAG_SOURCE_TYPE_FILE_SEARCH = 3;
+      RAG_SOURCE_TYPE_WEB_SEARCH = 4;
+      RAG_SOURCE_TYPE_DATABASE = 5;
+      RAG_SOURCE_TYPE_API = 6;
+      RAG_SOURCE_TYPE_OTHER = 7;
+    }
+    Type type = 1;
+    string name = 2;
+    string provider = 3;
+  }
+  Source source = 2;
+  
+  oneof query_type {
+    string query = 3;
+    RedactedContent redacted_query = 4;
+  }
+  string query_hash = 5;
+  
+  uint32 results_count = 6;
+  
+  message Result {
+    string source = 1;
+    double score = 2;
+    string content_preview = 3;
+    string content_hash = 4;
+    google.protobuf.Struct metadata = 5;
+  }
+  repeated Result results = 7;
+  
+  uint64 latency_ms = 8;
+  uint32 tokens_retrieved = 9;
+}
+
+message AgentSessionData {
+  AgentInfo agent = 1;
+  
+  enum Action {
+    SESSION_ACTION_UNSPECIFIED = 0;
+    SESSION_ACTION_START = 1;
+    SESSION_ACTION_END = 2;
+    SESSION_ACTION_PAUSE = 3;
+    SESSION_ACTION_RESUME = 4;
+    SESSION_ACTION_ERROR = 5;
+  }
+  Action action = 2;
+  
+  string session_id = 3;
+  string task_description = 4;
+  uint64 duration_ms = 5;
+  
+  message Stats {
+    uint32 llm_calls = 1;
+    uint32 tool_calls = 2;
+    uint32 files_read = 3;
+    uint32 files_written = 4;
+    uint32 tokens_used = 5;
+    double estimated_cost_usd = 6;
+  }
+  Stats stats = 6;
+}
+

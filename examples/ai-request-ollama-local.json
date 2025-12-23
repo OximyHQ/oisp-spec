@@ -1,0 +1,94 @@
+{
+  "oisp_version": "0.1",
+  "event_id": "01JFWK8XAL1M2N3O4P5Q6R7S8T",
+  "event_type": "ai.request",
+  "ts": "2025-12-22T16:00:00.123456Z",
+  "ts_mono": 1703259600123456000,
+  
+  "host": {
+    "hostname": "dev-workstation",
+    "device_id": "770g0611-g41d-63f6-c938-668877661111",
+    "os": "linux",
+    "os_version": "Ubuntu 24.04",
+    "arch": "x86_64"
+  },
+  
+  "actor": {
+    "uid": 1000,
+    "user": "developer",
+    "is_human": true
+  },
+  
+  "process": {
+    "pid": 5678,
+    "ppid": 5600,
+    "exe": "/home/developer/.local/bin/aider",
+    "name": "aider",
+    "cmdline": "aider --model ollama/llama3.3"
+  },
+  
+  "source": {
+    "collector": "oisp-sensor",
+    "collector_version": "0.1.0",
+    "capture_method": "syscall_intercept",
+    "capture_point": "sendto"
+  },
+  
+  "confidence": {
+    "level": "high",
+    "completeness": "full",
+    "reasons": ["localhost_plaintext", "full_payload_captured"],
+    "content_source": "plaintext_capture",
+    "ai_detection_method": "known_endpoint"
+  },
+  
+  "data": {
+    "request_id": "req_01JFWK8XAL1M2N3O",
+    "provider": {
+      "name": "ollama",
+      "endpoint": "http://localhost:11434/api/chat"
+    },
+    "model": {
+      "id": "llama3.3:70b",
+      "family": "llama",
+      "capabilities": {
+        "function_calling": true,
+        "streaming": true
+      },
+      "context_window": 131072
+    },
+    "auth": {
+      "type": "none",
+      "account_type": "personal"
+    },
+    "request_type": "chat",
+    "streaming": true,
+    "messages": [
+      {
+        "role": "system",
+        "content_length": 850,
+        "content_hash": "sha256:aider_sys"
+      },
+      {
+        "role": "user",
+        "content_length": 2340,
+        "content_hash": "sha256:code_context"
+      }
+    ],
+    "messages_count": 2,
+    "has_system_prompt": true,
+    "tools_count": 0,
+    "parameters": {
+      "temperature": 0.0
+    },
+    "has_rag_context": true,
+    "has_images": false,
+    "estimated_tokens": 3200
+  },
+  
+  "attrs": {
+    "local_model": true,
+    "gpu_offload": true
+  }
+}
+

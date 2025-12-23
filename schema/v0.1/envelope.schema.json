@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/envelope.schema.json",
+  "title": "OISP Event Envelope",
+  "description": "The canonical wrapper for all OISP events. Every event shares this structure.",
+  "type": "object",
+  "required": [
+    "oisp_version",
+    "event_id",
+    "event_type",
+    "ts",
+    "source",
+    "confidence"
+  ],
+  "properties": {
+    "oisp_version": {
+      "type": "string",
+      "description": "OISP specification version",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "examples": ["0.1"]
+    },
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier. Recommend ULID for time-ordered uniqueness.",
+      "minLength": 1,
+      "examples": ["01HQXYZ123ABCDEF456789"]
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Hierarchical event type identifier",
+      "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9_]*)*$",
+      "examples": [
+        "process.exec",
+        "network.connect",
+        "ai.request",
+        "agent.tool_call"
+      ]
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event timestamp in RFC 3339 format with microsecond precision",
+      "examples": ["2025-12-22T20:15:05.123456Z"]
+    },
+    "ts_mono": {
+      "type": "integer",
+      "description": "Monotonic timestamp in nanoseconds for precise ordering when clock skew is a concern",
+      "minimum": 0
+    },
+    "host": {
+      "$ref": "common/host.schema.json",
+      "description": "Host/device context where the event originated"
+    },
+    "actor": {
+      "$ref": "common/actor.schema.json",
+      "description": "User/identity context"
+    },
+    "process": {
+      "$ref": "common/process.schema.json",
+      "description": "Process context that generated or is associated with this event"
+    },
+    "source": {
+      "$ref": "#/$defs/source",
+      "description": "Provenance information about how this event was captured"
+    },
+    "confidence": {
+      "$ref": "common/confidence.schema.json",
+      "description": "Confidence and completeness metadata"
+    },
+    "data": {
+      "type": "object",
+      "description": "Event-type-specific payload. Structure depends on event_type."
+    },
+    "attrs": {
+      "type": "object",
+      "description": "Additional attributes not covered by the schema. Use for custom metadata.",
+      "additionalProperties": true
+    },
+    "ext": {
+      "type": "object",
+      "description": "Namespaced extensions from known integrations (e.g., ext.oximy.*, ext.langfuse.*)",
+      "additionalProperties": true
+    },
+    "related_events": {
+      "type": "array",
+      "description": "IDs of related events for correlation",
+      "items": {
+        "type": "object",
+        "required": ["event_id", "relationship"],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "description": "Related event's ID"
+          },
+          "relationship": {
+            "type": "string",
+            "enum": ["parent", "child", "caused_by", "causes", "related"],
+            "description": "Nature of the relationship"
+          }
+        }
+      }
+    },
+    "trace_context": {
+      "type": "object",
+      "description": "OpenTelemetry trace context for distributed tracing correlation",
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "description": "W3C Trace ID (32 hex characters)",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "span_id": {
+          "type": "string",
+          "description": "W3C Span ID (16 hex characters)",
+          "pattern": "^[a-f0-9]{16}$"
+        },
+        "trace_flags": {
+          "type": "integer",
+          "description": "W3C Trace flags",
+          "minimum": 0,
+          "maximum": 255
+        }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "description": "Provenance of the event - how and where it was captured",
+      "required": ["collector"],
+      "properties": {
+        "collector": {
+          "type": "string",
+          "description": "Name of the collector that generated this event",
+          "examples": ["oisp-sensor", "browser-extension", "sdk-instrumentation"]
+        },
+        "collector_version": {
+          "type": "string",
+          "description": "Version of the collector",
+          "examples": ["0.1.0", "1.2.3"]
+        },
+        "capture_method": {
+          "type": "string",
+          "description": "Technical method used to capture the event",
+          "enum": [
+            "ebpf_tracepoint",
+            "ebpf_kprobe",
+            "ebpf_uprobe",
+            "dtrace",
+            "etw",
+            "syscall_intercept",
+            "tls_boundary",
+            "mitm_proxy",
+            "browser_extension",
+            "sdk_instrumentation",
+            "vendor_api",
+            "vendor_audit_log",
+            "log_parsing",
+            "other"
+          ]
+        },
+        "capture_point": {
+          "type": "string",
+          "description": "Specific capture point (e.g., 'ssl_write', 'execve', 'connect')",
+          "examples": ["ssl_write", "ssl_read", "execve", "connect", "sendto"]
+        },
+        "sensor_host": {
+          "type": "string",
+          "description": "Hostname of the sensor if different from event host (e.g., network tap)"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

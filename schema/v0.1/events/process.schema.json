@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/events/process.schema.json",
+  "title": "OISP Process Events",
+  "description": "Process lifecycle events - execution, exit, fork",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/exec" },
+    { "$ref": "#/$defs/exit" },
+    { "$ref": "#/$defs/fork" }
+  ],
+  "$defs": {
+    "exec": {
+      "type": "object",
+      "title": "process.exec",
+      "description": "Process execution event - emitted when a new process starts",
+      "required": ["exe"],
+      "properties": {
+        "exe": {
+          "type": "string",
+          "description": "Path to the executable being run"
+        },
+        "args": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Command line arguments"
+        },
+        "cwd": {
+          "type": "string",
+          "description": "Current working directory at exec time"
+        },
+        "env": {
+          "type": "object",
+          "description": "Selected environment variables (filtered for relevance)",
+          "additionalProperties": { "type": "string" }
+        },
+        "interpreter": {
+          "type": "string",
+          "description": "Script interpreter if applicable (e.g., /usr/bin/python3)"
+        },
+        "script_path": {
+          "type": "string",
+          "description": "Path to script file if running a script"
+        },
+        "is_shell": {
+          "type": "boolean",
+          "description": "Whether this is a shell invocation"
+        },
+        "is_script": {
+          "type": "boolean",
+          "description": "Whether this is a script execution"
+        },
+        "is_interactive": {
+          "type": "boolean",
+          "description": "Whether this is an interactive session"
+        },
+        "binary_hash": {
+          "$ref": "../common/process.schema.json#/properties/hash",
+          "description": "Hash of the executable binary"
+        },
+        "code_signature": {
+          "$ref": "../common/process.schema.json#/properties/code_signature",
+          "description": "Code signing information"
+        }
+      }
+    },
+    "exit": {
+      "type": "object",
+      "title": "process.exit",
+      "description": "Process exit event",
+      "required": ["exit_code"],
+      "properties": {
+        "exit_code": {
+          "type": "integer",
+          "description": "Process exit code"
+        },
+        "signal": {
+          "type": "integer",
+          "description": "Signal that caused termination (if applicable)"
+        },
+        "signal_name": {
+          "type": "string",
+          "description": "Human-readable signal name",
+          "examples": ["SIGTERM", "SIGKILL", "SIGSEGV"]
+        },
+        "runtime_ms": {
+          "type": "integer",
+          "description": "Process runtime in milliseconds",
+          "minimum": 0
+        },
+        "cpu_user_ms": {
+          "type": "integer",
+          "description": "User CPU time in milliseconds"
+        },
+        "cpu_system_ms": {
+          "type": "integer",
+          "description": "System CPU time in milliseconds"
+        },
+        "max_rss_kb": {
+          "type": "integer",
+          "description": "Maximum resident set size in KB"
+        },
+        "termination_type": {
+          "type": "string",
+          "enum": ["normal", "signaled", "coredump", "unknown"],
+          "description": "How the process terminated"
+        }
+      }
+    },
+    "fork": {
+      "type": "object",
+      "title": "process.fork",
+      "description": "Process fork event - emitted when a process creates a child",
+      "required": ["child_pid"],
+      "properties": {
+        "child_pid": {
+          "type": "integer",
+          "description": "PID of the newly forked child process",
+          "minimum": 0
+        },
+        "clone_flags": {
+          "type": "integer",
+          "description": "Clone flags (Linux)"
+        },
+        "is_thread": {
+          "type": "boolean",
+          "description": "Whether this is a thread creation rather than process fork"
+        }
+      }
+    }
+  }
+}
+

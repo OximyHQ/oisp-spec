@@ -1,0 +1,533 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/events/ai.schema.json",
+  "title": "OISP AI Events",
+  "description": "AI/LLM interaction events - requests, responses, streaming",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/request" },
+    { "$ref": "#/$defs/response" },
+    { "$ref": "#/$defs/streaming_chunk" },
+    { "$ref": "#/$defs/embedding" }
+  ],
+  "$defs": {
+    "provider_info": {
+      "type": "object",
+      "description": "AI provider identification",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Canonical provider name",
+          "enum": [
+            "openai",
+            "anthropic",
+            "google",
+            "azure_openai",
+            "aws_bedrock",
+            "cohere",
+            "mistral",
+            "groq",
+            "together",
+            "fireworks",
+            "replicate",
+            "huggingface",
+            "ollama",
+            "lmstudio",
+            "vllm",
+            "other"
+          ]
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "API endpoint URL",
+          "examples": ["https://api.openai.com/v1/chat/completions"]
+        },
+        "region": {
+          "type": "string",
+          "description": "Provider region if applicable",
+          "examples": ["us-east-1", "europe-west1"]
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization ID from provider"
+        },
+        "project_id": {
+          "type": "string",
+          "description": "Project ID if applicable"
+        }
+      }
+    },
+    "model_info": {
+      "type": "object",
+      "description": "Model identification and capabilities",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Model identifier as sent in request or returned",
+          "examples": ["gpt-4o", "claude-3-5-sonnet-20241022", "gemini-1.5-pro"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable model name",
+          "examples": ["GPT-4o", "Claude 3.5 Sonnet", "Gemini 1.5 Pro"]
+        },
+        "family": {
+          "type": "string",
+          "description": "Model family",
+          "examples": ["gpt-4", "claude-3", "gemini-1.5"]
+        },
+        "version": {
+          "type": "string",
+          "description": "Model version or snapshot",
+          "examples": ["2024-10-22", "v1"]
+        },
+        "capabilities": {
+          "type": "object",
+          "description": "Known model capabilities",
+          "properties": {
+            "vision": { "type": "boolean" },
+            "function_calling": { "type": "boolean" },
+            "streaming": { "type": "boolean" },
+            "json_mode": { "type": "boolean" },
+            "system_messages": { "type": "boolean" },
+            "reasoning": { "type": "boolean" },
+            "web_search": { "type": "boolean" },
+            "code_execution": { "type": "boolean" }
+          }
+        },
+        "context_window": {
+          "type": "integer",
+          "description": "Maximum context window in tokens"
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "description": "Maximum output tokens"
+        }
+      }
+    },
+    "auth_info": {
+      "type": "object",
+      "description": "Authentication information for the AI request",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of authentication",
+          "enum": ["api_key", "oauth", "service_account", "session", "none", "unknown"]
+        },
+        "account_type": {
+          "type": "string",
+          "description": "Whether this is a personal or corporate account",
+          "enum": ["personal", "corporate", "shared", "unknown"]
+        },
+        "key_prefix": {
+          "type": "string",
+          "description": "First few characters of API key for identification",
+          "maxLength": 8,
+          "examples": ["sk-proj-", "sk-ant-"]
+        },
+        "key_hash": {
+          "type": "string",
+          "description": "Hash of the full API key for tracking without exposure"
+        }
+      }
+    },
+    "message": {
+      "type": "object",
+      "description": "A message in the conversation",
+      "required": ["role"],
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["system", "user", "assistant", "tool", "function"],
+          "description": "Message role"
+        },
+        "content": {
+          "oneOf": [
+            { "type": "string" },
+            { "$ref": "#/$defs/redacted_content" }
+          ],
+          "description": "Message content (may be redacted)"
+        },
+        "content_hash": {
+          "type": "string",
+          "description": "Hash of content for correlation without exposure"
+        },
+        "content_length": {
+          "type": "integer",
+          "description": "Length of content in characters"
+        },
+        "has_images": {
+          "type": "boolean",
+          "description": "Whether this message contains images"
+        },
+        "image_count": {
+          "type": "integer",
+          "description": "Number of images in message"
+        },
+        "tool_call_id": {
+          "type": "string",
+          "description": "Tool call ID this message responds to"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of function/tool for function messages"
+        }
+      }
+    },
+    "tool_definition": {
+      "type": "object",
+      "description": "Tool/function definition available to the model",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Tool name"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["function", "code_interpreter", "file_search", "computer_use", "other"]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "tool_call": {
+      "type": "object",
+      "description": "A tool call made by the model",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "arguments": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object" },
+            { "$ref": "#/$defs/redacted_content" }
+          ]
+        },
+        "arguments_hash": {
+          "type": "string"
+        }
+      }
+    },
+    "redacted_content": {
+      "type": "object",
+      "description": "Marker indicating content was redacted",
+      "required": ["$redacted"],
+      "properties": {
+        "$redacted": {
+          "type": "object",
+          "required": ["reason"],
+          "properties": {
+            "reason": {
+              "type": "string",
+              "description": "Why this was redacted",
+              "examples": ["pii_detected", "secret_detected", "policy", "default_safe"]
+            },
+            "detector": {
+              "type": "string",
+              "description": "What detector triggered the redaction",
+              "examples": ["regex_email", "regex_api_key", "pii_classifier"]
+            },
+            "original_length": {
+              "type": "integer",
+              "description": "Length of original content"
+            },
+            "hash": {
+              "type": "string",
+              "description": "Hash of original content for correlation"
+            },
+            "preview": {
+              "type": "string",
+              "description": "Safe preview of content (first N chars, no sensitive data)",
+              "maxLength": 100
+            },
+            "redaction_profile": {
+              "type": "string",
+              "description": "Redaction profile that was applied"
+            },
+            "findings": {
+              "type": "array",
+              "description": "What was found that triggered redaction",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": { "type": "string" },
+                  "count": { "type": "integer" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "description": "Token usage information",
+      "properties": {
+        "prompt_tokens": {
+          "type": "integer",
+          "description": "Tokens in the prompt/input"
+        },
+        "completion_tokens": {
+          "type": "integer",
+          "description": "Tokens in the completion/output"
+        },
+        "total_tokens": {
+          "type": "integer"
+        },
+        "cached_tokens": {
+          "type": "integer",
+          "description": "Tokens served from cache (prompt caching)"
+        },
+        "reasoning_tokens": {
+          "type": "integer",
+          "description": "Tokens used for reasoning (o1, etc.)"
+        },
+        "input_cost_usd": {
+          "type": "number",
+          "description": "Estimated input cost in USD"
+        },
+        "output_cost_usd": {
+          "type": "number",
+          "description": "Estimated output cost in USD"
+        },
+        "total_cost_usd": {
+          "type": "number",
+          "description": "Estimated total cost in USD"
+        }
+      }
+    },
+    "request": {
+      "type": "object",
+      "title": "ai.request",
+      "description": "AI/LLM API request",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "description": "Unique identifier for this request"
+        },
+        "provider": {
+          "$ref": "#/$defs/provider_info"
+        },
+        "model": {
+          "$ref": "#/$defs/model_info"
+        },
+        "auth": {
+          "$ref": "#/$defs/auth_info"
+        },
+        "request_type": {
+          "type": "string",
+          "description": "Type of AI request",
+          "enum": ["chat", "completion", "embedding", "image", "audio", "moderation", "other"]
+        },
+        "streaming": {
+          "type": "boolean",
+          "description": "Whether streaming was requested"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Messages in the request (for chat)",
+          "items": { "$ref": "#/$defs/message" }
+        },
+        "messages_count": {
+          "type": "integer",
+          "description": "Number of messages (when messages are redacted)"
+        },
+        "has_system_prompt": {
+          "type": "boolean",
+          "description": "Whether a system prompt was included"
+        },
+        "system_prompt_hash": {
+          "type": "string",
+          "description": "Hash of system prompt for tracking"
+        },
+        "tools": {
+          "type": "array",
+          "description": "Tools/functions available to the model",
+          "items": { "$ref": "#/$defs/tool_definition" }
+        },
+        "tools_count": {
+          "type": "integer",
+          "description": "Number of tools available"
+        },
+        "tool_choice": {
+          "type": "string",
+          "description": "Tool choice setting",
+          "examples": ["auto", "none", "required", "specific"]
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Model parameters",
+          "properties": {
+            "temperature": { "type": "number" },
+            "top_p": { "type": "number" },
+            "max_tokens": { "type": "integer" },
+            "frequency_penalty": { "type": "number" },
+            "presence_penalty": { "type": "number" },
+            "stop": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "has_rag_context": {
+          "type": "boolean",
+          "description": "Whether RAG-injected context was detected"
+        },
+        "has_images": {
+          "type": "boolean",
+          "description": "Whether images were included in the request"
+        },
+        "image_count": {
+          "type": "integer"
+        },
+        "estimated_tokens": {
+          "type": "integer",
+          "description": "Estimated token count for the request"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "title": "ai.response",
+      "description": "AI/LLM API response",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "description": "Links back to the corresponding request"
+        },
+        "provider_request_id": {
+          "type": "string",
+          "description": "Request ID from the provider"
+        },
+        "provider": {
+          "$ref": "#/$defs/provider_info"
+        },
+        "model": {
+          "$ref": "#/$defs/model_info"
+        },
+        "status_code": {
+          "type": "integer",
+          "description": "HTTP status code"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "object",
+          "description": "Error information if request failed",
+          "properties": {
+            "type": { "type": "string" },
+            "message": { "type": "string" },
+            "code": { "type": "string" }
+          }
+        },
+        "choices": {
+          "type": "array",
+          "description": "Response choices",
+          "items": {
+            "type": "object",
+            "properties": {
+              "index": { "type": "integer" },
+              "message": { "$ref": "#/$defs/message" },
+              "finish_reason": {
+                "type": "string",
+                "enum": ["stop", "length", "tool_calls", "content_filter", "error", "other"]
+              }
+            }
+          }
+        },
+        "tool_calls": {
+          "type": "array",
+          "description": "Tool calls made by the model",
+          "items": { "$ref": "#/$defs/tool_call" }
+        },
+        "tool_calls_count": {
+          "type": "integer"
+        },
+        "usage": {
+          "$ref": "#/$defs/usage"
+        },
+        "latency_ms": {
+          "type": "integer",
+          "description": "Total response time in milliseconds"
+        },
+        "time_to_first_token_ms": {
+          "type": "integer",
+          "description": "Time to first token (for streaming)"
+        },
+        "was_cached": {
+          "type": "boolean",
+          "description": "Whether response was served from cache"
+        },
+        "finish_reason": {
+          "type": "string",
+          "description": "Why generation stopped",
+          "enum": ["stop", "length", "tool_calls", "content_filter", "error", "other"]
+        }
+      }
+    },
+    "streaming_chunk": {
+      "type": "object",
+      "title": "ai.streaming_chunk",
+      "description": "Individual chunk in a streaming response (optional, for detailed tracing)",
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "chunk_index": {
+          "type": "integer"
+        },
+        "delta": {
+          "type": "object",
+          "properties": {
+            "content": { "type": "string" },
+            "role": { "type": "string" },
+            "tool_calls": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/tool_call" }
+            }
+          }
+        },
+        "finish_reason": {
+          "type": "string"
+        }
+      }
+    },
+    "embedding": {
+      "type": "object",
+      "title": "ai.embedding",
+      "description": "Embedding generation request/response",
+      "properties": {
+        "provider": {
+          "$ref": "#/$defs/provider_info"
+        },
+        "model": {
+          "$ref": "#/$defs/model_info"
+        },
+        "input_count": {
+          "type": "integer",
+          "description": "Number of inputs embedded"
+        },
+        "total_tokens": {
+          "type": "integer"
+        },
+        "dimensions": {
+          "type": "integer",
+          "description": "Embedding dimensions"
+        },
+        "latency_ms": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
+
