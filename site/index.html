@@ -241,6 +241,114 @@
       border-radius: 3px;
       font-size: 0.9em;
     }
+    
+    .sensor-promo {
+      padding: 40px 0;
+    }
+    
+    .sensor-card {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(34, 211, 238, 0.05));
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+    
+    .sensor-header {
+      margin-bottom: 24px;
+    }
+    
+    .sensor-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    
+    .sensor-header h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .sensor-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    
+    .sensor-features {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    
+    .sensor-features span {
+      color: var(--cyan);
+      font-size: 0.9rem;
+    }
+    
+    .sensor-features span::before {
+      content: ">";
+      margin-right: 6px;
+      color: var(--text-muted);
+    }
+    
+    .sensor-install {
+      margin-bottom: 24px;
+    }
+    
+    .sensor-install code {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: var(--green);
+    }
+    
+    .sensor-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    
+    .sensor-links a {
+      padding: 10px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    
+    .sensor-links a:hover {
+      border-color: var(--accent);
+    }
+    
+    .sensor-links a.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    
+    .sensor-links a.primary:hover {
+      background: var(--accent-dim);
+    }
   </style>
 </head>
 <body>
@@ -267,6 +375,28 @@
         <a href="/semconv/providers/_generated/models.json">
           Model Registry
         </a>
+      </div>
+    </section>
+    
+    <section class="sensor-promo">
+      <div class="sensor-card">
+        <div class="sensor-header">
+          <span class="sensor-badge">Reference Implementation</span>
+          <h3>OISP Sensor</h3>
+          <p>See every AI interaction on your machine. Zero instrumentation.</p>
+        </div>
+        <div class="sensor-features">
+          <span>Full content capture via eBPF</span>
+          <span>Multi-platform (Linux, macOS, Windows)</span>
+          <span>Real-time TUI & Web UI</span>
+        </div>
+        <div class="sensor-install">
+          <code>curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh</code>
+        </div>
+        <div class="sensor-links">
+          <a href="https://sensor.oisp.dev" class="primary">Get Started</a>
+          <a href="https://github.com/oximyHQ/oisp-sensor">GitHub</a>
+        </div>
       </div>
     </section>
     

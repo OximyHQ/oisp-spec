@@ -266,6 +266,28 @@ Schema URLs include the major version: `https://oisp.dev/schema/v0.1/...`
 - **OpenTelemetry**: Observability framework we extend
 - **LiteLLM**: Provider/model registry we reference
 
+## Try It Now: OISP Sensor
+
+Want to see OISP in action? **[OISP Sensor](https://sensor.oisp.dev)** is our reference implementation that captures every AI interaction on your machine with zero instrumentation.
+
+```bash
+# Install
+curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh
+
+# Run with TUI
+sudo oisp-sensor
+
+# Or with Web UI
+sudo oisp-sensor --web
+```
+
+OISP Sensor implements the complete OISP event model:
+- Captures AI requests/responses at the TLS boundary (eBPF on Linux)
+- Correlates agent tool calls with actual system operations
+- Outputs events in OISP schema format (JSONL, WebSocket, OTLP)
+
+[Get Started](https://sensor.oisp.dev) | [GitHub](https://github.com/oximyHQ/oisp-sensor)
+
 ## Next Steps
 
 - [Implementor's Guide](implementors-guide.md): How to build an OISP-compliant sensor

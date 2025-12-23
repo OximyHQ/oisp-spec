@@ -2,6 +2,12 @@
 
 This guide explains how to build an OISP-compliant sensor or integrate OISP event generation into your system.
 
+> **Reference Implementation Available**: Before building your own, check out [OISP Sensor](https://sensor.oisp.dev) - our reference implementation that handles all the complexities described below. It's open source and can serve as a starting point or reference for your own implementation.
+>
+> ```bash
+> curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh
+> ```
+
 ## Overview
 
 An OISP implementation typically involves:
