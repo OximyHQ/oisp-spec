@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Bundle publishing to `site/spec/v0.1/bundle.json` for hosting at oisp.dev
+- Pre-commit hook for automatic bundle regeneration
+- `scripts/setup-hooks.sh` - Git hooks installer
+- `scripts/publish-bundle.sh` - Bundle publishing script
+
 ## [0.1.0] - 2025-12-22
 
 ### Added
