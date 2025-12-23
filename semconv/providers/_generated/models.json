@@ -1,11 +1,11 @@
 {
   "version": "0.1",
-  "generated_at": "2025-12-23T00:25:02.581276+00:00",
+  "generated_at": "2025-12-23T22:39:44.458601+00:00",
   "source": "litellm",
   "source_url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
   "stats": {
-    "total_models": 2248,
-    "providers": 94
+    "total_models": 2239,
+    "providers": 95
   },
   "providers": {
     "ai21": {
@@ -329,7 +329,7 @@
       ]
     },
     "azure_openai": {
-      "model_count": 242,
+      "model_count": 245,
       "models": [
         "Cohere-embed-v3-english",
         "Cohere-embed-v3-multilingual",
@@ -478,6 +478,9 @@
         "gpt-audio-mini-2025-10-06",
         "gpt-image-1",
         "gpt-image-1-mini",
+        "gpt-image-1.5",
+        "gpt-image-1.5-2025-12-16",
+        "gpt-oss-120b",
         "gpt-realtime-2025-08-28",
         "gpt-realtime-mini-2025-10-06",
         "grok-3",
@@ -1442,32 +1445,13 @@
       ]
     },
     "groq": {
-      "model_count": 31,
+      "model_count": 12,
       "models": [
-        "deepseek-r1-distill-llama-70b",
-        "distil-whisper-large-v3-en",
-        "gemma-7b-it",
-        "gemma2-9b-it",
-        "llama-3.1-405b-reasoning",
-        "llama-3.1-70b-versatile",
         "llama-3.1-8b-instant",
-        "llama-3.2-11b-text-preview",
-        "llama-3.2-11b-vision-preview",
-        "llama-3.2-1b-preview",
-        "llama-3.2-3b-preview",
-        "llama-3.2-90b-text-preview",
-        "llama-3.2-90b-vision-preview",
-        "llama-3.3-70b-specdec",
         "llama-3.3-70b-versatile",
-        "llama-guard-3-8b",
-        "llama2-70b-4096",
-        "llama3-groq-70b-8192-tool-use-preview",
-        "llama3-groq-8b-8192-tool-use-preview",
         "meta-llama/llama-4-maverick-17b-128e-instruct",
         "meta-llama/llama-4-scout-17b-16e-instruct",
-        "mistral-saba-24b",
-        "mixtral-8x7b-32768",
-        "moonshotai/kimi-k2-instruct",
+        "meta-llama/llama-guard-4-12b",
         "moonshotai/kimi-k2-instruct-0905",
         "openai/gpt-oss-120b",
         "openai/gpt-oss-20b",
@@ -1562,6 +1546,18 @@
         "Llama-3.3-8B-Instruct",
         "Llama-4-Maverick-17B-128E-Instruct-FP8",
         "Llama-4-Scout-17B-16E-Instruct-FP8"
+      ]
+    },
+    "minimax": {
+      "model_count": 7,
+      "models": [
+        "MiniMax-M2",
+        "MiniMax-M2.1",
+        "MiniMax-M2.1-lightning",
+        "speech-02-hd",
+        "speech-02-turbo",
+        "speech-2.6-hd",
+        "speech-2.6-turbo"
       ]
     },
     "mistral": {
@@ -3829,6 +3825,21 @@
       "provider": "azure_openai",
       "mode": "chat"
     },
+    "azure_openai/gpt-oss-120b": {
+      "id": "gpt-oss-120b",
+      "litellm_id": "azure_ai/gpt-oss-120b",
+      "provider": "azure_openai",
+      "mode": "chat",
+      "max_input_tokens": 131072,
+      "max_output_tokens": 131072,
+      "input_cost_per_1k": 0.00015,
+      "output_cost_per_1k": 0.0006,
+      "capabilities": [
+        "function_calling",
+        "parallel_function_calling",
+        "json_mode"
+      ]
+    },
     "azure_openai/eu/gpt-4o-2024-08-06": {
       "id": "eu/gpt-4o-2024-08-06",
       "litellm_id": "azure/eu/gpt-4o-2024-08-06",
@@ -5516,6 +5527,20 @@
       "litellm_id": "azure/gpt-image-1-mini",
       "provider": "azure_openai",
       "mode": "image"
+    },
+    "azure_openai/gpt-image-1.5": {
+      "id": "gpt-image-1.5",
+      "litellm_id": "azure/gpt-image-1.5",
+      "provider": "azure_openai",
+      "mode": "image",
+      "input_cost_per_1k": 0.005
+    },
+    "azure_openai/gpt-image-1.5-2025-12-16": {
+      "id": "gpt-image-1.5-2025-12-16",
+      "litellm_id": "azure/gpt-image-1.5-2025-12-16",
+      "provider": "azure_openai",
+      "mode": "image",
+      "input_cost_per_1k": 0.005
     },
     "azure_openai/low/1024-x-1024/gpt-image-1-mini": {
       "id": "low/1024-x-1024/gpt-image-1-mini",
@@ -15183,79 +15208,6 @@
         "prompt_caching"
       ]
     },
-    "groq/deepseek-r1-distill-llama-70b": {
-      "id": "deepseek-r1-distill-llama-70b",
-      "litellm_id": "groq/deepseek-r1-distill-llama-70b",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 128000,
-      "max_output_tokens": 128000,
-      "input_cost_per_1k": 0.00075,
-      "output_cost_per_1k": 0.00099,
-      "capabilities": [
-        "function_calling",
-        "reasoning"
-      ]
-    },
-    "groq/distil-whisper-large-v3-en": {
-      "id": "distil-whisper-large-v3-en",
-      "litellm_id": "groq/distil-whisper-large-v3-en",
-      "provider": "groq",
-      "mode": "audio_transcription"
-    },
-    "groq/gemma-7b-it": {
-      "id": "gemma-7b-it",
-      "litellm_id": "groq/gemma-7b-it",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 7e-05,
-      "output_cost_per_1k": 7e-05,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2024-12-18"
-    },
-    "groq/gemma2-9b-it": {
-      "id": "gemma2-9b-it",
-      "litellm_id": "groq/gemma2-9b-it",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.0002,
-      "output_cost_per_1k": 0.0002
-    },
-    "groq/llama-3.1-405b-reasoning": {
-      "id": "llama-3.1-405b-reasoning",
-      "litellm_id": "groq/llama-3.1-405b-reasoning",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00059,
-      "output_cost_per_1k": 0.00079,
-      "capabilities": [
-        "function_calling"
-      ]
-    },
-    "groq/llama-3.1-70b-versatile": {
-      "id": "llama-3.1-70b-versatile",
-      "litellm_id": "groq/llama-3.1-70b-versatile",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00059,
-      "output_cost_per_1k": 0.00079,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-01-24"
-    },
     "groq/llama-3.1-8b-instant": {
       "id": "llama-3.1-8b-instant",
       "litellm_id": "groq/llama-3.1-8b-instant",
@@ -15268,110 +15220,6 @@
       "capabilities": [
         "function_calling"
       ]
-    },
-    "groq/llama-3.2-11b-text-preview": {
-      "id": "llama-3.2-11b-text-preview",
-      "litellm_id": "groq/llama-3.2-11b-text-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00018,
-      "output_cost_per_1k": 0.00018,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2024-10-28"
-    },
-    "groq/llama-3.2-11b-vision-preview": {
-      "id": "llama-3.2-11b-vision-preview",
-      "litellm_id": "groq/llama-3.2-11b-vision-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00018,
-      "output_cost_per_1k": 0.00018,
-      "capabilities": [
-        "vision",
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-04-14"
-    },
-    "groq/llama-3.2-1b-preview": {
-      "id": "llama-3.2-1b-preview",
-      "litellm_id": "groq/llama-3.2-1b-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 4e-05,
-      "output_cost_per_1k": 4e-05,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-04-14"
-    },
-    "groq/llama-3.2-3b-preview": {
-      "id": "llama-3.2-3b-preview",
-      "litellm_id": "groq/llama-3.2-3b-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 6e-05,
-      "output_cost_per_1k": 6e-05,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-04-14"
-    },
-    "groq/llama-3.2-90b-text-preview": {
-      "id": "llama-3.2-90b-text-preview",
-      "litellm_id": "groq/llama-3.2-90b-text-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.0009,
-      "output_cost_per_1k": 0.0009,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2024-11-25"
-    },
-    "groq/llama-3.2-90b-vision-preview": {
-      "id": "llama-3.2-90b-vision-preview",
-      "litellm_id": "groq/llama-3.2-90b-vision-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.0009,
-      "output_cost_per_1k": 0.0009,
-      "capabilities": [
-        "vision",
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-04-14"
-    },
-    "groq/llama-3.3-70b-specdec": {
-      "id": "llama-3.3-70b-specdec",
-      "litellm_id": "groq/llama-3.3-70b-specdec",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00059,
-      "output_cost_per_1k": 0.00099,
-      "deprecated": true,
-      "deprecation_date": "2025-04-14"
     },
     "groq/llama-3.3-70b-versatile": {
       "id": "llama-3.3-70b-versatile",
@@ -15386,58 +15234,15 @@
         "function_calling"
       ]
     },
-    "groq/llama-guard-3-8b": {
-      "id": "llama-guard-3-8b",
-      "litellm_id": "groq/llama-guard-3-8b",
+    "groq/meta-llama/llama-guard-4-12b": {
+      "id": "meta-llama/llama-guard-4-12b",
+      "litellm_id": "groq/meta-llama/llama-guard-4-12b",
       "provider": "groq",
       "mode": "chat",
       "max_input_tokens": 8192,
       "max_output_tokens": 8192,
       "input_cost_per_1k": 0.0002,
       "output_cost_per_1k": 0.0002
-    },
-    "groq/llama2-70b-4096": {
-      "id": "llama2-70b-4096",
-      "litellm_id": "groq/llama2-70b-4096",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 4096,
-      "max_output_tokens": 4096,
-      "input_cost_per_1k": 0.0007,
-      "output_cost_per_1k": 0.0008,
-      "capabilities": [
-        "function_calling"
-      ]
-    },
-    "groq/llama3-groq-70b-8192-tool-use-preview": {
-      "id": "llama3-groq-70b-8192-tool-use-preview",
-      "litellm_id": "groq/llama3-groq-70b-8192-tool-use-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00089,
-      "output_cost_per_1k": 0.00089,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-01-06"
-    },
-    "groq/llama3-groq-8b-8192-tool-use-preview": {
-      "id": "llama3-groq-8b-8192-tool-use-preview",
-      "litellm_id": "groq/llama3-groq-8b-8192-tool-use-preview",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 8192,
-      "max_output_tokens": 8192,
-      "input_cost_per_1k": 0.00019,
-      "output_cost_per_1k": 0.00019,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-01-06"
     },
     "groq/meta-llama/llama-4-maverick-17b-128e-instruct": {
       "id": "meta-llama/llama-4-maverick-17b-128e-instruct",
@@ -15449,6 +15254,7 @@
       "input_cost_per_1k": 0.0002,
       "output_cost_per_1k": 0.0006,
       "capabilities": [
+        "vision",
         "function_calling",
         "json_mode"
       ]
@@ -15463,45 +15269,7 @@
       "input_cost_per_1k": 0.00011,
       "output_cost_per_1k": 0.00034,
       "capabilities": [
-        "function_calling",
-        "json_mode"
-      ]
-    },
-    "groq/mistral-saba-24b": {
-      "id": "mistral-saba-24b",
-      "litellm_id": "groq/mistral-saba-24b",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 32000,
-      "max_output_tokens": 32000,
-      "input_cost_per_1k": 0.00079,
-      "output_cost_per_1k": 0.00079
-    },
-    "groq/mixtral-8x7b-32768": {
-      "id": "mixtral-8x7b-32768",
-      "litellm_id": "groq/mixtral-8x7b-32768",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 32768,
-      "max_output_tokens": 32768,
-      "input_cost_per_1k": 0.00024,
-      "output_cost_per_1k": 0.00024,
-      "capabilities": [
-        "function_calling"
-      ],
-      "deprecated": true,
-      "deprecation_date": "2025-03-20"
-    },
-    "groq/moonshotai/kimi-k2-instruct": {
-      "id": "moonshotai/kimi-k2-instruct",
-      "litellm_id": "groq/moonshotai/kimi-k2-instruct",
-      "provider": "groq",
-      "mode": "chat",
-      "max_input_tokens": 131072,
-      "max_output_tokens": 16384,
-      "input_cost_per_1k": 0.001,
-      "output_cost_per_1k": 0.003,
-      "capabilities": [
+        "vision",
         "function_calling",
         "json_mode"
       ]
@@ -16760,6 +16528,75 @@
       "output_cost_per_1k": 0.0012,
       "capabilities": [
         "system_messages"
+      ]
+    },
+    "minimax/speech-02-hd": {
+      "id": "speech-02-hd",
+      "litellm_id": "minimax/speech-02-hd",
+      "provider": "minimax",
+      "mode": "audio_speech"
+    },
+    "minimax/speech-02-turbo": {
+      "id": "speech-02-turbo",
+      "litellm_id": "minimax/speech-02-turbo",
+      "provider": "minimax",
+      "mode": "audio_speech"
+    },
+    "minimax/speech-2.6-hd": {
+      "id": "speech-2.6-hd",
+      "litellm_id": "minimax/speech-2.6-hd",
+      "provider": "minimax",
+      "mode": "audio_speech"
+    },
+    "minimax/speech-2.6-turbo": {
+      "id": "speech-2.6-turbo",
+      "litellm_id": "minimax/speech-2.6-turbo",
+      "provider": "minimax",
+      "mode": "audio_speech"
+    },
+    "minimax/MiniMax-M2.1": {
+      "id": "MiniMax-M2.1",
+      "litellm_id": "minimax/MiniMax-M2.1",
+      "provider": "minimax",
+      "mode": "chat",
+      "max_input_tokens": 1000000,
+      "max_output_tokens": 8192,
+      "input_cost_per_1k": 0.0003,
+      "output_cost_per_1k": 0.0012,
+      "capabilities": [
+        "function_calling",
+        "system_messages",
+        "prompt_caching"
+      ]
+    },
+    "minimax/MiniMax-M2.1-lightning": {
+      "id": "MiniMax-M2.1-lightning",
+      "litellm_id": "minimax/MiniMax-M2.1-lightning",
+      "provider": "minimax",
+      "mode": "chat",
+      "max_input_tokens": 1000000,
+      "max_output_tokens": 8192,
+      "input_cost_per_1k": 0.0003,
+      "output_cost_per_1k": 0.0024,
+      "capabilities": [
+        "function_calling",
+        "system_messages",
+        "prompt_caching"
+      ]
+    },
+    "minimax/MiniMax-M2": {
+      "id": "MiniMax-M2",
+      "litellm_id": "minimax/MiniMax-M2",
+      "provider": "minimax",
+      "mode": "chat",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 8192,
+      "input_cost_per_1k": 0.0003,
+      "output_cost_per_1k": 0.0012,
+      "capabilities": [
+        "function_calling",
+        "system_messages",
+        "prompt_caching"
       ]
     },
     "bedrock_converse/mistral.magistral-small-2509": {
@@ -22114,7 +21951,8 @@
       "mode": "chat",
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/Qwen/Qwen2.5-7B-Instruct-Turbo": {
@@ -22124,7 +21962,8 @@
       "mode": "chat",
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/Qwen/Qwen3-235B-A22B-Instruct-2507-tput": {
@@ -22137,7 +21976,8 @@
       "output_cost_per_1k": 0.006,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/Qwen/Qwen3-235B-A22B-Thinking-2507": {
@@ -22150,7 +21990,8 @@
       "output_cost_per_1k": 0.003,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/Qwen/Qwen3-235B-A22B-fp8-tput": {
@@ -22172,7 +22013,8 @@
       "output_cost_per_1k": 0.002,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/deepseek-ai/DeepSeek-R1": {
@@ -22186,7 +22028,8 @@
       "output_cost_per_1k": 0.007,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/deepseek-ai/DeepSeek-R1-0528-tput": {
@@ -22199,7 +22042,8 @@
       "output_cost_per_1k": 0.00219,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/deepseek-ai/DeepSeek-V3": {
@@ -22213,7 +22057,8 @@
       "output_cost_per_1k": 0.00125,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/deepseek-ai/DeepSeek-V3.1": {
@@ -22237,7 +22082,8 @@
       "mode": "chat",
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/meta-llama/Llama-3.3-70B-Instruct-Turbo": {
@@ -22273,7 +22119,8 @@
       "output_cost_per_1k": 0.00085,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/meta-llama/Llama-4-Scout-17B-16E-Instruct": {
@@ -22285,7 +22132,8 @@
       "output_cost_per_1k": 0.00059,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo": {
@@ -22297,7 +22145,8 @@
       "output_cost_per_1k": 0.0035,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo": {
@@ -22369,7 +22218,8 @@
       "output_cost_per_1k": 0.003,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/openai/gpt-oss-120b": {
@@ -22382,7 +22232,8 @@
       "output_cost_per_1k": 0.0006,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/openai/gpt-oss-20b": {
@@ -22395,7 +22246,8 @@
       "output_cost_per_1k": 0.0002,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/togethercomputer/CodeLlama-34b-Instruct": {
@@ -22418,7 +22270,8 @@
       "output_cost_per_1k": 0.0011,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/zai-org/GLM-4.6": {
@@ -22459,7 +22312,8 @@
       "output_cost_per_1k": 0.0015,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "together/Qwen/Qwen3-Next-80B-A3B-Thinking": {
@@ -22472,7 +22326,8 @@
       "output_cost_per_1k": 0.0015,
       "capabilities": [
         "function_calling",
-        "parallel_function_calling"
+        "parallel_function_calling",
+        "json_mode"
       ]
     },
     "openai/tts-1": {

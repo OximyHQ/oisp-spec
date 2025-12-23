@@ -1,12 +1,12 @@
 # OISP Model Registry
 # Auto-generated from LiteLLM - DO NOT EDIT MANUALLY
 # Source: https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json
-# Generated: 2025-12-23T00:25:02.578243+00:00
+# Generated: 2025-12-23T22:39:44.453719+00:00
 #
 # To regenerate: python scripts/sync-models.py
 
 version: '0.1'
-generated_at: '2025-12-23T00:25:02.578467+00:00'
+generated_at: '2025-12-23T22:39:44.453737+00:00'
 source: litellm
 source_url: 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json'
 
@@ -1641,7 +1641,7 @@ providers:
         max_input_tokens: 4096
         max_output_tokens: 4096
   azure_openai:
-    model_count: 242
+    model_count: 245
     models:
       'Cohere-embed-v3-english':
         litellm_id: 'azure_ai/Cohere-embed-v3-english'
@@ -2761,6 +2761,22 @@ providers:
       'gpt-image-1-mini':
         litellm_id: 'azure/gpt-image-1-mini'
         mode: image
+      'gpt-image-1.5':
+        litellm_id: 'azure/gpt-image-1.5'
+        mode: image
+        input_cost_per_1k: 0.005
+      'gpt-image-1.5-2025-12-16':
+        litellm_id: 'azure/gpt-image-1.5-2025-12-16'
+        mode: image
+        input_cost_per_1k: 0.005
+      'gpt-oss-120b':
+        litellm_id: 'azure_ai/gpt-oss-120b'
+        mode: chat
+        max_input_tokens: 131072
+        max_output_tokens: 131072
+        input_cost_per_1k: 0.00015
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'gpt-realtime-2025-08-28':
         litellm_id: 'azure/gpt-realtime-2025-08-28'
         mode: chat
@@ -8292,54 +8308,8 @@ providers:
         input_cost_per_1k: 0.0011
         output_cost_per_1k: 0.0044
   groq:
-    model_count: 31
+    model_count: 12
     models:
-      'deepseek-r1-distill-llama-70b':
-        litellm_id: 'groq/deepseek-r1-distill-llama-70b'
-        mode: chat
-        max_input_tokens: 128000
-        max_output_tokens: 128000
-        input_cost_per_1k: 0.00075
-        output_cost_per_1k: 0.00099
-        capabilities: [function_calling, reasoning]
-      'distil-whisper-large-v3-en':
-        litellm_id: 'groq/distil-whisper-large-v3-en'
-        mode: audio_transcription
-      'gemma-7b-it':
-        litellm_id: 'groq/gemma-7b-it'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 7e-05
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2024-12-18'
-      'gemma2-9b-it':
-        litellm_id: 'groq/gemma2-9b-it'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.0002
-        output_cost_per_1k: 0.0002
-      'llama-3.1-405b-reasoning':
-        litellm_id: 'groq/llama-3.1-405b-reasoning'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00079
-        capabilities: [function_calling]
-      'llama-3.1-70b-versatile':
-        litellm_id: 'groq/llama-3.1-70b-versatile'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00079
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2025-01-24'
       'llama-3.1-8b-instant':
         litellm_id: 'groq/llama-3.1-8b-instant'
         mode: chat
@@ -8348,75 +8318,6 @@ providers:
         input_cost_per_1k: 5e-05
         output_cost_per_1k: 8e-05
         capabilities: [function_calling]
-      'llama-3.2-11b-text-preview':
-        litellm_id: 'groq/llama-3.2-11b-text-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2024-10-28'
-      'llama-3.2-11b-vision-preview':
-        litellm_id: 'groq/llama-3.2-11b-vision-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [vision, function_calling]
-        deprecated: true
-        deprecation_date: '2025-04-14'
-      'llama-3.2-1b-preview':
-        litellm_id: 'groq/llama-3.2-1b-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 4e-05
-        output_cost_per_1k: 4e-05
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2025-04-14'
-      'llama-3.2-3b-preview':
-        litellm_id: 'groq/llama-3.2-3b-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 6e-05
-        output_cost_per_1k: 6e-05
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2025-04-14'
-      'llama-3.2-90b-text-preview':
-        litellm_id: 'groq/llama-3.2-90b-text-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.0009
-        output_cost_per_1k: 0.0009
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2024-11-25'
-      'llama-3.2-90b-vision-preview':
-        litellm_id: 'groq/llama-3.2-90b-vision-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.0009
-        output_cost_per_1k: 0.0009
-        capabilities: [vision, function_calling]
-        deprecated: true
-        deprecation_date: '2025-04-14'
-      'llama-3.3-70b-specdec':
-        litellm_id: 'groq/llama-3.3-70b-specdec'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00099
-        deprecated: true
-        deprecation_date: '2025-04-14'
       'llama-3.3-70b-versatile':
         litellm_id: 'groq/llama-3.3-70b-versatile'
         mode: chat
@@ -8425,41 +8326,6 @@ providers:
         input_cost_per_1k: 0.00059
         output_cost_per_1k: 0.00079
         capabilities: [function_calling]
-      'llama-guard-3-8b':
-        litellm_id: 'groq/llama-guard-3-8b'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.0002
-        output_cost_per_1k: 0.0002
-      'llama2-70b-4096':
-        litellm_id: 'groq/llama2-70b-4096'
-        mode: chat
-        max_input_tokens: 4096
-        max_output_tokens: 4096
-        input_cost_per_1k: 0.0007
-        output_cost_per_1k: 0.0008
-        capabilities: [function_calling]
-      'llama3-groq-70b-8192-tool-use-preview':
-        litellm_id: 'groq/llama3-groq-70b-8192-tool-use-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00089
-        output_cost_per_1k: 0.00089
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2025-01-06'
-      'llama3-groq-8b-8192-tool-use-preview':
-        litellm_id: 'groq/llama3-groq-8b-8192-tool-use-preview'
-        mode: chat
-        max_input_tokens: 8192
-        max_output_tokens: 8192
-        input_cost_per_1k: 0.00019
-        output_cost_per_1k: 0.00019
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2025-01-06'
       'meta-llama/llama-4-maverick-17b-128e-instruct':
         litellm_id: 'groq/meta-llama/llama-4-maverick-17b-128e-instruct'
         mode: chat
@@ -8467,7 +8333,7 @@ providers:
         max_output_tokens: 8192
         input_cost_per_1k: 0.0002
         output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode]
+        capabilities: [vision, function_calling, json_mode]
       'meta-llama/llama-4-scout-17b-16e-instruct':
         litellm_id: 'groq/meta-llama/llama-4-scout-17b-16e-instruct'
         mode: chat
@@ -8475,32 +8341,14 @@ providers:
         max_output_tokens: 8192
         input_cost_per_1k: 0.00011
         output_cost_per_1k: 0.00034
-        capabilities: [function_calling, json_mode]
-      'mistral-saba-24b':
-        litellm_id: 'groq/mistral-saba-24b'
+        capabilities: [vision, function_calling, json_mode]
+      'meta-llama/llama-guard-4-12b':
+        litellm_id: 'groq/meta-llama/llama-guard-4-12b'
         mode: chat
-        max_input_tokens: 32000
-        max_output_tokens: 32000
-        input_cost_per_1k: 0.00079
-        output_cost_per_1k: 0.00079
-      'mixtral-8x7b-32768':
-        litellm_id: 'groq/mixtral-8x7b-32768'
-        mode: chat
-        max_input_tokens: 32768
-        max_output_tokens: 32768
-        input_cost_per_1k: 0.00024
-        output_cost_per_1k: 0.00024
-        capabilities: [function_calling]
-        deprecated: true
-        deprecation_date: '2025-03-20'
-      'moonshotai/kimi-k2-instruct':
-        litellm_id: 'groq/moonshotai/kimi-k2-instruct'
-        mode: chat
-        max_input_tokens: 131072
-        max_output_tokens: 16384
-        input_cost_per_1k: 0.001
-        output_cost_per_1k: 0.003
-        capabilities: [function_calling, json_mode]
+        max_input_tokens: 8192
+        max_output_tokens: 8192
+        input_cost_per_1k: 0.0002
+        output_cost_per_1k: 0.0002
       'moonshotai/kimi-k2-instruct-0905':
         litellm_id: 'groq/moonshotai/kimi-k2-instruct-0905'
         mode: chat
@@ -8939,6 +8787,45 @@ providers:
         max_input_tokens: 10000000
         max_output_tokens: 4028
         capabilities: [function_calling]
+  minimax:
+    model_count: 7
+    models:
+      'MiniMax-M2':
+        litellm_id: 'minimax/MiniMax-M2'
+        mode: chat
+        max_input_tokens: 200000
+        max_output_tokens: 8192
+        input_cost_per_1k: 0.0003
+        output_cost_per_1k: 0.0012
+        capabilities: [function_calling, system_messages, prompt_caching]
+      'MiniMax-M2.1':
+        litellm_id: 'minimax/MiniMax-M2.1'
+        mode: chat
+        max_input_tokens: 1000000
+        max_output_tokens: 8192
+        input_cost_per_1k: 0.0003
+        output_cost_per_1k: 0.0012
+        capabilities: [function_calling, system_messages, prompt_caching]
+      'MiniMax-M2.1-lightning':
+        litellm_id: 'minimax/MiniMax-M2.1-lightning'
+        mode: chat
+        max_input_tokens: 1000000
+        max_output_tokens: 8192
+        input_cost_per_1k: 0.0003
+        output_cost_per_1k: 0.0024
+        capabilities: [function_calling, system_messages, prompt_caching]
+      'speech-02-hd':
+        litellm_id: 'minimax/speech-02-hd'
+        mode: audio_speech
+      'speech-02-turbo':
+        litellm_id: 'minimax/speech-02-turbo'
+        mode: audio_speech
+      'speech-2.6-hd':
+        litellm_id: 'minimax/speech-2.6-hd'
+        mode: audio_speech
+      'speech-2.6-turbo':
+        litellm_id: 'minimax/speech-2.6-turbo'
+        mode: audio_speech
   mistral:
     model_count: 40
     models:
@@ -12413,25 +12300,25 @@ providers:
       'Qwen/Qwen2.5-72B-Instruct-Turbo':
         litellm_id: 'together_ai/Qwen/Qwen2.5-72B-Instruct-Turbo'
         mode: chat
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'Qwen/Qwen2.5-7B-Instruct-Turbo':
         litellm_id: 'together_ai/Qwen/Qwen2.5-7B-Instruct-Turbo'
         mode: chat
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'Qwen/Qwen3-235B-A22B-Instruct-2507-tput':
         litellm_id: 'together_ai/Qwen/Qwen3-235B-A22B-Instruct-2507-tput'
         mode: chat
         max_input_tokens: 262000
         input_cost_per_1k: 0.0002
         output_cost_per_1k: 0.006
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'Qwen/Qwen3-235B-A22B-Thinking-2507':
         litellm_id: 'together_ai/Qwen/Qwen3-235B-A22B-Thinking-2507'
         mode: chat
         max_input_tokens: 256000
         input_cost_per_1k: 0.00065
         output_cost_per_1k: 0.003
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'Qwen/Qwen3-235B-A22B-fp8-tput':
         litellm_id: 'together_ai/Qwen/Qwen3-235B-A22B-fp8-tput'
         mode: chat
@@ -12444,21 +12331,21 @@ providers:
         max_input_tokens: 256000
         input_cost_per_1k: 0.002
         output_cost_per_1k: 0.002
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'Qwen/Qwen3-Next-80B-A3B-Instruct':
         litellm_id: 'together_ai/Qwen/Qwen3-Next-80B-A3B-Instruct'
         mode: chat
         max_input_tokens: 262144
         input_cost_per_1k: 0.00015
         output_cost_per_1k: 0.0015
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'Qwen/Qwen3-Next-80B-A3B-Thinking':
         litellm_id: 'together_ai/Qwen/Qwen3-Next-80B-A3B-Thinking'
         mode: chat
         max_input_tokens: 262144
         input_cost_per_1k: 0.00015
         output_cost_per_1k: 0.0015
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'baai/bge-base-en-v1.5':
         litellm_id: 'together_ai/baai/bge-base-en-v1.5'
         mode: embedding
@@ -12471,14 +12358,14 @@ providers:
         max_output_tokens: 20480
         input_cost_per_1k: 0.003
         output_cost_per_1k: 0.007
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'deepseek-ai/DeepSeek-R1-0528-tput':
         litellm_id: 'together_ai/deepseek-ai/DeepSeek-R1-0528-tput'
         mode: chat
         max_input_tokens: 128000
         input_cost_per_1k: 0.00055
         output_cost_per_1k: 0.00219
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'deepseek-ai/DeepSeek-V3':
         litellm_id: 'together_ai/deepseek-ai/DeepSeek-V3'
         mode: chat
@@ -12486,7 +12373,7 @@ providers:
         max_output_tokens: 8192
         input_cost_per_1k: 0.00125
         output_cost_per_1k: 0.00125
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'deepseek-ai/DeepSeek-V3.1':
         litellm_id: 'together_ai/deepseek-ai/DeepSeek-V3.1'
         mode: chat
@@ -12497,7 +12384,7 @@ providers:
       'meta-llama/Llama-3.2-3B-Instruct-Turbo':
         litellm_id: 'together_ai/meta-llama/Llama-3.2-3B-Instruct-Turbo'
         mode: chat
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'meta-llama/Llama-3.3-70B-Instruct-Turbo':
         litellm_id: 'together_ai/meta-llama/Llama-3.3-70B-Instruct-Turbo'
         mode: chat
@@ -12513,19 +12400,19 @@ providers:
         mode: chat
         input_cost_per_1k: 0.00027
         output_cost_per_1k: 0.00085
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'meta-llama/Llama-4-Scout-17B-16E-Instruct':
         litellm_id: 'together_ai/meta-llama/Llama-4-Scout-17B-16E-Instruct'
         mode: chat
         input_cost_per_1k: 0.00018
         output_cost_per_1k: 0.00059
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo':
         litellm_id: 'together_ai/meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo'
         mode: chat
         input_cost_per_1k: 0.0035
         output_cost_per_1k: 0.0035
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo':
         litellm_id: 'together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo'
         mode: chat
@@ -12557,7 +12444,7 @@ providers:
         mode: chat
         input_cost_per_1k: 0.001
         output_cost_per_1k: 0.003
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'moonshotai/Kimi-K2-Instruct-0905':
         litellm_id: 'together_ai/moonshotai/Kimi-K2-Instruct-0905'
         mode: chat
@@ -12571,14 +12458,14 @@ providers:
         max_input_tokens: 128000
         input_cost_per_1k: 0.00015
         output_cost_per_1k: 0.0006
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'openai/gpt-oss-20b':
         litellm_id: 'together_ai/openai/gpt-oss-20b'
         mode: chat
         max_input_tokens: 128000
         input_cost_per_1k: 5e-05
         output_cost_per_1k: 0.0002
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'together-ai-21.1b-41b':
         mode: chat
         input_cost_per_1k: 0.0008
@@ -12620,7 +12507,7 @@ providers:
         max_input_tokens: 128000
         input_cost_per_1k: 0.0002
         output_cost_per_1k: 0.0011
-        capabilities: [function_calling, parallel_function_calling]
+        capabilities: [function_calling, parallel_function_calling, json_mode]
       'zai-org/GLM-4.6':
         litellm_id: 'together_ai/zai-org/GLM-4.6'
         mode: chat
