@@ -1,14 +1,14 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/oximyHQ/oisp-spec/main/assets/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/oximyHQ/oisp-spec/main/assets/banner-light.svg">
-  <img alt="OISP Spec - Open Instrumentation for Security and Privacy" src="https://raw.githubusercontent.com/oximyHQ/oisp-spec/main/assets/banner-light.svg" width="100%">
+  <img alt="OISP Spec - Open Interoperability Specification for AI activity observability" src="https://raw.githubusercontent.com/oximyHQ/oisp-spec/main/assets/banner-light.svg" width="100%">
 </picture>
 
 <div align="center">
 
 # OISP Spec
 
-**The universal event schema for AI activity observability.**
+**Open Inference Standard Protocol (OISP)** - The Open Interoperability Specification for AI activity observability. A universal schema for capturing AI interactions across every environment—browser, desktop, CLI, server—with support for 2,200+ models from every major provider.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Schema Version](https://img.shields.io/badge/schema-v0.1-green.svg)](schema/v0.1/)

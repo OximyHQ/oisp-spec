@@ -1,6 +1,6 @@
 # OISP Architecture Overview
 
-This document provides a comprehensive overview of the OISP (Open Instrumentation for Security and Privacy) specification.
+This document provides a comprehensive overview of the OISP (Open Inference Standard Protocol) specification. OISP is the Open Interoperability Specification for AI activity observability—a universal schema for capturing AI interactions across every environment—browser, desktop, CLI, server—with support for 2,200+ models from every major provider.
 
 ## Vision
 

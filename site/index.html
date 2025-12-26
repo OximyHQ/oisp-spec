@@ -3,477 +3,213 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OISP - Open Instrumentation for Security and Privacy</title>
-  <meta name="description" content="A universal event schema for AI activity observability">
+  <title>OISP</title>
+  <meta name="description" content="Open Instrumentation for Security and Privacy">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --border: #2a2a3a;
-      --text: #e4e4e7;
-      --text-muted: #71717a;
-      --accent: #f97316;
-      --accent-dim: #ea580c;
-      --accent-light: #fdba74;
-      --green: #4ade80;
-      --cyan: #22d3ee;
-    }
-    
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
+    html, body {
+      height: 100%;
+    }
+    
     body {
-      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .page {
       min-height: 100vh;
-    }
-    
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    
-    header {
-      text-align: center;
-      padding: 60px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .logo {
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .tagline {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-top: 10px;
-    }
-    
-    .version {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 4px 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--accent);
-    }
-    
-    .hero {
-      padding: 60px 0;
-      text-align: center;
-    }
-    
-    .hero h2 {
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--text);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .hero h2 strong {
-      color: var(--accent);
-    }
-    
-    .links {
       display: flex;
-      gap: 16px;
+      flex-direction: column;
       justify-content: center;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-    
-    .links a {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
+      padding: 48px 24px;
+    }
+    
+    .content {
+      max-width: 560px;
+      width: 100%;
+    }
+    
+    .header {
+      margin-bottom: 64px;
+    }
+    
+    .wordmark {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: #f97316;
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.02em;
+    }
+    
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      background: #000;
+      color: #fff;
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.2s;
+      transition: background 0.15s;
     }
     
-    .links a:hover {
-      border-color: var(--accent);
-      background: rgba(34, 211, 238, 0.1);
+    .nav-item:hover {
+      background: rgba(255,255,255,0.04);
     }
     
-    .links a.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--bg);
+    .nav-item:hover .nav-arrow {
+      transform: translateX(4px);
+      opacity: 1;
     }
     
-    .links a.primary:hover {
-      background: var(--accent-dim);
+    .nav-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    
+    .nav-title {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    
+    .nav-desc {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .nav-arrow {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.3);
+      opacity: 0;
+      transition: all 0.15s;
+    }
+    
+    .nav-item.primary .nav-title {
+      color: #f97316;
     }
     
     .schemas {
-      padding: 60px 0;
+      margin-top: 48px;
     }
     
-    .schemas h3 {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 24px;
+    .schemas-label {
+      font-size: 0.6875rem;
+      color: rgba(255,255,255,0.35);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    
-    .schema-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    
-    .schema-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.2s;
-    }
-    
-    .schema-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    
-    .schema-card .name {
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    
-    .schema-card .path {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      word-break: break-all;
-    }
-    
-    .event-types {
-      padding: 40px 0;
-    }
-    
-    .event-types h3 {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    
-    .event-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    
-    .event-tag {
-      padding: 6px 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--cyan);
-    }
-    
-    .providers {
-      padding: 40px 0;
-    }
-    
-    .providers h3 {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    
-    .provider-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    
-    .provider-tag {
-      padding: 6px 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--green);
-    }
-    
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    
-    code {
-      background: var(--surface);
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 0.9em;
-    }
-    
-    .sensor-promo {
-      padding: 40px 0;
-    }
-    
-    .sensor-card {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(34, 211, 238, 0.05));
-      border: 2px solid var(--accent);
-      border-radius: 12px;
-      padding: 32px;
-      text-align: center;
-    }
-    
-    .sensor-header {
-      margin-bottom: 24px;
-    }
-    
-    .sensor-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: var(--accent);
-      color: var(--bg);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       margin-bottom: 12px;
     }
     
-    .sensor-header h3 {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .sensor-header p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-    
-    .sensor-features {
+    .schemas-grid {
       display: flex;
-      gap: 24px;
-      justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      gap: 6px;
     }
     
-    .sensor-features span {
-      color: var(--cyan);
-      font-size: 0.9rem;
-    }
-    
-    .sensor-features span::before {
-      content: ">";
-      margin-right: 6px;
-      color: var(--text-muted);
-    }
-    
-    .sensor-install {
-      margin-bottom: 24px;
-    }
-    
-    .sensor-install code {
-      display: inline-block;
-      padding: 12px 24px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      color: var(--green);
-    }
-    
-    .sensor-links {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-    }
-    
-    .sensor-links a {
-      padding: 10px 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
+    .schema-link {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px;
+      transition: all 0.15s;
     }
     
-    .sensor-links a:hover {
-      border-color: var(--accent);
+    .schema-link:hover {
+      color: #f97316;
+      border-color: rgba(249,115,22,0.4);
     }
     
-    .sensor-links a.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--bg);
-      font-weight: 600;
+    .footer {
+      margin-top: 64px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
     }
     
-    .sensor-links a.primary:hover {
-      background: var(--accent-dim);
+    .footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      color: #f97316;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">OISP</div>
-      <div class="tagline">Open Instrumentation for Security and Privacy</div>
-      <span class="version">v0.1</span>
-    </header>
-    
-    <section class="hero">
-      <h2>
-        A universal <strong>event schema</strong> for AI activity observability.
-        Make <strong>"what AI is happening here?"</strong> answerable on day one.
-      </h2>
+  <div class="page">
+    <div class="content">
+      <div class="header">
+        <div class="wordmark">OISP</div>
+        <div class="subtitle">Open Instrumentation for Security and Privacy</div>
+      </div>
       
-      <div class="links">
-        <a href="https://github.com/oximyHQ/oisp-spec" class="primary">
-          View on GitHub
+      <nav class="nav">
+        <a href="https://sensor.oisp.dev" class="nav-item primary">
+          <div class="nav-label">
+            <span class="nav-title">Sensor</span>
+            <span class="nav-desc">Implementation, docs, install</span>
+          </div>
+          <span class="nav-arrow">&rarr;</span>
         </a>
-        <a href="/schema/v0.1/envelope.schema.json">
-          Envelope Schema
+        <a href="https://github.com/oximyHQ/oisp-spec" class="nav-item">
+          <div class="nav-label">
+            <span class="nav-title">GitHub</span>
+            <span class="nav-desc">Specification source</span>
+          </div>
+          <span class="nav-arrow">&rarr;</span>
         </a>
-        <a href="/semconv/providers/_generated/models.json">
-          Model Registry
+        <a href="https://oximy.com" class="nav-item">
+          <div class="nav-label">
+            <span class="nav-title">Oximy</span>
+            <span class="nav-desc">The company behind OISP</span>
+          </div>
+          <span class="nav-arrow">&rarr;</span>
         </a>
-      </div>
-    </section>
-    
-    <section class="sensor-promo">
-      <div class="sensor-card">
-        <div class="sensor-header">
-          <span class="sensor-badge">Reference Implementation</span>
-          <h3>OISP Sensor</h3>
-          <p>See every AI interaction on your machine. Zero instrumentation.</p>
+      </nav>
+      
+      <div class="schemas">
+        <div class="schemas-label">Schemas</div>
+        <div class="schemas-grid">
+          <a href="/schema/v0.1/envelope.schema.json" class="schema-link">envelope</a>
+          <a href="/schema/v0.1/events/ai.schema.json" class="schema-link">ai</a>
+          <a href="/schema/v0.1/events/agent.schema.json" class="schema-link">agent</a>
+          <a href="/schema/v0.1/events/process.schema.json" class="schema-link">process</a>
+          <a href="/schema/v0.1/events/network.schema.json" class="schema-link">network</a>
+          <a href="/schema/v0.1/events/file.schema.json" class="schema-link">file</a>
+          <a href="/semconv/providers/_generated/models.json" class="schema-link">models</a>
         </div>
-        <div class="sensor-features">
-          <span>Full content capture via eBPF</span>
-          <span>Multi-platform (Linux, macOS, Windows)</span>
-          <span>Real-time TUI & Web UI</span>
-        </div>
-        <div class="sensor-install">
-          <code>curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh</code>
-        </div>
-        <div class="sensor-links">
-          <a href="https://sensor.oisp.dev" class="primary">Get Started</a>
-          <a href="https://github.com/oximyHQ/oisp-sensor">GitHub</a>
-        </div>
       </div>
-    </section>
-    
-    <section class="schemas">
-      <h3>JSON Schemas</h3>
-      <div class="schema-grid">
-        <a href="/schema/v0.1/envelope.schema.json" class="schema-card">
-          <div class="name">Event Envelope</div>
-          <div class="path">/schema/v0.1/envelope.schema.json</div>
-        </a>
-        <a href="/schema/v0.1/events/ai.schema.json" class="schema-card">
-          <div class="name">AI Events</div>
-          <div class="path">/schema/v0.1/events/ai.schema.json</div>
-        </a>
-        <a href="/schema/v0.1/events/agent.schema.json" class="schema-card">
-          <div class="name">Agent Events</div>
-          <div class="path">/schema/v0.1/events/agent.schema.json</div>
-        </a>
-        <a href="/schema/v0.1/events/process.schema.json" class="schema-card">
-          <div class="name">Process Events</div>
-          <div class="path">/schema/v0.1/events/process.schema.json</div>
-        </a>
-        <a href="/schema/v0.1/events/network.schema.json" class="schema-card">
-          <div class="name">Network Events</div>
-          <div class="path">/schema/v0.1/events/network.schema.json</div>
-        </a>
-        <a href="/schema/v0.1/events/file.schema.json" class="schema-card">
-          <div class="name">File Events</div>
-          <div class="path">/schema/v0.1/events/file.schema.json</div>
-        </a>
+      
+      <div class="footer">
+        Apache 2.0 &middot; <a href="https://oximy.com">Oximy</a>
       </div>
-    </section>
-    
-    <section class="event-types">
-      <h3>Event Types</h3>
-      <div class="event-list">
-        <span class="event-tag">process.exec</span>
-        <span class="event-tag">process.exit</span>
-        <span class="event-tag">network.connect</span>
-        <span class="event-tag">network.flow</span>
-        <span class="event-tag">file.read</span>
-        <span class="event-tag">file.write</span>
-        <span class="event-tag">ai.request</span>
-        <span class="event-tag">ai.response</span>
-        <span class="event-tag">ai.streaming_chunk</span>
-        <span class="event-tag">agent.tool_call</span>
-        <span class="event-tag">agent.tool_result</span>
-        <span class="event-tag">agent.rag_retrieve</span>
-      </div>
-    </section>
-    
-    <section class="providers">
-      <h3>Supported Providers (2,200+ models)</h3>
-      <div class="provider-list">
-        <span class="provider-tag">OpenAI</span>
-        <span class="provider-tag">Anthropic</span>
-        <span class="provider-tag">Google</span>
-        <span class="provider-tag">Azure OpenAI</span>
-        <span class="provider-tag">AWS Bedrock</span>
-        <span class="provider-tag">Cohere</span>
-        <span class="provider-tag">Mistral</span>
-        <span class="provider-tag">Groq</span>
-        <span class="provider-tag">Together</span>
-        <span class="provider-tag">Fireworks</span>
-        <span class="provider-tag">Ollama</span>
-        <span class="provider-tag">+80 more</span>
-      </div>
-    </section>
-    
-    <footer>
-      <p>
-        Apache 2.0 License &middot; 
-        Part of <a href="https://oximy.com">Oximy</a> &middot;
-        Model data synced from <a href="https://github.com/BerriAI/litellm">LiteLLM</a>
-      </p>
-    </footer>
+    </div>
   </div>
 </body>
 </html>
-
