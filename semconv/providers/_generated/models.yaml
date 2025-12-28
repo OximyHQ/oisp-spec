@@ -1,12 +1,12 @@
 # OISP Model Registry
 # Auto-generated from LiteLLM - DO NOT EDIT MANUALLY
 # Source: https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json
-# Generated: 2025-12-23T22:39:44.453719+00:00
+# Generated: 2025-12-28T02:28:12.589608+00:00
 #
 # To regenerate: python scripts/sync-models.py
 
 version: '0.1'
-generated_at: '2025-12-23T22:39:44.453737+00:00'
+generated_at: '2025-12-28T02:28:12.589625+00:00'
 source: litellm
 source_url: 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json'
 
@@ -87,7 +87,7 @@ providers:
         input_cost_per_1k: 0.0002
         output_cost_per_1k: 0.0004
   aiml:
-    model_count: 10
+    model_count: 12
     models:
       'dall-e-2':
         litellm_id: 'aiml/dall-e-2'
@@ -118,6 +118,12 @@ providers:
         mode: image
       'flux/schnell':
         litellm_id: 'aiml/flux/schnell'
+        mode: image
+      'google/imagen-4.0-ultra-generate-001':
+        litellm_id: 'aiml/google/imagen-4.0-ultra-generate-001'
+        mode: image
+      'google/nano-banana-pro':
+        litellm_id: 'aiml/google/nano-banana-pro'
         mode: image
   aleph_alpha:
     model_count: 6
@@ -1641,7 +1647,7 @@ providers:
         max_input_tokens: 4096
         max_output_tokens: 4096
   azure_openai:
-    model_count: 245
+    model_count: 246
     models:
       'Cohere-embed-v3-english':
         litellm_id: 'azure_ai/Cohere-embed-v3-english'
@@ -2712,6 +2718,14 @@ providers:
         mode: chat
         max_input_tokens: 400000
         max_output_tokens: 128000
+        input_cost_per_1k: 0.00175
+        output_cost_per_1k: 0.014
+        capabilities: [vision, function_calling, parallel_function_calling, system_messages, json_mode, prompt_caching, reasoning]
+      'gpt-5.2-chat':
+        litellm_id: 'azure/gpt-5.2-chat'
+        mode: chat
+        max_input_tokens: 128000
+        max_output_tokens: 16384
         input_cost_per_1k: 0.00175
         output_cost_per_1k: 0.014
         capabilities: [vision, function_calling, parallel_function_calling, system_messages, json_mode, prompt_caching, reasoning]
