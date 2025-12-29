@@ -16,13 +16,13 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 echo "Building spec bundle..."
 python3 "$SCRIPT_DIR/build-bundle.py"
 
-echo "Publishing to site..."
-mkdir -p "$ROOT_DIR/site/spec/v0.1"
-cp "$ROOT_DIR/dist/oisp-spec-bundle.json" "$ROOT_DIR/site/spec/v0.1/bundle.json"
+echo "Publishing to spec/v0.1/..."
+mkdir -p "$ROOT_DIR/spec/v0.1"
+cp "$ROOT_DIR/dist/oisp-spec-bundle.json" "$ROOT_DIR/spec/v0.1/bundle.json"
 
 # Also copy minified version
 if [ -f "$ROOT_DIR/dist/oisp-spec-bundle.min.json" ]; then
-    cp "$ROOT_DIR/dist/oisp-spec-bundle.min.json" "$ROOT_DIR/site/spec/v0.1/bundle.min.json"
+    cp "$ROOT_DIR/dist/oisp-spec-bundle.min.json" "$ROOT_DIR/spec/v0.1/bundle.min.json"
 fi
 
 echo ""
