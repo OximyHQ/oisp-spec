@@ -1,12 +1,12 @@
 # OISP Model Registry
 # Auto-generated from models.dev - DO NOT EDIT MANUALLY
 # Source: https://models.dev/api.json
-# Generated: 2025-12-29T16:09:09.165213+00:00
+# Generated: 2025-12-29T20:31:51.540392+00:00
 #
 # To regenerate: python scripts/sync-models.py
 
 version: '0.1'
-generated_at: '2025-12-29T16:09:09.165225+00:00'
+generated_at: '2025-12-29T20:31:51.540411+00:00'
 source: models.dev
 source_url: 'https://models.dev/api.json'
 
