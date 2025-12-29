@@ -32,19 +32,27 @@ jobs:
         with:
           python-version: '3.11'
       
+      - name: Install dependencies
+        run: pip install pyyaml
+
       - name: Run sync script
         run: python scripts/sync-models.py
-      
+
+      - name: Rebuild bundle
+        run: |
+          python scripts/build-bundle.py
+          cp dist/oisp-spec-bundle.json spec/v0.1/bundle.json
+
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet semconv/providers/_generated/; then
+          if git diff --quiet semconv/providers/_generated/ spec/v0.1/; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "### Model Registry Changes" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "$(git diff --stat semconv/providers/_generated/)" >> $GITHUB_STEP_SUMMARY
+            echo "$(git diff --stat semconv/providers/_generated/ spec/v0.1/)" >> $GITHUB_STEP_SUMMARY
           fi
       
       - name: Create Pull Request
