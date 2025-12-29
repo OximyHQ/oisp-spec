@@ -8,6 +8,7 @@ on:
       - 'schema/**'
       - 'semconv/**'
       - 'docs/**'
+      - 'site/spec/**'
   
   # Allow manual trigger
   workflow_dispatch:
@@ -50,7 +51,11 @@ jobs:
           
           # Copy docs
           cp -r docs/* _site/docs/
-          
+
+          # Copy spec bundle (for https://oisp.dev/spec/v0.1/bundle.json)
+          mkdir -p _site/spec/v0.1
+          cp -r site/spec/v0.1/* _site/spec/v0.1/
+
           # Create CNAME for custom domain
           echo "oisp.dev" > _site/CNAME
       

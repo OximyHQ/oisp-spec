@@ -1,0 +1,78 @@
+name: Validate Model Registry (Nightly)
+
+on:
+  schedule:
+    # Run at 2 AM UTC every day
+    - cron: '0 2 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write  # To trigger sync workflow
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch latest LiteLLM data
+        run: |
+          curl -sL 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json' \
+            -o /tmp/litellm-latest.json
+          echo "Downloaded LiteLLM data:"
+          wc -l /tmp/litellm-latest.json
+
+      - name: Compare registries
+        id: compare
+        run: |
+          python scripts/compare-models.py \
+            --current semconv/providers/_generated/models.json \
+            --upstream /tmp/litellm-latest.json \
+            --output /tmp/diff.md
+
+          # Check if diff file has content (changes detected)
+          if [ -f /tmp/diff.md ] && [ -s /tmp/diff.md ] && grep -q "New Models\|Removed Models\|Pricing Changes" /tmp/diff.md 2>/dev/null; then
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in model registry"
+          else
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
+
+      - name: Post results to summary
+        if: always()
+        run: |
+          echo "## Model Registry Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run Date**: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f /tmp/diff.md ] && [ -s /tmp/diff.md ]; then
+            cat /tmp/diff.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No changes detected between OISP and LiteLLM model registries." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Trigger sync if changes detected
+        if: steps.compare.outputs.changes_detected == 'true'
+        run: |
+          echo "Changes detected, triggering sync-models workflow..."
+          gh workflow run sync-models.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload diff report
+        if: steps.compare.outputs.changes_detected == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-registry-diff
+          path: /tmp/diff.md
+          retention-days: 7
