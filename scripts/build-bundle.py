@@ -211,7 +211,8 @@ def build_bundle() -> dict:
             "domains": provider_data.get("domains", []),
             "features": provider_data.get("features", []),
             "auth": provider_data.get("auth", {}),
-            "litellm_provider": provider_data.get("litellm_provider"),
+            "api_endpoint": provider_data.get("api_endpoint"),  # From models.dev
+            "models_dev_id": provider_data.get("models_dev_id"),  # Original models.dev ID
         }
     
     return bundle

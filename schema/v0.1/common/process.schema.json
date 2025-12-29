@@ -67,6 +67,11 @@
       "format": "date-time",
       "description": "Process start time"
     },
+    "bundle_id": {
+      "type": "string",
+      "description": "macOS bundle identifier (CFBundleIdentifier) extracted from the .app bundle",
+      "examples": ["com.todesktop.230313mzl4w4u92", "com.google.Chrome", "com.apple.Safari"]
+    },
     "code_signature": {
       "type": "object",
       "description": "Code signing information (macOS/Windows)",

@@ -59,6 +59,14 @@
       "$ref": "common/process.schema.json",
       "description": "Process context that generated or is associated with this event"
     },
+    "app": {
+      "$ref": "common/app.schema.json",
+      "description": "Application context - identifies which app (Cursor, ChatGPT, etc.) initiated the AI request"
+    },
+    "web_context": {
+      "$ref": "common/web_context.schema.json",
+      "description": "Web context for browser-originated traffic - captures Origin/Referer to identify web apps"
+    },
     "source": {
       "$ref": "#/$defs/source",
       "description": "Provenance information about how this event was captured"
@@ -156,6 +164,8 @@
             "vendor_api",
             "vendor_audit_log",
             "log_parsing",
+            "endpoint_security",
+            "network_extension",
             "other"
           ]
         },

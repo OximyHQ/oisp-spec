@@ -21,13 +21,15 @@ message Event {
   string event_type = 3;
   google.protobuf.Timestamp ts = 4;
   uint64 ts_mono = 5;  // Monotonic nanoseconds
-  
+
   Host host = 6;
   Actor actor = 7;
   Process process = 8;
+  App app = 11;             // Application context (Cursor, ChatGPT Desktop, etc.)
+  WebContext web_context = 12;  // Web context for browser-originated traffic
   Source source = 9;
   Confidence confidence = 10;
-  
+
   oneof data {
     ProcessExecData process_exec = 20;
     ProcessExitData process_exit = 21;

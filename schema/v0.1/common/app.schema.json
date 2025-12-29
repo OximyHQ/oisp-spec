@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oisp.dev/schema/v0.1/common/app.schema.json",
+  "title": "OISP Application Context",
+  "description": "Information about the application that initiated an AI request. Enables attribution of AI activity to specific applications (e.g., Cursor, GitHub Copilot, ChatGPT Desktop).",
+  "type": "object",
+  "properties": {
+    "app_id": {
+      "type": "string",
+      "description": "Unique application identifier from the app registry",
+      "examples": ["cursor", "github-copilot", "chatgpt-desktop", "claude-desktop"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable application name",
+      "examples": ["Cursor", "GitHub Copilot", "ChatGPT", "Claude"]
+    },
+    "vendor": {
+      "type": "string",
+      "description": "Application vendor/developer",
+      "examples": ["Anysphere Inc.", "GitHub", "OpenAI", "Anthropic"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Application version",
+      "examples": ["0.42.3", "1.2.0"]
+    },
+    "bundle_id": {
+      "type": "string",
+      "description": "macOS bundle identifier (CFBundleIdentifier)",
+      "examples": ["com.todesktop.230313mzl4w4u92", "com.openai.chat"]
+    },
+    "category": {
+      "type": "string",
+      "description": "Application category",
+      "enum": ["dev_tools", "chat", "productivity", "creative", "browser", "cli", "server", "other"],
+      "examples": ["dev_tools", "chat"]
+    },
+    "tier": {
+      "type": "string",
+      "description": "Classification tier indicating confidence in identification",
+      "enum": ["unknown", "identified", "profiled"],
+      "default": "unknown"
+    },
+    "is_ai_app": {
+      "type": "boolean",
+      "description": "Whether this app is known to use AI (from registry)"
+    },
+    "is_ai_host": {
+      "type": "boolean",
+      "description": "Whether this app hosts AI extensions (e.g., VSCode with Copilot)"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "tier_description": {
+      "type": "object",
+      "description": "Classification tiers for app identification confidence",
+      "properties": {
+        "unknown": {
+          "description": "Tier 0: Process found but no app match. Potentially suspicious - unknown apps using AI should be investigated."
+        },
+        "identified": {
+          "description": "Tier 1: Matched by signature (bundle_id, team_id, path). Basic metadata available but limited behavioral profile."
+        },
+        "profiled": {
+          "description": "Tier 2: Full profile with expected behavior patterns. Baseline for anomaly detection - deviations from expected providers/endpoints are flagged."
+        }
+      }
+    }
+  }
+}

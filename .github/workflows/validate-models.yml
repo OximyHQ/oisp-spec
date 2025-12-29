@@ -23,23 +23,22 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Fetch latest LiteLLM data
+      - name: Fetch latest models.dev data
         run: |
-          curl -sL 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json' \
-            -o /tmp/litellm-latest.json
-          echo "Downloaded LiteLLM data:"
-          wc -l /tmp/litellm-latest.json
+          curl -sL 'https://models.dev/api.json' -o /tmp/models-dev-latest.json
+          echo "Downloaded models.dev data:"
+          echo "Providers: $(cat /tmp/models-dev-latest.json | python3 -c 'import sys,json; print(len(json.load(sys.stdin)))')"
 
       - name: Compare registries
         id: compare
         run: |
           python scripts/compare-models.py \
             --current semconv/providers/_generated/models.json \
-            --upstream /tmp/litellm-latest.json \
+            --upstream /tmp/models-dev-latest.json \
             --output /tmp/diff.md
 
           # Check if diff file has content (changes detected)
-          if [ -f /tmp/diff.md ] && [ -s /tmp/diff.md ] && grep -q "New Models\|Removed Models\|Pricing Changes" /tmp/diff.md 2>/dev/null; then
+          if [ -f /tmp/diff.md ] && [ -s /tmp/diff.md ] && grep -q "New Models\|Removed Models\|Pricing Changes\|New Providers" /tmp/diff.md 2>/dev/null; then
             echo "changes_detected=true" >> $GITHUB_OUTPUT
             echo "Changes detected in model registry"
           else
@@ -58,7 +57,7 @@ jobs:
           if [ -f /tmp/diff.md ] && [ -s /tmp/diff.md ]; then
             cat /tmp/diff.md >> $GITHUB_STEP_SUMMARY
           else
-            echo "✅ No changes detected between OISP and LiteLLM model registries." >> $GITHUB_STEP_SUMMARY
+            echo "✅ No changes detected between OISP and models.dev registries." >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Trigger sync if changes detected

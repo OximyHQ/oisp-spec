@@ -444,7 +444,7 @@ Schema URLs follow the pattern: `https://oisp.dev/schema/v0.1/...`
 ## Related Projects
 
 - **[OpenTelemetry](https://opentelemetry.io/)** - Observability framework we extend
-- **[LiteLLM](https://github.com/BerriAI/litellm)** - Provider model registry we reference
+- **[models.dev](https://models.dev)** - AI model registry we sync from (pricing, capabilities, provider endpoints)
 - **[OpenAI API Spec](https://github.com/openai/openai-openapi)** - API structure reference
 
 ---

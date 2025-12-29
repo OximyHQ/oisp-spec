@@ -200,13 +200,16 @@ When a sensor sees traffic to `api.openai.com/v1/chat/completions`, it can:
 
 ## Model Data Source
 
-Model capabilities and pricing data is sourced from [LiteLLM's model registry](https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json), which tracks:
+Model capabilities and pricing data is sourced from [models.dev](https://models.dev) - a community-maintained AI model registry that tracks:
 
-- Context window sizes
-- Max output tokens
-- Pricing (input/output per 1K tokens)
-- Capabilities (vision, function calling, streaming)
-- Provider mappings
+- **74+ providers** with API endpoint URLs
+- Context window sizes and max output tokens
+- Pricing (input/output/cache per 1M tokens)
+- Capabilities (vision, function calling, reasoning, streaming)
+- Provider logos (SVG)
+- Knowledge cutoff dates
+
+The registry is automatically synced weekly via GitHub Actions. API endpoint URLs are especially valuable for OISP Sensor to detect which provider traffic is going to.
 
 This enables automatic enrichment of events with model metadata and cost estimation.
 
@@ -264,7 +267,7 @@ Schema URLs include the major version: `https://oisp.dev/schema/v0.1/...`
 
 - **oisp-sensor**: Reference sensor implementation (separate repo)
 - **OpenTelemetry**: Observability framework we extend
-- **LiteLLM**: Provider/model registry we reference
+- **models.dev**: AI model registry we sync from (pricing, capabilities, endpoints)
 
 ## Try It Now: OISP Sensor
 

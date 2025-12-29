@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """
-Sync model data from LiteLLM's model registry.
+Sync model data from models.dev API.
 
 This script fetches the latest model pricing and capabilities from:
-https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+https://models.dev/api.json
 
 And generates:
 1. semconv/providers/_generated/models.yaml - Complete model registry
 2. semconv/providers/_generated/models.json - JSON format for programmatic use
+3. semconv/providers/_generated/models.ts - TypeScript types and helpers
 
 Run this periodically (e.g., weekly via GitHub Action) to keep model data current.
 
 Usage:
     python scripts/sync-models.py
     python scripts/sync-models.py --output-dir ./custom-output
+    python scripts/sync-models.py --input-file /tmp/models.json  # Use local file
 """
 
 import argparse
@@ -26,294 +28,401 @@ from typing import Any
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 
-# LiteLLM model registry URL
-LITELLM_URL = "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json"
+# models.dev API URL
+MODELS_DEV_URL = "https://models.dev/api.json"
+MODELS_DEV_LOGOS_URL = "https://models.dev/logos"
 
-# Provider name mapping (litellm_provider -> our canonical name)
+# Provider ID mapping (models.dev id -> our canonical name)
+# Most are 1:1, but some need normalization
 PROVIDER_MAPPING = {
     "openai": "openai",
     "anthropic": "anthropic",
-    "gemini": "google",
-    "vertex_ai": "google",
-    "vertex_ai-language-models": "google",
+    "google": "google",
+    "google-vertex": "google_vertex",
+    "google-vertex-anthropic": "google_vertex_anthropic",
     "azure": "azure_openai",
-    "azure_ai": "azure_openai",
-    "bedrock": "aws_bedrock",
-    "sagemaker": "aws_sagemaker",
+    "amazon-bedrock": "aws_bedrock",
     "cohere": "cohere",
-    "cohere_chat": "cohere",
     "mistral": "mistral",
     "groq": "groq",
-    "together_ai": "together",
-    "fireworks_ai": "fireworks",
+    "together-ai": "together",
+    "fireworks-ai": "fireworks",
     "replicate": "replicate",
     "huggingface": "huggingface",
-    "ollama": "ollama",
-    "ollama_chat": "ollama",
-    "lm_studio": "lmstudio",
-    "vllm": "vllm",
+    "ollama-cloud": "ollama",
+    "lmstudio": "lmstudio",
     "deepseek": "deepseek",
     "perplexity": "perplexity",
-    "anyscale": "anyscale",
     "openrouter": "openrouter",
-    "ai21": "ai21",
-    "nlp_cloud": "nlp_cloud",
-    "aleph_alpha": "aleph_alpha",
-    "cloudflare": "cloudflare",
-    "voyage": "voyage",
-    "xinference": "xinference",
+    "xai": "xai",
+    "cerebras": "cerebras",
+    "nvidia": "nvidia",
+    "alibaba": "alibaba",
+    "minimax": "minimax",
+    "zhipu": "zhipu",
+    "moonshot": "moonshot",
 }
 
-# Capability flag mapping
+# Known API endpoints for providers (models.dev doesn't have all of these)
+# These are used for traffic detection - matching outbound requests to providers
+PROVIDER_API_ENDPOINTS = {
+    "openai": "https://api.openai.com/v1",
+    "anthropic": "https://api.anthropic.com/v1",
+    "google": "https://generativelanguage.googleapis.com/v1",
+    "google_vertex": "https://us-central1-aiplatform.googleapis.com/v1",
+    "azure_openai": "https://*.openai.azure.com/openai",
+    "aws_bedrock": "https://bedrock-runtime.*.amazonaws.com",
+    "cohere": "https://api.cohere.ai/v1",
+    "mistral": "https://api.mistral.ai/v1",
+    "groq": "https://api.groq.com/openai/v1",
+    "together": "https://api.together.xyz/v1",
+    "fireworks": "https://api.fireworks.ai/inference/v1",
+    "replicate": "https://api.replicate.com/v1",
+    "huggingface": "https://api-inference.huggingface.co",
+    "deepseek": "https://api.deepseek.com/v1",
+    "perplexity": "https://api.perplexity.ai",
+    "openrouter": "https://openrouter.ai/api/v1",
+    "xai": "https://api.x.ai/v1",
+    "cerebras": "https://api.cerebras.ai/v1",
+    "nvidia": "https://integrate.api.nvidia.com/v1",
+    "alibaba": "https://dashscope.aliyuncs.com/api/v1",
+    "minimax": "https://api.minimax.chat/v1",
+    "zhipu": "https://open.bigmodel.cn/api/paas/v4",
+    "moonshot": "https://api.moonshot.cn/v1",
+}
+
+# Capability mapping from models.dev fields to OISP capabilities
 CAPABILITY_MAPPING = {
-    "supports_vision": "vision",
-    "supports_function_calling": "function_calling",
-    "supports_parallel_function_calling": "parallel_function_calling",
-    "supports_system_messages": "system_messages",
-    "supports_response_schema": "json_mode",
-    "supports_prompt_caching": "prompt_caching",
-    "supports_reasoning": "reasoning",
-    "supports_web_search": "web_search",
-    "supports_audio_input": "audio_input",
-    "supports_audio_output": "audio_output",
+    "reasoning": "reasoning",
+    "tool_call": "function_calling",
+    "attachment": "vision",  # attachment often means file/image support
+    "structured_output": "json_mode",
+    "temperature": "temperature",
 }
 
-# Mode mapping
-MODE_MAPPING = {
-    "chat": "chat",
-    "completion": "completion",
-    "embedding": "embedding",
-    "image_generation": "image",
-    "audio_transcription": "audio_transcription",
-    "audio_speech": "audio_speech",
-    "moderation": "moderation",
-    "rerank": "rerank",
+# Modality input to capability mapping
+INPUT_MODALITY_CAPABILITIES = {
+    "image": "vision",
+    "audio": "audio_input",
+    "video": "video_input",
+    "pdf": "pdf_input",
+}
+
+OUTPUT_MODALITY_CAPABILITIES = {
+    "audio": "audio_output",
+    "image": "image_output",
 }
 
 
-def fetch_litellm_data(local_file: Path | None = None) -> dict:
-    """Fetch the latest model data from LiteLLM or load from local file."""
+def fetch_models_dev_data(local_file: Path | None = None) -> dict:
+    """Fetch the latest model data from models.dev or load from local file."""
     if local_file and local_file.exists():
         print(f"Loading model data from {local_file}...")
         with open(local_file) as f:
             data = json.load(f)
-        print(f"Loaded {len(data)} entries")
+        print(f"Loaded {len(data)} providers")
         return data
-    
-    print(f"Fetching model data from {LITELLM_URL}...")
+
+    print(f"Fetching model data from {MODELS_DEV_URL}...")
     try:
-        # Create SSL context that doesn't verify (for environments with cert issues)
-        # In production, the GitHub Action will have proper certs
+        # Create SSL context
         ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-        
-        req = Request(LITELLM_URL, headers={"User-Agent": "OISP-Sync/1.0"})
+
+        req = Request(MODELS_DEV_URL, headers={"User-Agent": "OISP-Sync/1.0"})
         with urlopen(req, timeout=30, context=ctx) as response:
             data = json.loads(response.read().decode("utf-8"))
-        print(f"Fetched {len(data)} entries")
+        print(f"Fetched {len(data)} providers")
         return data
     except URLError as e:
         print(f"Error fetching data: {e}", file=sys.stderr)
         print("Try downloading manually and using --input-file:", file=sys.stderr)
-        print(f"  curl -sL '{LITELLM_URL}' -o /tmp/litellm.json", file=sys.stderr)
-        print(f"  python scripts/sync-models.py --input-file /tmp/litellm.json", file=sys.stderr)
+        print(f"  curl -sL '{MODELS_DEV_URL}' -o /tmp/models.json", file=sys.stderr)
+        print(f"  python scripts/sync-models.py --input-file /tmp/models.json", file=sys.stderr)
         sys.exit(1)
 
 
-def parse_model_entry(model_id: str, entry: dict) -> dict | None:
-    """Parse a single model entry from LiteLLM format to OISP format."""
-    # Skip sample_spec and non-model entries
-    if model_id == "sample_spec":
-        return None
-    
-    # Skip image generation size variants (e.g., "1024-x-1024/dall-e-2")
-    if model_id.startswith(("1024-x-", "512-x-", "256-x-")):
-        return None
-    
-    litellm_provider = entry.get("litellm_provider", "")
-    if not litellm_provider:
-        return None
-    
-    # Map to our provider name
-    provider = PROVIDER_MAPPING.get(litellm_provider, litellm_provider)
-    
-    # Extract model name (remove provider prefix if present)
-    model_name = model_id
-    for prefix in [f"{litellm_provider}/", f"{provider}/"]:
-        if model_name.startswith(prefix):
-            model_name = model_name[len(prefix):]
-            break
-    
+def extract_capabilities(model_data: dict) -> list[str]:
+    """Extract capabilities from models.dev model entry."""
+    capabilities = []
+
+    # Direct capability flags
+    for models_dev_cap, oisp_cap in CAPABILITY_MAPPING.items():
+        if model_data.get(models_dev_cap):
+            if oisp_cap not in capabilities:
+                capabilities.append(oisp_cap)
+
+    # Input modalities
+    modalities = model_data.get("modalities", {})
+    for input_mod in modalities.get("input", []):
+        if input_mod in INPUT_MODALITY_CAPABILITIES:
+            cap = INPUT_MODALITY_CAPABILITIES[input_mod]
+            if cap not in capabilities:
+                capabilities.append(cap)
+
+    # Output modalities
+    for output_mod in modalities.get("output", []):
+        if output_mod in OUTPUT_MODALITY_CAPABILITIES:
+            cap = OUTPUT_MODALITY_CAPABILITIES[output_mod]
+            if cap not in capabilities:
+                capabilities.append(cap)
+
+    return sorted(capabilities)
+
+
+def determine_mode(model_data: dict) -> str:
+    """Determine the model mode from modalities."""
+    modalities = model_data.get("modalities", {})
+    outputs = modalities.get("output", [])
+
+    if "image" in outputs:
+        return "image"
+    if "audio" in outputs and "text" not in outputs:
+        return "audio_speech"
+
+    # Check model ID patterns for embeddings
+    model_id = model_data.get("id", "").lower()
+    if "embed" in model_id:
+        return "embedding"
+    if "rerank" in model_id:
+        return "rerank"
+    if "transcription" in model_id or "whisper" in model_id:
+        return "audio_transcription"
+    if "moderation" in model_id:
+        return "moderation"
+
+    return "chat"
+
+
+def parse_provider(provider_id: str, provider_data: dict) -> tuple[str, dict, list[dict]]:
+    """Parse a provider entry from models.dev format to OISP format.
+
+    Returns: (canonical_provider_id, provider_info, models_list)
+    """
+    # Map to canonical provider ID
+    canonical_id = PROVIDER_MAPPING.get(provider_id, provider_id.replace("-", "_"))
+
+    # Get API endpoint - prefer models.dev data, fall back to our known endpoints
+    api_endpoint = provider_data.get("api")
+    if not api_endpoint:
+        api_endpoint = PROVIDER_API_ENDPOINTS.get(canonical_id)
+
+    # Provider info
+    provider_info = {
+        "id": canonical_id,
+        "models_dev_id": provider_id,
+        "name": provider_data.get("name", provider_id),
+        "api_endpoint": api_endpoint,
+        "documentation": provider_data.get("doc"),
+        "env_vars": provider_data.get("env", []),
+        "logo_url": f"{MODELS_DEV_LOGOS_URL}/{provider_id}.svg",
+    }
+
+    # Parse models
+    models = []
+    models_data = provider_data.get("models", {})
+
+    for model_id, model_data in models_data.items():
+        model_info = parse_model(canonical_id, model_id, model_data)
+        if model_info:
+            models.append(model_info)
+
+    return canonical_id, provider_info, models
+
+
+def parse_model(provider_id: str, model_id: str, model_data: dict) -> dict | None:
+    """Parse a single model entry from models.dev format to OISP format."""
     # Build model info
     model_info = {
-        "id": model_name,
-        "litellm_id": model_id,
-        "provider": provider,
-        "mode": MODE_MAPPING.get(entry.get("mode", "chat"), entry.get("mode", "chat")),
+        "id": model_id,
+        "provider": provider_id,
+        "name": model_data.get("name", model_id),
+        "family": model_data.get("family"),
+        "mode": determine_mode(model_data),
     }
-    
-    # Context window
-    if "max_input_tokens" in entry:
-        model_info["max_input_tokens"] = entry["max_input_tokens"]
-    if "max_output_tokens" in entry:
-        model_info["max_output_tokens"] = entry["max_output_tokens"]
-    if "max_tokens" in entry and "max_input_tokens" not in entry:
-        model_info["max_input_tokens"] = entry["max_tokens"]
-    
-    # Pricing (convert to per-1k-tokens)
-    if "input_cost_per_token" in entry and entry["input_cost_per_token"]:
-        model_info["input_cost_per_1k"] = round(entry["input_cost_per_token"] * 1000, 8)
-    if "output_cost_per_token" in entry and entry["output_cost_per_token"]:
-        model_info["output_cost_per_1k"] = round(entry["output_cost_per_token"] * 1000, 8)
-    
+
+    # Context limits
+    limits = model_data.get("limit", {})
+    if "context" in limits:
+        model_info["max_input_tokens"] = limits["context"]
+    if "output" in limits:
+        model_info["max_output_tokens"] = limits["output"]
+
+    # Pricing (models.dev uses $/1M tokens, we use $/1K tokens)
+    cost = model_data.get("cost", {})
+    if "input" in cost and cost["input"] is not None:
+        # Convert from $/1M to $/1K
+        model_info["input_cost_per_1k"] = round(cost["input"] / 1000, 8)
+    if "output" in cost and cost["output"] is not None:
+        model_info["output_cost_per_1k"] = round(cost["output"] / 1000, 8)
+
+    # Cache pricing
+    if "cache_read" in cost and cost["cache_read"] is not None:
+        model_info["cache_read_cost_per_1k"] = round(cost["cache_read"] / 1000, 8)
+    if "cache_write" in cost and cost["cache_write"] is not None:
+        model_info["cache_write_cost_per_1k"] = round(cost["cache_write"] / 1000, 8)
+
+    # Reasoning token pricing (for o1-style models)
+    if "reasoning" in cost and cost["reasoning"] is not None:
+        model_info["reasoning_cost_per_1k"] = round(cost["reasoning"] / 1000, 8)
+
     # Capabilities
-    capabilities = []
-    for litellm_cap, oisp_cap in CAPABILITY_MAPPING.items():
-        if entry.get(litellm_cap):
-            capabilities.append(oisp_cap)
+    capabilities = extract_capabilities(model_data)
     if capabilities:
         model_info["capabilities"] = capabilities
-    
-    # Deprecation
-    if "deprecation_date" in entry and entry["deprecation_date"]:
+
+    # Knowledge cutoff
+    if "knowledge" in model_data:
+        model_info["knowledge_cutoff"] = model_data["knowledge"]
+
+    # Release info
+    if "release_date" in model_data:
+        model_info["release_date"] = model_data["release_date"]
+
+    # Open weights
+    if model_data.get("open_weights"):
+        model_info["open_weights"] = True
+
+    # Deprecation status
+    status = model_data.get("status", "")
+    if status == "deprecated":
         model_info["deprecated"] = True
-        model_info["deprecation_date"] = entry["deprecation_date"]
-    
+
     return model_info
 
 
-def group_by_provider(models: list[dict]) -> dict[str, list[dict]]:
-    """Group models by provider."""
-    by_provider = {}
-    for model in models:
-        provider = model.get("provider", "other")
-        if provider not in by_provider:
-            by_provider[provider] = []
-        by_provider[provider].append(model)
-    
-    # Sort models within each provider
-    for provider in by_provider:
-        by_provider[provider].sort(key=lambda m: m.get("id", ""))
-    
-    return by_provider
-
-
-def generate_yaml(models_by_provider: dict, output_path: Path):
+def generate_yaml(providers: dict, models_by_provider: dict, output_path: Path):
     """Generate YAML output."""
     lines = [
         "# OISP Model Registry",
-        "# Auto-generated from LiteLLM - DO NOT EDIT MANUALLY",
-        f"# Source: {LITELLM_URL}",
+        "# Auto-generated from models.dev - DO NOT EDIT MANUALLY",
+        f"# Source: {MODELS_DEV_URL}",
         f"# Generated: {datetime.now(timezone.utc).isoformat()}",
         "#",
         "# To regenerate: python scripts/sync-models.py",
         "",
         "version: '0.1'",
         f"generated_at: '{datetime.now(timezone.utc).isoformat()}'",
-        "source: litellm",
-        f"source_url: '{LITELLM_URL}'",
+        "source: models.dev",
+        f"source_url: '{MODELS_DEV_URL}'",
         "",
         "providers:",
     ]
-    
-    for provider in sorted(models_by_provider.keys()):
-        models = models_by_provider[provider]
-        lines.append(f"  {provider}:")
+
+    for provider_id in sorted(providers.keys()):
+        provider = providers[provider_id]
+        models = models_by_provider.get(provider_id, [])
+
+        lines.append(f"  {provider_id}:")
+        lines.append(f"    name: '{provider['name']}'")
+        if provider.get("api_endpoint"):
+            lines.append(f"    api_endpoint: '{provider['api_endpoint']}'")
+        if provider.get("logo_url"):
+            lines.append(f"    logo_url: '{provider['logo_url']}'")
         lines.append(f"    model_count: {len(models)}")
         lines.append("    models:")
-        
-        for model in models:
+
+        for model in sorted(models, key=lambda m: m.get("id", "")):
             model_id = model["id"]
             lines.append(f"      '{model_id}':")
-            
-            if "litellm_id" in model and model["litellm_id"] != model_id:
-                lines.append(f"        litellm_id: '{model['litellm_id']}'")
-            
+
+            if model.get("name") and model["name"] != model_id:
+                lines.append(f"        name: '{model['name']}'")
+
+            if model.get("family"):
+                lines.append(f"        family: '{model['family']}'")
+
             if "mode" in model:
                 lines.append(f"        mode: {model['mode']}")
-            
+
             if "max_input_tokens" in model:
                 lines.append(f"        max_input_tokens: {model['max_input_tokens']}")
-            
+
             if "max_output_tokens" in model:
                 lines.append(f"        max_output_tokens: {model['max_output_tokens']}")
-            
+
             if "input_cost_per_1k" in model:
                 lines.append(f"        input_cost_per_1k: {model['input_cost_per_1k']}")
-            
+
             if "output_cost_per_1k" in model:
                 lines.append(f"        output_cost_per_1k: {model['output_cost_per_1k']}")
-            
+
+            if "cache_read_cost_per_1k" in model:
+                lines.append(f"        cache_read_cost_per_1k: {model['cache_read_cost_per_1k']}")
+
+            if "cache_write_cost_per_1k" in model:
+                lines.append(f"        cache_write_cost_per_1k: {model['cache_write_cost_per_1k']}")
+
             if "capabilities" in model:
                 caps = ", ".join(model["capabilities"])
                 lines.append(f"        capabilities: [{caps}]")
-            
+
+            if model.get("knowledge_cutoff"):
+                lines.append(f"        knowledge_cutoff: '{model['knowledge_cutoff']}'")
+
+            if model.get("open_weights"):
+                lines.append("        open_weights: true")
+
             if model.get("deprecated"):
                 lines.append("        deprecated: true")
-                if "deprecation_date" in model:
-                    lines.append(f"        deprecation_date: '{model['deprecation_date']}'")
-    
+
     output_path.write_text("\n".join(lines) + "\n")
     print(f"Generated: {output_path}")
 
 
-def generate_json(models_by_provider: dict, all_models: list[dict], output_path: Path):
+def generate_json(providers: dict, models_by_provider: dict, all_models: list[dict], output_path: Path):
     """Generate JSON output."""
+    total_models = sum(len(models) for models in models_by_provider.values())
+
     output = {
         "version": "0.1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "source": "litellm",
-        "source_url": LITELLM_URL,
+        "source": "models.dev",
+        "source_url": MODELS_DEV_URL,
+        "logos_url": MODELS_DEV_LOGOS_URL,
         "stats": {
-            "total_models": len(all_models),
-            "providers": len(models_by_provider),
+            "total_models": total_models,
+            "providers": len(providers),
         },
         "providers": {},
         "models": {},
     }
-    
-    # Provider summary
-    for provider in sorted(models_by_provider.keys()):
-        models = models_by_provider[provider]
-        output["providers"][provider] = {
+
+    # Provider details
+    for provider_id in sorted(providers.keys()):
+        provider = providers[provider_id]
+        models = models_by_provider.get(provider_id, [])
+        output["providers"][provider_id] = {
+            "name": provider["name"],
+            "api_endpoint": provider.get("api_endpoint"),
+            "documentation": provider.get("documentation"),
+            "env_vars": provider.get("env_vars", []),
+            "logo_url": provider.get("logo_url"),
             "model_count": len(models),
-            "models": [m["id"] for m in models],
+            "models": [m["id"] for m in sorted(models, key=lambda m: m["id"])],
         }
-    
+
     # Flat model lookup
     for model in all_models:
         key = f"{model['provider']}/{model['id']}"
         output["models"][key] = model
-    
+
     output_path.write_text(json.dumps(output, indent=2) + "\n")
     print(f"Generated: {output_path}")
 
 
-def generate_typescript_types(output_path: Path):
+def generate_typescript_types(providers: dict, output_path: Path):
     """Generate TypeScript type definitions for the model registry."""
-    content = '''// OISP Model Registry Types
-// Auto-generated - DO NOT EDIT MANUALLY
+    # Generate provider union type from actual providers
+    provider_ids = sorted(providers.keys())
+    provider_union = "\n  | ".join([f"'{p}'" for p in provider_ids[:20]])  # Top 20 for readability
+
+    content = f'''// OISP Model Registry Types
+// Auto-generated from models.dev - DO NOT EDIT MANUALLY
+// Source: {MODELS_DEV_URL}
+// Generated: {datetime.now(timezone.utc).isoformat()}
 
 export type AIProvider =
-  | 'openai'
-  | 'anthropic'
-  | 'google'
-  | 'azure_openai'
-  | 'aws_bedrock'
-  | 'cohere'
-  | 'mistral'
-  | 'groq'
-  | 'together'
-  | 'fireworks'
-  | 'replicate'
-  | 'huggingface'
-  | 'ollama'
-  | 'lmstudio'
-  | 'vllm'
-  | 'deepseek'
-  | 'perplexity'
-  | 'openrouter'
+  | {provider_union}
   | string;
 
 export type ModelMode =
@@ -329,44 +438,58 @@ export type ModelMode =
 export type ModelCapability =
   | 'vision'
   | 'function_calling'
-  | 'parallel_function_calling'
-  | 'system_messages'
   | 'json_mode'
-  | 'prompt_caching'
   | 'reasoning'
-  | 'web_search'
+  | 'temperature'
   | 'audio_input'
-  | 'audio_output';
+  | 'audio_output'
+  | 'video_input'
+  | 'image_output'
+  | 'pdf_input';
 
-export interface ModelInfo {
+export interface ModelInfo {{
   id: string;
-  litellm_id?: string;
   provider: AIProvider;
+  name?: string;
+  family?: string;
   mode: ModelMode;
   max_input_tokens?: number;
   max_output_tokens?: number;
   input_cost_per_1k?: number;
   output_cost_per_1k?: number;
+  cache_read_cost_per_1k?: number;
+  cache_write_cost_per_1k?: number;
+  reasoning_cost_per_1k?: number;
   capabilities?: ModelCapability[];
+  knowledge_cutoff?: string;
+  release_date?: string;
+  open_weights?: boolean;
   deprecated?: boolean;
-  deprecation_date?: string;
-}
+}}
 
-export interface ModelRegistry {
+export interface ProviderInfo {{
+  name: string;
+  api_endpoint?: string;
+  documentation?: string;
+  env_vars: string[];
+  logo_url?: string;
+  model_count: number;
+  models: string[];
+}}
+
+export interface ModelRegistry {{
   version: string;
   generated_at: string;
   source: string;
   source_url: string;
-  stats: {
+  logos_url: string;
+  stats: {{
     total_models: number;
     providers: number;
-  };
-  providers: Record<AIProvider, {
-    model_count: number;
-    models: string[];
-  }>;
+  }};
+  providers: Record<AIProvider, ProviderInfo>;
   models: Record<string, ModelInfo>;
-}
+}}
 
 /**
  * Lookup a model by provider and model ID.
@@ -375,9 +498,35 @@ export function lookupModel(
   registry: ModelRegistry,
   provider: AIProvider,
   modelId: string
-): ModelInfo | undefined {
-  return registry.models[`${provider}/${modelId}`];
-}
+): ModelInfo | undefined {{
+  return registry.models[`${{provider}}/${{modelId}}`];
+}}
+
+/**
+ * Get provider info including API endpoint for detection.
+ */
+export function getProvider(
+  registry: ModelRegistry,
+  providerId: AIProvider
+): ProviderInfo | undefined {{
+  return registry.providers[providerId];
+}}
+
+/**
+ * Find provider by API endpoint URL.
+ * Useful for detecting which provider a request is going to.
+ */
+export function findProviderByEndpoint(
+  registry: ModelRegistry,
+  url: string
+): {{ providerId: AIProvider; provider: ProviderInfo }} | undefined {{
+  for (const [providerId, provider] of Object.entries(registry.providers)) {{
+    if (provider.api_endpoint && url.includes(new URL(provider.api_endpoint).hostname)) {{
+      return {{ providerId: providerId as AIProvider, provider }};
+    }}
+  }}
+  return undefined;
+}}
 
 /**
  * Estimate the cost of an API call.
@@ -385,28 +534,60 @@ export function lookupModel(
 export function estimateCost(
   model: ModelInfo,
   inputTokens: number,
-  outputTokens: number
-): { input: number; output: number; total: number } | undefined {
-  if (!model.input_cost_per_1k || !model.output_cost_per_1k) {
+  outputTokens: number,
+  options?: {{
+    cachedInputTokens?: number;
+    reasoningTokens?: number;
+  }}
+): {{ input: number; output: number; cached?: number; reasoning?: number; total: number }} | undefined {{
+  if (!model.input_cost_per_1k && !model.output_cost_per_1k) {{
     return undefined;
-  }
-  
-  const input = (inputTokens / 1000) * model.input_cost_per_1k;
-  const output = (outputTokens / 1000) * model.output_cost_per_1k;
-  
-  return {
+  }}
+
+  const input = model.input_cost_per_1k
+    ? (inputTokens / 1000) * model.input_cost_per_1k
+    : 0;
+  const output = model.output_cost_per_1k
+    ? (outputTokens / 1000) * model.output_cost_per_1k
+    : 0;
+
+  let cached = 0;
+  if (options?.cachedInputTokens && model.cache_read_cost_per_1k) {{
+    cached = (options.cachedInputTokens / 1000) * model.cache_read_cost_per_1k;
+  }}
+
+  let reasoning = 0;
+  if (options?.reasoningTokens && model.reasoning_cost_per_1k) {{
+    reasoning = (options.reasoningTokens / 1000) * model.reasoning_cost_per_1k;
+  }}
+
+  const total = input + output + cached + reasoning;
+
+  const result: any = {{
     input: Math.round(input * 1000000) / 1000000,
     output: Math.round(output * 1000000) / 1000000,
-    total: Math.round((input + output) * 1000000) / 1000000,
-  };
-}
+    total: Math.round(total * 1000000) / 1000000,
+  }};
+
+  if (cached > 0) result.cached = Math.round(cached * 1000000) / 1000000;
+  if (reasoning > 0) result.reasoning = Math.round(reasoning * 1000000) / 1000000;
+
+  return result;
+}}
+
+/**
+ * Get the logo URL for a provider.
+ */
+export function getProviderLogoUrl(providerId: string): string {{
+  return `{MODELS_DEV_LOGOS_URL}/${{providerId}}.svg`;
+}}
 '''
     output_path.write_text(content)
     print(f"Generated: {output_path}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Sync model data from LiteLLM")
+    parser = argparse.ArgumentParser(description="Sync model data from models.dev")
     parser.add_argument(
         "--output-dir",
         type=Path,
@@ -420,39 +601,43 @@ def main():
         help="Local JSON file to use instead of fetching from URL",
     )
     args = parser.parse_args()
-    
+
     # Create output directory
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # Fetch data
-    raw_data = fetch_litellm_data(args.input_file)
-    
-    # Parse models
-    models = []
-    for model_id, entry in raw_data.items():
-        parsed = parse_model_entry(model_id, entry)
-        if parsed:
-            models.append(parsed)
-    
-    print(f"Parsed {len(models)} models")
-    
-    # Group by provider
-    by_provider = group_by_provider(models)
-    print(f"Found {len(by_provider)} providers")
-    
+    raw_data = fetch_models_dev_data(args.input_file)
+
+    # Parse providers and models
+    providers = {}
+    models_by_provider = {}
+    all_models = []
+
+    for provider_id, provider_data in raw_data.items():
+        canonical_id, provider_info, models = parse_provider(provider_id, provider_data)
+        providers[canonical_id] = provider_info
+        models_by_provider[canonical_id] = models
+        all_models.extend(models)
+
+    print(f"Parsed {len(all_models)} models from {len(providers)} providers")
+
     # Generate outputs
-    generate_yaml(by_provider, args.output_dir / "models.yaml")
-    generate_json(by_provider, models, args.output_dir / "models.json")
-    generate_typescript_types(args.output_dir / "models.ts")
-    
+    generate_yaml(providers, models_by_provider, args.output_dir / "models.yaml")
+    generate_json(providers, models_by_provider, all_models, args.output_dir / "models.json")
+    generate_typescript_types(providers, args.output_dir / "models.ts")
+
     # Print summary
-    print("\nProvider Summary:")
-    for provider in sorted(by_provider.keys()):
-        print(f"  {provider}: {len(by_provider[provider])} models")
-    
-    print(f"\nTotal: {len(models)} models from {len(by_provider)} providers")
+    print("\nProvider Summary (top 20 by model count):")
+    sorted_providers = sorted(
+        models_by_provider.items(),
+        key=lambda x: len(x[1]),
+        reverse=True
+    )[:20]
+    for provider_id, models in sorted_providers:
+        print(f"  {provider_id}: {len(models)} models")
+
+    print(f"\nTotal: {len(all_models)} models from {len(providers)} providers")
 
 
 if __name__ == "__main__":
     main()
-
