@@ -3,162 +3,318 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OISP</title>
-  <meta name="description" content="Open Inference Standard Protocol">
+  <title>OISP - Open Inference Standard Protocol</title>
+  <meta name="description" content="Universal AI observability. See every AI interaction across your entire environment.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html, body {
-      height: 100%;
+
+    :root {
+      --orange: #f97316;
+      --orange-dark: #ea580c;
+      --bg: #000;
+      --text: #fff;
+      --text-muted: rgba(255,255,255,0.5);
+      --text-dim: rgba(255,255,255,0.35);
+      --border: rgba(255,255,255,0.1);
     }
-    
+
+    html, body { height: 100%; }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #000;
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
-    
+
     .page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       padding: 48px 24px;
     }
-    
+
     .content {
-      max-width: 560px;
+      max-width: 640px;
       width: 100%;
     }
-    
+
+    /* Header */
     .header {
-      margin-bottom: 64px;
+      text-align: center;
+      margin-bottom: 48px;
     }
-    
+
     .wordmark {
-      font-size: 2.5rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      color: #f97316;
-      margin-bottom: 8px;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--orange);
+      margin-bottom: 12px;
     }
-    
-    .subtitle {
+
+    .tagline {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Install Section */
+    .install-section {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .install-label {
+      font-size: 0.6875rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .install-command {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.875rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.02em;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s;
     }
-    
+
+    .install-command:hover {
+      border-color: var(--orange);
+      background: rgba(249,115,22,0.05);
+    }
+
+    .install-command code {
+      flex: 1;
+      overflow-x: auto;
+    }
+
+    .install-command .copy-icon {
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .install-command:hover .copy-icon {
+      color: var(--orange);
+    }
+
+    .install-note {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+
+    .install-note a {
+      color: var(--text-muted);
+      text-decoration: underline;
+    }
+
+    .install-note a:hover {
+      color: var(--orange);
+    }
+
+    /* Download Buttons */
+    .downloads {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .download-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 20px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .download-btn:hover {
+      border-color: var(--orange);
+      background: rgba(249,115,22,0.05);
+    }
+
+    .download-btn svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.8;
+    }
+
+    .download-btn:hover svg {
+      opacity: 1;
+    }
+
+    .download-btn .platform {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .download-btn .arch {
+      font-size: 0.6875rem;
+      color: var(--text-dim);
+    }
+
+    /* Navigation */
     .nav {
       display: flex;
       flex-direction: column;
       gap: 1px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 2px;
+      background: var(--border);
+      border-radius: 6px;
       overflow: hidden;
+      margin-bottom: 48px;
     }
-    
+
     .nav-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 20px 24px;
-      background: #000;
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
       text-decoration: none;
       transition: background 0.15s;
     }
-    
+
     .nav-item:hover {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.03);
     }
-    
+
     .nav-item:hover .nav-arrow {
       transform: translateX(4px);
       opacity: 1;
     }
-    
+
     .nav-label {
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
-    
+
     .nav-title {
       font-size: 1rem;
       font-weight: 500;
-      letter-spacing: -0.01em;
     }
-    
+
     .nav-desc {
       font-size: 0.8125rem;
-      color: rgba(255,255,255,0.4);
+      color: var(--text-muted);
     }
-    
+
     .nav-arrow {
       font-size: 1.25rem;
-      color: rgba(255,255,255,0.3);
+      color: var(--text-dim);
       opacity: 0;
       transition: all 0.15s;
     }
-    
-    .nav-item.primary .nav-title {
-      color: #f97316;
-    }
-    
+
+    .nav-item.primary .nav-title { color: var(--orange); }
+
+    /* Schemas */
     .schemas {
-      margin-top: 48px;
+      margin-bottom: 48px;
     }
-    
+
     .schemas-label {
       font-size: 0.6875rem;
-      color: rgba(255,255,255,0.35);
+      color: var(--text-dim);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       margin-bottom: 12px;
     }
-    
+
     .schemas-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
     }
-    
+
     .schema-link {
-      padding: 6px 10px;
+      padding: 8px 12px;
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.5);
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 2px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
       transition: all 0.15s;
     }
-    
+
     .schema-link:hover {
-      color: #f97316;
+      color: var(--orange);
       border-color: rgba(249,115,22,0.4);
     }
-    
+
+    /* Footer */
     .footer {
-      margin-top: 64px;
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
+      color: var(--text-dim);
+      text-align: center;
     }
-    
+
     .footer a {
-      color: rgba(255,255,255,0.5);
+      color: var(--text-muted);
       text-decoration: none;
     }
-    
-    .footer a:hover {
-      color: #f97316;
+
+    .footer a:hover { color: var(--orange); }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .downloads {
+        grid-template-columns: 1fr;
+      }
+      .download-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 16px 20px;
+      }
+      .download-btn svg {
+        width: 24px;
+        height: 24px;
+      }
     }
+
+    /* Copy feedback */
+    .copied {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--orange);
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .copied.show { opacity: 1; }
   </style>
 </head>
 <body>
@@ -166,28 +322,79 @@
     <div class="content">
       <div class="header">
         <div class="wordmark">OISP</div>
-        <div class="subtitle">Open Inference Standard Protocol</div>
+        <div class="tagline">Universal AI observability.<br>See every AI interaction across your entire environment.</div>
       </div>
-      
+
+      <div class="install-section">
+        <div class="install-label">Quick Install (Linux)</div>
+        <div class="install-command" onclick="copyCommand()">
+          <code>curl -fsSL https://oisp.dev/install.sh | sudo sh</code>
+          <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </div>
+        <div class="install-note">
+          Linux with kernel 5.8+. See <a href="https://sensor.oximy.com/getting-started/installation">docs</a> for more options.
+        </div>
+      </div>
+
+      <div class="downloads">
+        <a href="https://oisp.dev/download/OISP-Sensor-macOS-arm64.dmg" class="download-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+          </svg>
+          <div>
+            <div class="platform">macOS</div>
+            <div class="arch">Apple Silicon</div>
+          </div>
+        </a>
+        <a href="https://oisp.dev/download/OISP-Sensor-macOS-x64.dmg" class="download-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+          </svg>
+          <div>
+            <div class="platform">macOS</div>
+            <div class="arch">Intel</div>
+          </div>
+        </a>
+        <a href="https://oisp.dev/download/OISP-Sensor-Windows-x64.exe" class="download-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 12V6.75L9 5.43V11.91L3 12M20 3V11.75L10 11.9V5.21L20 3M3 13L9 13.09V19.9L3 18.75V13M20 13.25V22L10 20.09V13.1L20 13.25Z"/>
+          </svg>
+          <div>
+            <div class="platform">Windows</div>
+            <div class="arch">x64</div>
+          </div>
+        </a>
+      </div>
+
       <nav class="nav">
-        <a href="https://sensor.oisp.dev" class="nav-item primary">
+        <a href="https://sensor.oximy.com" class="nav-item primary">
           <div class="nav-label">
-            <span class="nav-title">Sensor</span>
-            <span class="nav-desc">Implementation, docs, install</span>
+            <span class="nav-title">Documentation</span>
+            <span class="nav-desc">Installation guides, configuration, API reference</span>
           </div>
           <span class="nav-arrow">&rarr;</span>
         </a>
-        <a href="https://github.com/oximyhq/oisp-cookbooks" class="nav-item">
+        <a href="https://github.com/oximyhq/oisp-cookbook" class="nav-item">
           <div class="nav-label">
             <span class="nav-title">Cookbooks</span>
             <span class="nav-desc">Ready-to-use recipes and examples</span>
           </div>
           <span class="nav-arrow">&rarr;</span>
         </a>
+        <a href="https://github.com/OximyHQ/sensor" class="nav-item">
+          <div class="nav-label">
+            <span class="nav-title">Sensor GitHub</span>
+            <span class="nav-desc">OISP Sensor source code</span>
+          </div>
+          <span class="nav-arrow">&rarr;</span>
+        </a>
         <a href="https://github.com/oximyHQ/oisp-spec" class="nav-item">
           <div class="nav-label">
-            <span class="nav-title">GitHub</span>
-            <span class="nav-desc">Specification source</span>
+            <span class="nav-title">Spec GitHub</span>
+            <span class="nav-desc">OISP specification and schemas</span>
           </div>
           <span class="nav-arrow">&rarr;</span>
         </a>
@@ -199,9 +406,9 @@
           <span class="nav-arrow">&rarr;</span>
         </a>
       </nav>
-      
+
       <div class="schemas">
-        <div class="schemas-label">Schemas</div>
+        <div class="schemas-label">JSON Schemas (v0.1)</div>
         <div class="schemas-grid">
           <a href="/schema/v0.1/envelope.schema.json" class="schema-link">envelope</a>
           <a href="/schema/v0.1/events/ai.schema.json" class="schema-link">ai</a>
@@ -212,11 +419,22 @@
           <a href="/semconv/providers/_generated/models.json" class="schema-link">models</a>
         </div>
       </div>
-      
+
       <div class="footer">
-        Apache 2.0 &middot; <a href="https://oximy.com">Oximy</a>
+        Apache 2.0 &middot; <a href="https://oximy.com">Oximy</a> &middot; <a href="https://github.com/oximyHQ/oisp-spec">GitHub</a>
       </div>
     </div>
   </div>
+
+  <div class="copied" id="copied">Copied to clipboard</div>
+
+  <script>
+    function copyCommand() {
+      navigator.clipboard.writeText('curl -fsSL https://oisp.dev/install.sh | sudo sh');
+      const el = document.getElementById('copied');
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2000);
+    }
+  </script>
 </body>
 </html>

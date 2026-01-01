@@ -18,10 +18,10 @@
 
 </div>
 
-> **Want to see OISP in action?** Install [OISP Sensor](https://sensor.oisp.dev) - our reference implementation that captures every AI interaction on your machine with zero instrumentation.
+> **Want to see OISP in action?** Install [OISP Sensor](https://sensor.oximy.com) - our reference implementation that captures every AI interaction on your machine with zero instrumentation.
 >
 > ```bash
-> curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh
+> curl -fsSL https://oisp.dev/install.sh | sudo sh
 > ```
 
 ---
@@ -397,7 +397,7 @@ oisp-spec/
 <tr>
 <td width="70%">
 
-**[OISP Sensor](https://sensor.oisp.dev)** is our official reference implementation. It captures every AI interaction on your machine - prompts, responses, tool calls, agent actions - with **zero instrumentation**.
+**[OISP Sensor](https://sensor.oximy.com)** is our official reference implementation. It captures every AI interaction on your machine - prompts, responses, tool calls, agent actions - with **zero instrumentation**.
 
 - Full content capture on Linux via eBPF
 - Metadata capture on macOS and Windows
@@ -409,7 +409,7 @@ oisp-spec/
 
 ```bash
 # One-line install
-curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh
+curl -fsSL https://oisp.dev/install.sh | sudo sh
 
 # Run it
 sudo oisp-sensor
@@ -419,7 +419,7 @@ sudo oisp-sensor
 </tr>
 </table>
 
-[View on GitHub](https://github.com/oximyhq/sensor) · [Documentation](https://sensor.oisp.dev) · [Download](https://github.com/oximyhq/sensor/releases)
+[View on GitHub](https://github.com/oximyhq/sensor) · [Documentation](https://sensor.oximy.com) · [Download](https://github.com/oximyhq/sensor/releases)
 
 ### Community
 

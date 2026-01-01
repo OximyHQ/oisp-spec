@@ -271,11 +271,11 @@ Schema URLs include the major version: `https://oisp.dev/schema/v0.1/...`
 
 ## Try It Now: OISP Sensor
 
-Want to see OISP in action? **[OISP Sensor](https://sensor.oisp.dev)** is our reference implementation that captures every AI interaction on your machine with zero instrumentation.
+Want to see OISP in action? **[OISP Sensor](https://sensor.oximy.com)** is our reference implementation that captures every AI interaction on your machine with zero instrumentation.
 
 ```bash
 # Install
-curl -fsSL https://sensor.oisp.dev/install.sh | sudo sh
+curl -fsSL https://oisp.dev/install.sh | sudo sh
 
 # Run with TUI
 sudo oisp-sensor
@@ -289,7 +289,7 @@ OISP Sensor implements the complete OISP event model:
 - Correlates agent tool calls with actual system operations
 - Outputs events in OISP schema format (JSONL, WebSocket, OTLP)
 
-[Get Started](https://sensor.oisp.dev) | [GitHub](https://github.com/oximyhq/sensor)
+[Get Started](https://sensor.oximy.com) | [GitHub](https://github.com/oximyhq/sensor)
 
 ## Next Steps
 
