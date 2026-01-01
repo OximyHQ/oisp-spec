@@ -289,7 +289,7 @@ OISP Sensor implements the complete OISP event model:
 - Correlates agent tool calls with actual system operations
 - Outputs events in OISP schema format (JSONL, WebSocket, OTLP)
 
-[Get Started](https://sensor.oisp.dev) | [GitHub](https://github.com/oximyHQ/oisp-sensor)
+[Get Started](https://sensor.oisp.dev) | [GitHub](https://github.com/oximyhq/sensor)
 
 ## Next Steps
 

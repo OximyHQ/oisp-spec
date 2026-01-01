@@ -419,7 +419,7 @@ sudo oisp-sensor
 </tr>
 </table>
 
-[View on GitHub](https://github.com/oximyHQ/oisp-sensor) · [Documentation](https://sensor.oisp.dev) · [Download](https://github.com/oximyHQ/oisp-sensor/releases)
+[View on GitHub](https://github.com/oximyhq/sensor) · [Documentation](https://sensor.oisp.dev) · [Download](https://github.com/oximyhq/sensor/releases)
 
 ### Community
 
