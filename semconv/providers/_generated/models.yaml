@@ -1,12 +1,12 @@
 # OISP Model Registry
 # Auto-generated from models.dev - DO NOT EDIT MANUALLY
 # Source: https://models.dev/api.json
-# Generated: 2025-12-29T20:31:51.540392+00:00
+# Generated: 2026-01-01T03:50:55.690362+00:00
 #
 # To regenerate: python scripts/sync-models.py
 
 version: '0.1'
-generated_at: '2025-12-29T20:31:51.540411+00:00'
+generated_at: '2026-01-01T03:50:55.690379+00:00'
 source: models.dev
 source_url: 'https://models.dev/api.json'
 
@@ -2765,13 +2765,13 @@ providers:
       'gpt-5.1-codex-mini':
         name: 'GPT-5.1 Codex Mini'
         family: 'gpt-5-codex-mini'
-        mode: image
+        mode: chat
         max_input_tokens: 400000
         max_output_tokens: 128000
         input_cost_per_1k: 0.00025
         output_cost_per_1k: 0.002
         cache_read_cost_per_1k: 2.5e-05
-        capabilities: [audio_input, audio_output, function_calling, image_output, reasoning, vision]
+        capabilities: [function_calling, reasoning, vision]
         knowledge_cutoff: '2024-09-30'
       'gpt-5.2-chat':
         name: 'GPT-5.2 Chat'
@@ -3738,13 +3738,13 @@ providers:
       'gpt-5.1-codex-mini':
         name: 'GPT-5.1 Codex Mini'
         family: 'gpt-5-codex-mini'
-        mode: image
+        mode: chat
         max_input_tokens: 400000
         max_output_tokens: 128000
         input_cost_per_1k: 0.00025
         output_cost_per_1k: 0.002
         cache_read_cost_per_1k: 2.5e-05
-        capabilities: [audio_input, audio_output, function_calling, image_output, reasoning, vision]
+        capabilities: [function_calling, reasoning, vision]
         knowledge_cutoff: '2024-09-30'
       'gpt-5.2':
         name: 'GPT-5.2'
@@ -9910,7 +9910,7 @@ providers:
         knowledge_cutoff: '2024-12'
         open_weights: true
       'Qwen/Qwen3-Embedding-8B':
-        name: 'Qwen 3 Embedding 4B'
+        name: 'Qwen 3 Embedding 8B'
         family: 'qwen3'
         mode: embedding
         max_input_tokens: 32000
@@ -12708,13 +12708,13 @@ providers:
       'gpt-5.1-codex-mini':
         name: 'GPT-5.1 Codex mini'
         family: 'gpt-5-codex-mini'
-        mode: image
+        mode: chat
         max_input_tokens: 400000
         max_output_tokens: 128000
         input_cost_per_1k: 0.00025
         output_cost_per_1k: 0.002
         cache_read_cost_per_1k: 2.5e-05
-        capabilities: [function_calling, image_output, json_mode, reasoning, vision]
+        capabilities: [function_calling, json_mode, reasoning, vision]
         knowledge_cutoff: '2024-09-30'
       'gpt-5.2':
         name: 'GPT-5.2'
@@ -12874,7 +12874,7 @@ providers:
     name: 'OpenCode Zen'
     api_endpoint: 'https://opencode.ai/zen/v1'
     logo_url: 'https://models.dev/logos/opencode.svg'
-    model_count: 25
+    model_count: 26
     models:
       'alpha-gd4':
         name: 'Alpha GD4'
@@ -13094,6 +13094,17 @@ providers:
         input_cost_per_1k: 0.00125
         output_cost_per_1k: 0.01
         cache_read_cost_per_1k: 0.000125
+        capabilities: [function_calling, json_mode, reasoning, vision]
+        knowledge_cutoff: '2024-09-30'
+      'gpt-5.1-codex-mini':
+        name: 'GPT-5.1 Codex Mini'
+        family: 'gpt-5-codex-mini'
+        mode: chat
+        max_input_tokens: 400000
+        max_output_tokens: 128000
+        input_cost_per_1k: 0.00025
+        output_cost_per_1k: 0.002
+        cache_read_cost_per_1k: 2.5e-05
         capabilities: [function_calling, json_mode, reasoning, vision]
         knowledge_cutoff: '2024-09-30'
       'gpt-5.2':
@@ -16072,7 +16083,7 @@ providers:
   sap_ai_core:
     name: 'SAP AI Core'
     logo_url: 'https://models.dev/logos/sap-ai-core.svg'
-    model_count: 13
+    model_count: 14
     models:
       'anthropic--claude-3-haiku':
         family: 'claude-haiku'
@@ -16092,6 +16103,8 @@ providers:
         max_output_tokens: 4096
         input_cost_per_1k: 0.015
         output_cost_per_1k: 0.075
+        cache_read_cost_per_1k: 0.0015
+        cache_write_cost_per_1k: 0.01875
         capabilities: [function_calling, pdf_input, temperature, vision]
         knowledge_cutoff: '2023-08-31'
       'anthropic--claude-3-sonnet':
@@ -16101,6 +16114,8 @@ providers:
         max_output_tokens: 4096
         input_cost_per_1k: 0.003
         output_cost_per_1k: 0.015
+        cache_read_cost_per_1k: 0.0003
+        cache_write_cost_per_1k: 0.0003
         capabilities: [function_calling, pdf_input, temperature, vision]
         knowledge_cutoff: '2023-08-31'
       'anthropic--claude-3.5-sonnet':
@@ -16147,6 +16162,17 @@ providers:
         cache_write_cost_per_1k: 0.00375
         capabilities: [function_calling, pdf_input, reasoning, temperature, vision]
         knowledge_cutoff: '2025-01-31'
+      'anthropic--claude-4.5-haiku':
+        family: 'claude-haiku'
+        mode: chat
+        max_input_tokens: 200000
+        max_output_tokens: 64000
+        input_cost_per_1k: 0.001
+        output_cost_per_1k: 0.005
+        cache_read_cost_per_1k: 0.0001
+        cache_write_cost_per_1k: 0.00125
+        capabilities: [function_calling, pdf_input, reasoning, temperature, vision]
+        knowledge_cutoff: '2025-02-28'
       'anthropic--claude-4.5-sonnet':
         family: 'claude-sonnet'
         mode: chat
@@ -16353,17 +16379,7 @@ providers:
     logo_url: 'https://models.dev/logos/siliconflow.svg'
     model_count: 72
     models:
-      'baidu-ernie-4.5-300b-a47b':
-        name: 'baidu/ERNIE-4.5-300B-A47B'
-        family: 'ernie-4'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00028
-        output_cost_per_1k: 0.0011
-        capabilities: [function_calling, json_mode, temperature]
-      'bytedance-seed-seed-oss-36b-instruct':
-        name: 'ByteDance-Seed/Seed-OSS-36B-Instruct'
+      'ByteDance-Seed/Seed-OSS-36B-Instruct':
         family: 'bytedance-seed-seed-oss'
         mode: chat
         max_input_tokens: 262000
@@ -16371,125 +16387,7 @@ providers:
         input_cost_per_1k: 0.00021
         output_cost_per_1k: 0.00057
         capabilities: [function_calling, json_mode, temperature]
-      'deepseek-ai-deepseek-r1':
-        name: 'deepseek-ai/DeepSeek-R1'
-        family: 'deepseek-r1'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.0005
-        output_cost_per_1k: 0.00218
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-r1-distill-qwen-14b':
-        name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-14B'
-        family: 'qwen'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0001
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-r1-distill-qwen-32b':
-        name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'
-        family: 'qwen'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-r1-distill-qwen-7b':
-        name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B'
-        family: 'qwen'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 16000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 5e-05
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-v3':
-        name: 'deepseek-ai/DeepSeek-V3'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00025
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, temperature]
-      'deepseek-ai-deepseek-v3.1':
-        name: 'deepseek-ai/DeepSeek-V3.1'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-v3.1-terminus':
-        name: 'deepseek-ai/DeepSeek-V3.1-Terminus'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-v3.2-exp':
-        name: 'deepseek-ai/DeepSeek-V3.2-Exp'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.00041
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-vl2':
-        name: 'deepseek-ai/deepseek-vl2'
-        family: 'deepseek'
-        mode: chat
-        max_input_tokens: 4000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00015
-        output_cost_per_1k: 0.00015
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'inclusionai-ling-flash-2.0':
-        name: 'inclusionAI/Ling-flash-2.0'
-        family: 'inclusionai-ling-flash'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, temperature]
-      'inclusionai-ling-mini-2.0':
-        name: 'inclusionAI/Ling-mini-2.0'
-        family: 'inclusionai-ling-mini'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 0.00028
-        capabilities: [function_calling, json_mode, temperature]
-      'inclusionai-ring-flash-2.0':
-        name: 'inclusionAI/Ring-flash-2.0'
-        family: 'inclusionai-ring-flash'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'meta-llama-meta-llama-3.1-8b-instruct':
-        name: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
-        family: 'llama-3.1'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 6e-05
-        output_cost_per_1k: 6e-05
-        capabilities: [function_calling, json_mode, temperature]
-      'minimaxai-minimax-m1-80k':
-        name: 'MiniMaxAI/MiniMax-M1-80k'
+      'MiniMaxAI/MiniMax-M1-80k':
         family: 'minimax'
         mode: chat
         max_input_tokens: 131000
@@ -16497,8 +16395,7 @@ providers:
         input_cost_per_1k: 0.00055
         output_cost_per_1k: 0.0022
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'minimaxai-minimax-m2':
-        name: 'MiniMaxAI/MiniMax-M2'
+      'MiniMaxAI/MiniMax-M2':
         family: 'minimax'
         mode: chat
         max_input_tokens: 197000
@@ -16506,368 +16403,7 @@ providers:
         input_cost_per_1k: 0.0003
         output_cost_per_1k: 0.0012
         capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-dev-72b':
-        name: 'moonshotai/Kimi-Dev-72B'
-        family: 'kimi'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00029
-        output_cost_per_1k: 0.00115
-        capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-k2-instruct':
-        name: 'moonshotai/Kimi-K2-Instruct'
-        family: 'kimi-k2'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00058
-        output_cost_per_1k: 0.00229
-        capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-k2-instruct-0905':
-        name: 'moonshotai/Kimi-K2-Instruct-0905'
-        family: 'kimi-k2'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0004
-        output_cost_per_1k: 0.002
-        capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-k2-thinking':
-        name: 'moonshotai/Kimi-K2-Thinking'
-        family: 'kimi-k2'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00055
-        output_cost_per_1k: 0.0025
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'nex-agi-deepseek-v3.1-nex-n1':
-        name: 'nex-agi/DeepSeek-V3.1-Nex-N1'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.0005
-        output_cost_per_1k: 0.002
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'openai-gpt-oss-120b':
-        name: 'openai/gpt-oss-120b'
-        family: 'openai-gpt-oss'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 8000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 0.00045
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'openai-gpt-oss-20b':
-        name: 'openai/gpt-oss-20b'
-        family: 'openai-gpt-oss'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 8000
-        input_cost_per_1k: 4e-05
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-14b-instruct':
-        name: 'Qwen/Qwen2.5-14B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0001
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-32b-instruct':
-        name: 'Qwen/Qwen2.5-32B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-72b-instruct':
-        name: 'Qwen/Qwen2.5-72B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00059
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-72b-instruct-128k':
-        name: 'Qwen/Qwen2.5-72B-Instruct-128K'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00059
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-7b-instruct':
-        name: 'Qwen/Qwen2.5-7B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 5e-05
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-coder-32b-instruct':
-        name: 'Qwen/Qwen2.5-Coder-32B-Instruct'
-        family: 'qwen2.5-coder'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-vl-32b-instruct':
-        name: 'Qwen/Qwen2.5-VL-32B-Instruct'
-        family: 'qwen2.5-vl'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.00027
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen2.5-vl-72b-instruct':
-        name: 'Qwen/Qwen2.5-VL-72B-Instruct'
-        family: 'qwen2.5-vl'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00059
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen2.5-vl-7b-instruct':
-        name: 'Qwen/Qwen2.5-VL-7B-Instruct'
-        family: 'qwen2.5-vl'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 5e-05
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-14b':
-        name: 'Qwen/Qwen3-14B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 0.00028
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-235b-a22b':
-        name: 'Qwen/Qwen3-235B-A22B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00035
-        output_cost_per_1k: 0.00142
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-235b-a22b-instruct-2507':
-        name: 'Qwen/Qwen3-235B-A22B-Instruct-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-235b-a22b-thinking-2507':
-        name: 'Qwen/Qwen3-235B-A22B-Thinking-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00013
-        output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'qwen-qwen3-30b-a3b':
-        name: 'Qwen/Qwen3-30B-A3B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.00045
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-30b-a3b-instruct-2507':
-        name: 'Qwen/Qwen3-30B-A3B-Instruct-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.0003
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-30b-a3b-thinking-2507':
-        name: 'Qwen/Qwen3-30B-A3B-Thinking-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 131000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.0003
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'qwen-qwen3-32b':
-        name: 'Qwen/Qwen3-32B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-8b':
-        name: 'Qwen/Qwen3-8B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 6e-05
-        output_cost_per_1k: 6e-05
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-coder-30b-a3b-instruct':
-        name: 'Qwen/Qwen3-Coder-30B-A3B-Instruct'
-        family: 'qwen3-coder'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 0.00028
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-coder-480b-a35b-instruct':
-        name: 'Qwen/Qwen3-Coder-480B-A35B-Instruct'
-        family: 'qwen3-coder'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00025
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-next-80b-a3b-instruct':
-        name: 'Qwen/Qwen3-Next-80B-A3B-Instruct'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.0014
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-next-80b-a3b-thinking':
-        name: 'Qwen/Qwen3-Next-80B-A3B-Thinking'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'qwen-qwen3-omni-30b-a3b-captioner':
-        name: 'Qwen/Qwen3-Omni-30B-A3B-Captioner'
-        family: 'qwen3-omni'
-        mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0004
-        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-omni-30b-a3b-instruct':
-        name: 'Qwen/Qwen3-Omni-30B-A3B-Instruct'
-        family: 'qwen3-omni'
-        mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0004
-        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-omni-30b-a3b-thinking':
-        name: 'Qwen/Qwen3-Omni-30B-A3B-Thinking'
-        family: 'qwen3-omni'
-        mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0004
-        capabilities: [audio_input, function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-235b-a22b-instruct':
-        name: 'Qwen/Qwen3-VL-235B-A22B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0003
-        output_cost_per_1k: 0.0015
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-235b-a22b-thinking':
-        name: 'Qwen/Qwen3-VL-235B-A22B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00045
-        output_cost_per_1k: 0.0035
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-30b-a3b-instruct':
-        name: 'Qwen/Qwen3-VL-30B-A3B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00029
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-30b-a3b-thinking':
-        name: 'Qwen/Qwen3-VL-30B-A3B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00029
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-32b-instruct':
-        name: 'Qwen/Qwen3-VL-32B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0002
-        output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-32b-thinking':
-        name: 'Qwen/Qwen3-VL-32B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0002
-        output_cost_per_1k: 0.0015
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-8b-instruct':
-        name: 'Qwen/Qwen3-VL-8B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00068
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-8b-thinking':
-        name: 'Qwen/Qwen3-VL-8B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.002
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwq-32b':
-        name: 'Qwen/QwQ-32B'
+      'Qwen/QwQ-32B':
         family: 'qwq'
         mode: chat
         max_input_tokens: 131000
@@ -16875,35 +16411,271 @@ providers:
         input_cost_per_1k: 0.00015
         output_cost_per_1k: 0.00058
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'stepfun-ai-step3':
-        name: 'stepfun-ai/step3'
-        family: 'stepfun-ai-step3'
+      'Qwen/Qwen2.5-14B-Instruct':
+        family: 'qwen2.5'
         mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.00057
-        output_cost_per_1k: 0.00142
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0001
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-32B-Instruct':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-72B-Instruct':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00059
+        output_cost_per_1k: 0.00059
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-72B-Instruct-128K':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00059
+        output_cost_per_1k: 0.00059
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-7B-Instruct':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 5e-05
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-Coder-32B-Instruct':
+        family: 'qwen2.5-coder'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-VL-32B-Instruct':
+        family: 'qwen2.5-vl'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.00027
         capabilities: [function_calling, json_mode, temperature, vision]
-      'tencent-hunyuan-a13b-instruct':
-        name: 'tencent/Hunyuan-A13B-Instruct'
-        family: 'hunyuan'
+      'Qwen/Qwen2.5-VL-72B-Instruct':
+        family: 'qwen2.5-vl'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00059
+        output_cost_per_1k: 0.00059
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen2.5-VL-7B-Instruct':
+        family: 'qwen2.5-vl'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 5e-05
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-14B':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 7e-05
+        output_cost_per_1k: 0.00028
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-235B-A22B':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00035
+        output_cost_per_1k: 0.00142
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-235B-A22B-Instruct-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-235B-A22B-Thinking-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00013
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'Qwen/Qwen3-30B-A3B':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.00045
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-30B-A3B-Instruct-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.0003
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-30B-A3B-Thinking-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 131000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.0003
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'Qwen/Qwen3-32B':
+        family: 'qwen3'
         mode: chat
         max_input_tokens: 131000
         max_output_tokens: 131000
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00057
         capabilities: [function_calling, json_mode, temperature]
-      'tencent-hunyuan-mt-7b':
-        name: 'tencent/Hunyuan-MT-7B'
-        family: 'hunyuan'
+      'Qwen/Qwen3-8B':
+        family: 'qwen3'
         mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 33000
-        input_cost_per_1k: 0.0
-        output_cost_per_1k: 0.0
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 6e-05
+        output_cost_per_1k: 6e-05
         capabilities: [function_calling, json_mode, temperature]
-      'thudm-glm-4-32b-0414':
-        name: 'THUDM/GLM-4-32B-0414'
+      'Qwen/Qwen3-Coder-30B-A3B-Instruct':
+        family: 'qwen3-coder'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 7e-05
+        output_cost_per_1k: 0.00028
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-Coder-480B-A35B-Instruct':
+        family: 'qwen3-coder'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00025
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-Next-80B-A3B-Instruct':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.0014
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-Next-80B-A3B-Thinking':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'Qwen/Qwen3-Omni-30B-A3B-Captioner':
+        family: 'qwen3-omni'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0004
+        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-Omni-30B-A3B-Instruct':
+        family: 'qwen3-omni'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0004
+        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-Omni-30B-A3B-Thinking':
+        family: 'qwen3-omni'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0004
+        capabilities: [audio_input, function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-235B-A22B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0003
+        output_cost_per_1k: 0.0015
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-235B-A22B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00045
+        output_cost_per_1k: 0.0035
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-30B-A3B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00029
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-30B-A3B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00029
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-32B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0002
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-32B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0002
+        output_cost_per_1k: 0.0015
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-8B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00068
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-8B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.002
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'THUDM/GLM-4-32B-0414':
         family: 'glm-4'
         mode: chat
         max_input_tokens: 33000
@@ -16911,8 +16683,7 @@ providers:
         input_cost_per_1k: 0.00027
         output_cost_per_1k: 0.00027
         capabilities: [function_calling, json_mode, temperature]
-      'thudm-glm-4-9b-0414':
-        name: 'THUDM/GLM-4-9B-0414'
+      'THUDM/GLM-4-9B-0414':
         family: 'glm-4'
         mode: chat
         max_input_tokens: 33000
@@ -16920,8 +16691,7 @@ providers:
         input_cost_per_1k: 8.6e-05
         output_cost_per_1k: 8.6e-05
         capabilities: [function_calling, json_mode, temperature]
-      'thudm-glm-4.1v-9b-thinking':
-        name: 'THUDM/GLM-4.1V-9B-Thinking'
+      'THUDM/GLM-4.1V-9B-Thinking':
         family: 'glm-4v'
         mode: chat
         max_input_tokens: 66000
@@ -16929,8 +16699,7 @@ providers:
         input_cost_per_1k: 3.5e-05
         output_cost_per_1k: 0.00014
         capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'thudm-glm-z1-32b-0414':
-        name: 'THUDM/GLM-Z1-32B-0414'
+      'THUDM/GLM-Z1-32B-0414':
         family: 'glm-z1'
         mode: chat
         max_input_tokens: 131000
@@ -16938,8 +16707,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00057
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'thudm-glm-z1-9b-0414':
-        name: 'THUDM/GLM-Z1-9B-0414'
+      'THUDM/GLM-Z1-9B-0414':
         family: 'glm-z1'
         mode: chat
         max_input_tokens: 131000
@@ -16947,8 +16715,199 @@ providers:
         input_cost_per_1k: 8.6e-05
         output_cost_per_1k: 8.6e-05
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'z-ai-glm-4.5':
-        name: 'z-ai/GLM-4.5'
+      'baidu/ERNIE-4.5-300B-A47B':
+        family: 'ernie-4'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00028
+        output_cost_per_1k: 0.0011
+        capabilities: [function_calling, json_mode, temperature]
+      'deepseek-ai/DeepSeek-R1':
+        family: 'deepseek-r1'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.0005
+        output_cost_per_1k: 0.00218
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-R1-Distill-Qwen-14B':
+        family: 'qwen'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0001
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B':
+        family: 'qwen'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B':
+        family: 'qwen'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 16000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 5e-05
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-V3':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00025
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, temperature]
+      'deepseek-ai/DeepSeek-V3.1':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-V3.1-Terminus':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-V3.2-Exp':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.00041
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/deepseek-vl2':
+        family: 'deepseek'
+        mode: chat
+        max_input_tokens: 4000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00015
+        output_cost_per_1k: 0.00015
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'inclusionAI/Ling-flash-2.0':
+        family: 'inclusionai-ling-flash'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, temperature]
+      'inclusionAI/Ling-mini-2.0':
+        family: 'inclusionai-ling-mini'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 7e-05
+        output_cost_per_1k: 0.00028
+        capabilities: [function_calling, json_mode, temperature]
+      'inclusionAI/Ring-flash-2.0':
+        family: 'inclusionai-ring-flash'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'meta-llama/Meta-Llama-3.1-8B-Instruct':
+        family: 'llama-3.1'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 6e-05
+        output_cost_per_1k: 6e-05
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-Dev-72B':
+        family: 'kimi'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00029
+        output_cost_per_1k: 0.00115
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-K2-Instruct':
+        family: 'kimi-k2'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00058
+        output_cost_per_1k: 0.00229
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-K2-Instruct-0905':
+        family: 'kimi-k2'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0004
+        output_cost_per_1k: 0.002
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-K2-Thinking':
+        family: 'kimi-k2'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00055
+        output_cost_per_1k: 0.0025
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'nex-agi/DeepSeek-V3.1-Nex-N1':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.0005
+        output_cost_per_1k: 0.002
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'openai/gpt-oss-120b':
+        family: 'openai-gpt-oss'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 8000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 0.00045
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'openai/gpt-oss-20b':
+        family: 'openai-gpt-oss'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 8000
+        input_cost_per_1k: 4e-05
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, temperature]
+      'stepfun-ai/step3':
+        family: 'stepfun-ai-step3'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.00057
+        output_cost_per_1k: 0.00142
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'tencent/Hunyuan-A13B-Instruct':
+        family: 'hunyuan'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, temperature]
+      'tencent/Hunyuan-MT-7B':
+        family: 'hunyuan'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 33000
+        input_cost_per_1k: 0.0
+        output_cost_per_1k: 0.0
+        capabilities: [function_calling, json_mode, temperature]
+      'z-ai/GLM-4.5':
         family: 'glm-4.5'
         mode: chat
         max_input_tokens: 131000
@@ -16956,8 +16915,7 @@ providers:
         input_cost_per_1k: 0.0004
         output_cost_per_1k: 0.002
         capabilities: [function_calling, json_mode, temperature]
-      'z-ai-glm-4.5-air':
-        name: 'z-ai/GLM-4.5-Air'
+      'z-ai/GLM-4.5-Air':
         family: 'glm-4.5-air'
         mode: chat
         max_input_tokens: 131000
@@ -16965,8 +16923,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00086
         capabilities: [function_calling, json_mode, temperature]
-      'zai-org-glm-4.5':
-        name: 'zai-org/GLM-4.5'
+      'zai-org/GLM-4.5':
         family: 'glm-4.5'
         mode: chat
         max_input_tokens: 131000
@@ -16974,8 +16931,7 @@ providers:
         input_cost_per_1k: 0.0004
         output_cost_per_1k: 0.002
         capabilities: [function_calling, json_mode, temperature]
-      'zai-org-glm-4.5-air':
-        name: 'zai-org/GLM-4.5-Air'
+      'zai-org/GLM-4.5-Air':
         family: 'glm-4.5-air'
         mode: chat
         max_input_tokens: 131000
@@ -16983,8 +16939,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00086
         capabilities: [function_calling, json_mode, temperature]
-      'zai-org-glm-4.5v':
-        name: 'zai-org/GLM-4.5V'
+      'zai-org/GLM-4.5V':
         family: 'glm-4.5v'
         mode: chat
         max_input_tokens: 66000
@@ -16992,8 +16947,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00086
         capabilities: [function_calling, json_mode, temperature, vision]
-      'zai-org-glm-4.6':
-        name: 'zai-org/GLM-4.6'
+      'zai-org/GLM-4.6':
         family: 'glm-4.6'
         mode: chat
         max_input_tokens: 205000
@@ -17007,17 +16961,7 @@ providers:
     logo_url: 'https://models.dev/logos/siliconflow-cn.svg'
     model_count: 72
     models:
-      'baidu-ernie-4.5-300b-a47b':
-        name: 'baidu/ERNIE-4.5-300B-A47B'
-        family: 'ernie-4'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00028
-        output_cost_per_1k: 0.0011
-        capabilities: [function_calling, json_mode, temperature]
-      'bytedance-seed-seed-oss-36b-instruct':
-        name: 'ByteDance-Seed/Seed-OSS-36B-Instruct'
+      'ByteDance-Seed/Seed-OSS-36B-Instruct':
         family: 'bytedance-seed-seed-oss'
         mode: chat
         max_input_tokens: 262000
@@ -17025,125 +16969,7 @@ providers:
         input_cost_per_1k: 0.00021
         output_cost_per_1k: 0.00057
         capabilities: [function_calling, json_mode, temperature]
-      'deepseek-ai-deepseek-r1':
-        name: 'deepseek-ai/DeepSeek-R1'
-        family: 'deepseek-r1'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.0005
-        output_cost_per_1k: 0.00218
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-r1-distill-qwen-14b':
-        name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-14B'
-        family: 'qwen'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0001
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-r1-distill-qwen-32b':
-        name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'
-        family: 'qwen'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-r1-distill-qwen-7b':
-        name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B'
-        family: 'qwen'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 16000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 5e-05
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-v3':
-        name: 'deepseek-ai/DeepSeek-V3'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00025
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, temperature]
-      'deepseek-ai-deepseek-v3.1':
-        name: 'deepseek-ai/DeepSeek-V3.1'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-v3.1-terminus':
-        name: 'deepseek-ai/DeepSeek-V3.1-Terminus'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-v3.2-exp':
-        name: 'deepseek-ai/DeepSeek-V3.2-Exp'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 164000
-        max_output_tokens: 164000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.00041
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'deepseek-ai-deepseek-vl2':
-        name: 'deepseek-ai/deepseek-vl2'
-        family: 'deepseek'
-        mode: chat
-        max_input_tokens: 4000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00015
-        output_cost_per_1k: 0.00015
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'inclusionai-ling-flash-2.0':
-        name: 'inclusionAI/Ling-flash-2.0'
-        family: 'inclusionai-ling-flash'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, temperature]
-      'inclusionai-ling-mini-2.0':
-        name: 'inclusionAI/Ling-mini-2.0'
-        family: 'inclusionai-ling-mini'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 0.00028
-        capabilities: [function_calling, json_mode, temperature]
-      'inclusionai-ring-flash-2.0':
-        name: 'inclusionAI/Ring-flash-2.0'
-        family: 'inclusionai-ring-flash'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'meta-llama-meta-llama-3.1-8b-instruct':
-        name: 'meta-llama/Meta-Llama-3.1-8B-Instruct'
-        family: 'llama-3.1'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 6e-05
-        output_cost_per_1k: 6e-05
-        capabilities: [function_calling, json_mode, temperature]
-      'minimaxai-minimax-m1-80k':
-        name: 'MiniMaxAI/MiniMax-M1-80k'
+      'MiniMaxAI/MiniMax-M1-80k':
         family: 'minimax'
         mode: chat
         max_input_tokens: 131000
@@ -17151,8 +16977,7 @@ providers:
         input_cost_per_1k: 0.00055
         output_cost_per_1k: 0.0022
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'minimaxai-minimax-m2':
-        name: 'MiniMaxAI/MiniMax-M2'
+      'MiniMaxAI/MiniMax-M2':
         family: 'minimax'
         mode: chat
         max_input_tokens: 197000
@@ -17160,368 +16985,7 @@ providers:
         input_cost_per_1k: 0.0003
         output_cost_per_1k: 0.0012
         capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-dev-72b':
-        name: 'moonshotai/Kimi-Dev-72B'
-        family: 'kimi'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00029
-        output_cost_per_1k: 0.00115
-        capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-k2-instruct':
-        name: 'moonshotai/Kimi-K2-Instruct'
-        family: 'kimi-k2'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00058
-        output_cost_per_1k: 0.00229
-        capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-k2-instruct-0905':
-        name: 'moonshotai/Kimi-K2-Instruct-0905'
-        family: 'kimi-k2'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0004
-        output_cost_per_1k: 0.002
-        capabilities: [function_calling, json_mode, temperature]
-      'moonshotai-kimi-k2-thinking':
-        name: 'moonshotai/Kimi-K2-Thinking'
-        family: 'kimi-k2'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00055
-        output_cost_per_1k: 0.0025
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'nex-agi-deepseek-v3.1-nex-n1':
-        name: 'nex-agi/DeepSeek-V3.1-Nex-N1'
-        family: 'deepseek-v3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.0005
-        output_cost_per_1k: 0.002
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'openai-gpt-oss-120b':
-        name: 'openai/gpt-oss-120b'
-        family: 'openai-gpt-oss'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 8000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 0.00045
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'openai-gpt-oss-20b':
-        name: 'openai/gpt-oss-20b'
-        family: 'openai-gpt-oss'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 8000
-        input_cost_per_1k: 4e-05
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-14b-instruct':
-        name: 'Qwen/Qwen2.5-14B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0001
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-32b-instruct':
-        name: 'Qwen/Qwen2.5-32B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-72b-instruct':
-        name: 'Qwen/Qwen2.5-72B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00059
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-72b-instruct-128k':
-        name: 'Qwen/Qwen2.5-72B-Instruct-128K'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00059
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-7b-instruct':
-        name: 'Qwen/Qwen2.5-7B-Instruct'
-        family: 'qwen2.5'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 5e-05
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-coder-32b-instruct':
-        name: 'Qwen/Qwen2.5-Coder-32B-Instruct'
-        family: 'qwen2.5-coder'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00018
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen2.5-vl-32b-instruct':
-        name: 'Qwen/Qwen2.5-VL-32B-Instruct'
-        family: 'qwen2.5-vl'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00027
-        output_cost_per_1k: 0.00027
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen2.5-vl-72b-instruct':
-        name: 'Qwen/Qwen2.5-VL-72B-Instruct'
-        family: 'qwen2.5-vl'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 4000
-        input_cost_per_1k: 0.00059
-        output_cost_per_1k: 0.00059
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen2.5-vl-7b-instruct':
-        name: 'Qwen/Qwen2.5-VL-7B-Instruct'
-        family: 'qwen2.5-vl'
-        mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 4000
-        input_cost_per_1k: 5e-05
-        output_cost_per_1k: 5e-05
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-14b':
-        name: 'Qwen/Qwen3-14B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 0.00028
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-235b-a22b':
-        name: 'Qwen/Qwen3-235B-A22B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00035
-        output_cost_per_1k: 0.00142
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-235b-a22b-instruct-2507':
-        name: 'Qwen/Qwen3-235B-A22B-Instruct-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-235b-a22b-thinking-2507':
-        name: 'Qwen/Qwen3-235B-A22B-Thinking-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00013
-        output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'qwen-qwen3-30b-a3b':
-        name: 'Qwen/Qwen3-30B-A3B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.00045
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-30b-a3b-instruct-2507':
-        name: 'Qwen/Qwen3-30B-A3B-Instruct-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.0003
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-30b-a3b-thinking-2507':
-        name: 'Qwen/Qwen3-30B-A3B-Thinking-2507'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 131000
-        input_cost_per_1k: 9e-05
-        output_cost_per_1k: 0.0003
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'qwen-qwen3-32b':
-        name: 'Qwen/Qwen3-32B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-8b':
-        name: 'Qwen/Qwen3-8B'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 131000
-        max_output_tokens: 131000
-        input_cost_per_1k: 6e-05
-        output_cost_per_1k: 6e-05
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-coder-30b-a3b-instruct':
-        name: 'Qwen/Qwen3-Coder-30B-A3B-Instruct'
-        family: 'qwen3-coder'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 7e-05
-        output_cost_per_1k: 0.00028
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-coder-480b-a35b-instruct':
-        name: 'Qwen/Qwen3-Coder-480B-A35B-Instruct'
-        family: 'qwen3-coder'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00025
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-next-80b-a3b-instruct':
-        name: 'Qwen/Qwen3-Next-80B-A3B-Instruct'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.0014
-        capabilities: [function_calling, json_mode, temperature]
-      'qwen-qwen3-next-80b-a3b-thinking':
-        name: 'Qwen/Qwen3-Next-80B-A3B-Thinking'
-        family: 'qwen3'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00014
-        output_cost_per_1k: 0.00057
-        capabilities: [function_calling, json_mode, reasoning, temperature]
-      'qwen-qwen3-omni-30b-a3b-captioner':
-        name: 'Qwen/Qwen3-Omni-30B-A3B-Captioner'
-        family: 'qwen3-omni'
-        mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0004
-        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-omni-30b-a3b-instruct':
-        name: 'Qwen/Qwen3-Omni-30B-A3B-Instruct'
-        family: 'qwen3-omni'
-        mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0004
-        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-omni-30b-a3b-thinking':
-        name: 'Qwen/Qwen3-Omni-30B-A3B-Thinking'
-        family: 'qwen3-omni'
-        mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.0001
-        output_cost_per_1k: 0.0004
-        capabilities: [audio_input, function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-235b-a22b-instruct':
-        name: 'Qwen/Qwen3-VL-235B-A22B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0003
-        output_cost_per_1k: 0.0015
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-235b-a22b-thinking':
-        name: 'Qwen/Qwen3-VL-235B-A22B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00045
-        output_cost_per_1k: 0.0035
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-30b-a3b-instruct':
-        name: 'Qwen/Qwen3-VL-30B-A3B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00029
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-30b-a3b-thinking':
-        name: 'Qwen/Qwen3-VL-30B-A3B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00029
-        output_cost_per_1k: 0.001
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-32b-instruct':
-        name: 'Qwen/Qwen3-VL-32B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0002
-        output_cost_per_1k: 0.0006
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-32b-thinking':
-        name: 'Qwen/Qwen3-VL-32B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.0002
-        output_cost_per_1k: 0.0015
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwen3-vl-8b-instruct':
-        name: 'Qwen/Qwen3-VL-8B-Instruct'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.00068
-        capabilities: [function_calling, json_mode, temperature, vision]
-      'qwen-qwen3-vl-8b-thinking':
-        name: 'Qwen/Qwen3-VL-8B-Thinking'
-        family: 'qwen3-vl'
-        mode: chat
-        max_input_tokens: 262000
-        max_output_tokens: 262000
-        input_cost_per_1k: 0.00018
-        output_cost_per_1k: 0.002
-        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'qwen-qwq-32b':
-        name: 'Qwen/QwQ-32B'
+      'Qwen/QwQ-32B':
         family: 'qwq'
         mode: chat
         max_input_tokens: 131000
@@ -17529,35 +16993,271 @@ providers:
         input_cost_per_1k: 0.00015
         output_cost_per_1k: 0.00058
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'stepfun-ai-step3':
-        name: 'stepfun-ai/step3'
-        family: 'stepfun-ai-step3'
+      'Qwen/Qwen2.5-14B-Instruct':
+        family: 'qwen2.5'
         mode: chat
-        max_input_tokens: 66000
-        max_output_tokens: 66000
-        input_cost_per_1k: 0.00057
-        output_cost_per_1k: 0.00142
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0001
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-32B-Instruct':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-72B-Instruct':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00059
+        output_cost_per_1k: 0.00059
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-72B-Instruct-128K':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00059
+        output_cost_per_1k: 0.00059
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-7B-Instruct':
+        family: 'qwen2.5'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 5e-05
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-Coder-32B-Instruct':
+        family: 'qwen2.5-coder'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen2.5-VL-32B-Instruct':
+        family: 'qwen2.5-vl'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.00027
         capabilities: [function_calling, json_mode, temperature, vision]
-      'tencent-hunyuan-a13b-instruct':
-        name: 'tencent/Hunyuan-A13B-Instruct'
-        family: 'hunyuan'
+      'Qwen/Qwen2.5-VL-72B-Instruct':
+        family: 'qwen2.5-vl'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00059
+        output_cost_per_1k: 0.00059
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen2.5-VL-7B-Instruct':
+        family: 'qwen2.5-vl'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 5e-05
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-14B':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 7e-05
+        output_cost_per_1k: 0.00028
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-235B-A22B':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00035
+        output_cost_per_1k: 0.00142
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-235B-A22B-Instruct-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-235B-A22B-Thinking-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00013
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'Qwen/Qwen3-30B-A3B':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.00045
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-30B-A3B-Instruct-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.0003
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-30B-A3B-Thinking-2507':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 131000
+        input_cost_per_1k: 9e-05
+        output_cost_per_1k: 0.0003
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'Qwen/Qwen3-32B':
+        family: 'qwen3'
         mode: chat
         max_input_tokens: 131000
         max_output_tokens: 131000
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00057
         capabilities: [function_calling, json_mode, temperature]
-      'tencent-hunyuan-mt-7b':
-        name: 'tencent/Hunyuan-MT-7B'
-        family: 'hunyuan'
+      'Qwen/Qwen3-8B':
+        family: 'qwen3'
         mode: chat
-        max_input_tokens: 33000
-        max_output_tokens: 33000
-        input_cost_per_1k: 0.0
-        output_cost_per_1k: 0.0
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 6e-05
+        output_cost_per_1k: 6e-05
         capabilities: [function_calling, json_mode, temperature]
-      'thudm-glm-4-32b-0414':
-        name: 'THUDM/GLM-4-32B-0414'
+      'Qwen/Qwen3-Coder-30B-A3B-Instruct':
+        family: 'qwen3-coder'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 7e-05
+        output_cost_per_1k: 0.00028
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-Coder-480B-A35B-Instruct':
+        family: 'qwen3-coder'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00025
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-Next-80B-A3B-Instruct':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.0014
+        capabilities: [function_calling, json_mode, temperature]
+      'Qwen/Qwen3-Next-80B-A3B-Thinking':
+        family: 'qwen3'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'Qwen/Qwen3-Omni-30B-A3B-Captioner':
+        family: 'qwen3-omni'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0004
+        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-Omni-30B-A3B-Instruct':
+        family: 'qwen3-omni'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0004
+        capabilities: [audio_input, function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-Omni-30B-A3B-Thinking':
+        family: 'qwen3-omni'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0004
+        capabilities: [audio_input, function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-235B-A22B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0003
+        output_cost_per_1k: 0.0015
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-235B-A22B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00045
+        output_cost_per_1k: 0.0035
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-30B-A3B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00029
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-30B-A3B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00029
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-32B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0002
+        output_cost_per_1k: 0.0006
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-32B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0002
+        output_cost_per_1k: 0.0015
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'Qwen/Qwen3-VL-8B-Instruct':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00068
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'Qwen/Qwen3-VL-8B-Thinking':
+        family: 'qwen3-vl'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.002
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
+      'THUDM/GLM-4-32B-0414':
         family: 'glm-4'
         mode: chat
         max_input_tokens: 33000
@@ -17565,8 +17265,7 @@ providers:
         input_cost_per_1k: 0.00027
         output_cost_per_1k: 0.00027
         capabilities: [function_calling, json_mode, temperature]
-      'thudm-glm-4-9b-0414':
-        name: 'THUDM/GLM-4-9B-0414'
+      'THUDM/GLM-4-9B-0414':
         family: 'glm-4'
         mode: chat
         max_input_tokens: 33000
@@ -17574,8 +17273,7 @@ providers:
         input_cost_per_1k: 8.6e-05
         output_cost_per_1k: 8.6e-05
         capabilities: [function_calling, json_mode, temperature]
-      'thudm-glm-4.1v-9b-thinking':
-        name: 'THUDM/GLM-4.1V-9B-Thinking'
+      'THUDM/GLM-4.1V-9B-Thinking':
         family: 'glm-4v'
         mode: chat
         max_input_tokens: 66000
@@ -17583,8 +17281,7 @@ providers:
         input_cost_per_1k: 3.5e-05
         output_cost_per_1k: 0.00014
         capabilities: [function_calling, json_mode, reasoning, temperature, vision]
-      'thudm-glm-z1-32b-0414':
-        name: 'THUDM/GLM-Z1-32B-0414'
+      'THUDM/GLM-Z1-32B-0414':
         family: 'glm-z1'
         mode: chat
         max_input_tokens: 131000
@@ -17592,8 +17289,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00057
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'thudm-glm-z1-9b-0414':
-        name: 'THUDM/GLM-Z1-9B-0414'
+      'THUDM/GLM-Z1-9B-0414':
         family: 'glm-z1'
         mode: chat
         max_input_tokens: 131000
@@ -17601,8 +17297,199 @@ providers:
         input_cost_per_1k: 8.6e-05
         output_cost_per_1k: 8.6e-05
         capabilities: [function_calling, json_mode, reasoning, temperature]
-      'z-ai-glm-4.5':
-        name: 'z-ai/GLM-4.5'
+      'baidu/ERNIE-4.5-300B-A47B':
+        family: 'ernie-4'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00028
+        output_cost_per_1k: 0.0011
+        capabilities: [function_calling, json_mode, temperature]
+      'deepseek-ai/DeepSeek-R1':
+        family: 'deepseek-r1'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.0005
+        output_cost_per_1k: 0.00218
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-R1-Distill-Qwen-14B':
+        family: 'qwen'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.0001
+        output_cost_per_1k: 0.0001
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B':
+        family: 'qwen'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00018
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B':
+        family: 'qwen'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 16000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 5e-05
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-V3':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00025
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, temperature]
+      'deepseek-ai/DeepSeek-V3.1':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-V3.1-Terminus':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.001
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/DeepSeek-V3.2-Exp':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 164000
+        max_output_tokens: 164000
+        input_cost_per_1k: 0.00027
+        output_cost_per_1k: 0.00041
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'deepseek-ai/deepseek-vl2':
+        family: 'deepseek'
+        mode: chat
+        max_input_tokens: 4000
+        max_output_tokens: 4000
+        input_cost_per_1k: 0.00015
+        output_cost_per_1k: 0.00015
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'inclusionAI/Ling-flash-2.0':
+        family: 'inclusionai-ling-flash'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, temperature]
+      'inclusionAI/Ling-mini-2.0':
+        family: 'inclusionai-ling-mini'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 7e-05
+        output_cost_per_1k: 0.00028
+        capabilities: [function_calling, json_mode, temperature]
+      'inclusionAI/Ring-flash-2.0':
+        family: 'inclusionai-ring-flash'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'meta-llama/Meta-Llama-3.1-8B-Instruct':
+        family: 'llama-3.1'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 4000
+        input_cost_per_1k: 6e-05
+        output_cost_per_1k: 6e-05
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-Dev-72B':
+        family: 'kimi'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00029
+        output_cost_per_1k: 0.00115
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-K2-Instruct':
+        family: 'kimi-k2'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00058
+        output_cost_per_1k: 0.00229
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-K2-Instruct-0905':
+        family: 'kimi-k2'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.0004
+        output_cost_per_1k: 0.002
+        capabilities: [function_calling, json_mode, temperature]
+      'moonshotai/Kimi-K2-Thinking':
+        family: 'kimi-k2'
+        mode: chat
+        max_input_tokens: 262000
+        max_output_tokens: 262000
+        input_cost_per_1k: 0.00055
+        output_cost_per_1k: 0.0025
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'nex-agi/DeepSeek-V3.1-Nex-N1':
+        family: 'deepseek-v3'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.0005
+        output_cost_per_1k: 0.002
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'openai/gpt-oss-120b':
+        family: 'openai-gpt-oss'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 8000
+        input_cost_per_1k: 5e-05
+        output_cost_per_1k: 0.00045
+        capabilities: [function_calling, json_mode, reasoning, temperature]
+      'openai/gpt-oss-20b':
+        family: 'openai-gpt-oss'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 8000
+        input_cost_per_1k: 4e-05
+        output_cost_per_1k: 0.00018
+        capabilities: [function_calling, json_mode, temperature]
+      'stepfun-ai/step3':
+        family: 'stepfun-ai-step3'
+        mode: chat
+        max_input_tokens: 66000
+        max_output_tokens: 66000
+        input_cost_per_1k: 0.00057
+        output_cost_per_1k: 0.00142
+        capabilities: [function_calling, json_mode, temperature, vision]
+      'tencent/Hunyuan-A13B-Instruct':
+        family: 'hunyuan'
+        mode: chat
+        max_input_tokens: 131000
+        max_output_tokens: 131000
+        input_cost_per_1k: 0.00014
+        output_cost_per_1k: 0.00057
+        capabilities: [function_calling, json_mode, temperature]
+      'tencent/Hunyuan-MT-7B':
+        family: 'hunyuan'
+        mode: chat
+        max_input_tokens: 33000
+        max_output_tokens: 33000
+        input_cost_per_1k: 0.0
+        output_cost_per_1k: 0.0
+        capabilities: [function_calling, json_mode, temperature]
+      'z-ai/GLM-4.5':
         family: 'glm-4.5'
         mode: chat
         max_input_tokens: 131000
@@ -17610,8 +17497,7 @@ providers:
         input_cost_per_1k: 0.0004
         output_cost_per_1k: 0.002
         capabilities: [function_calling, json_mode, temperature]
-      'z-ai-glm-4.5-air':
-        name: 'z-ai/GLM-4.5-Air'
+      'z-ai/GLM-4.5-Air':
         family: 'glm-4.5-air'
         mode: chat
         max_input_tokens: 131000
@@ -17619,8 +17505,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00086
         capabilities: [function_calling, json_mode, temperature]
-      'zai-org-glm-4.5':
-        name: 'zai-org/GLM-4.5'
+      'zai-org/GLM-4.5':
         family: 'glm-4.5'
         mode: chat
         max_input_tokens: 131000
@@ -17628,8 +17513,7 @@ providers:
         input_cost_per_1k: 0.0004
         output_cost_per_1k: 0.002
         capabilities: [function_calling, json_mode, temperature]
-      'zai-org-glm-4.5-air':
-        name: 'zai-org/GLM-4.5-Air'
+      'zai-org/GLM-4.5-Air':
         family: 'glm-4.5-air'
         mode: chat
         max_input_tokens: 131000
@@ -17637,8 +17521,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00086
         capabilities: [function_calling, json_mode, temperature]
-      'zai-org-glm-4.5v':
-        name: 'zai-org/GLM-4.5V'
+      'zai-org/GLM-4.5V':
         family: 'glm-4.5v'
         mode: chat
         max_input_tokens: 66000
@@ -17646,8 +17529,7 @@ providers:
         input_cost_per_1k: 0.00014
         output_cost_per_1k: 0.00086
         capabilities: [function_calling, json_mode, temperature, vision]
-      'zai-org-glm-4.6':
-        name: 'zai-org/GLM-4.6'
+      'zai-org/GLM-4.6':
         family: 'glm-4.6'
         mode: chat
         max_input_tokens: 205000
@@ -17751,7 +17633,7 @@ providers:
     name: 'Synthetic'
     api_endpoint: 'https://api.synthetic.new/v1'
     logo_url: 'https://models.dev/logos/synthetic.svg'
-    model_count: 25
+    model_count: 26
     models:
       'hf:MiniMaxAI/MiniMax-M2':
         name: 'MiniMax-M2'
@@ -17759,6 +17641,16 @@ providers:
         mode: chat
         max_input_tokens: 196608
         max_output_tokens: 131000
+        input_cost_per_1k: 0.00055
+        output_cost_per_1k: 0.00219
+        capabilities: [function_calling, reasoning, temperature]
+        open_weights: true
+      'hf:MiniMaxAI/MiniMax-M2.1':
+        name: 'MiniMax-M2.1'
+        family: 'minimax'
+        mode: chat
+        max_input_tokens: 204800
+        max_output_tokens: 131072
         input_cost_per_1k: 0.00055
         output_cost_per_1k: 0.00219
         capabilities: [function_calling, reasoning, temperature]
@@ -18191,7 +18083,7 @@ providers:
     name: 'Venice AI'
     api_endpoint: 'https://api.venice.ai/api/v1'
     logo_url: 'https://models.dev/logos/venice.svg'
-    model_count: 22
+    model_count: 24
     models:
       'claude-opus-45':
         name: 'Claude Opus 4.5'
@@ -18224,6 +18116,7 @@ providers:
         max_output_tokens: 65536
         input_cost_per_1k: 0.0007
         output_cost_per_1k: 0.00375
+        cache_read_cost_per_1k: 7e-05
         capabilities: [audio_input, function_calling, json_mode, pdf_input, reasoning, temperature, video_input, vision]
         knowledge_cutoff: '2025-01'
       'gemini-3-pro-preview':
@@ -18259,6 +18152,16 @@ providers:
         cache_read_cost_per_1k: 0.000125
         capabilities: [function_calling, json_mode, reasoning, temperature, vision]
         knowledge_cutoff: '2025-07'
+      'grok-code-fast-1':
+        name: 'Grok Code Fast 1'
+        family: 'grok'
+        mode: chat
+        max_input_tokens: 262144
+        max_output_tokens: 65536
+        input_cost_per_1k: 0.00025
+        output_cost_per_1k: 0.00187
+        cache_read_cost_per_1k: 3e-05
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
       'hermes-3-llama-3.1-405b':
         name: 'Hermes 3 Llama 3.1 405b'
         family: 'llama-3.1'
@@ -18278,7 +18181,7 @@ providers:
         max_output_tokens: 65536
         input_cost_per_1k: 0.00075
         output_cost_per_1k: 0.0032
-        cache_read_cost_per_1k: 0.0001875
+        cache_read_cost_per_1k: 0.000375
         capabilities: [function_calling, json_mode, reasoning, temperature]
         knowledge_cutoff: '2024-04'
         open_weights: true
@@ -18304,6 +18207,15 @@ providers:
         capabilities: [function_calling, temperature]
         knowledge_cutoff: '2023-12'
         open_weights: true
+      'minimax-m21':
+        name: 'MiniMax M2.1'
+        mode: chat
+        max_input_tokens: 202752
+        max_output_tokens: 50688
+        input_cost_per_1k: 0.0004
+        output_cost_per_1k: 0.0016
+        cache_read_cost_per_1k: 4e-05
+        capabilities: [function_calling, json_mode, reasoning, temperature, vision]
       'mistral-31-24b':
         name: 'Venice Medium'
         family: 'mistral'
