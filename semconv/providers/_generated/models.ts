@@ -1,7 +1,7 @@
 // OISP Model Registry Types
 // Auto-generated from models.dev - DO NOT EDIT MANUALLY
 // Source: https://models.dev/api.json
-// Generated: 2025-12-29T16:09:09.185387+00:00
+// Generated: 2025-12-29T20:31:51.575309+00:00
 
 export type AIProvider =
   | 'aihubmix'
