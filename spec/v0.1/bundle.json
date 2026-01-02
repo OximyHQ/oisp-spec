@@ -853,10 +853,10 @@
       ]
     }
   },
-  "generated_at": "2025-12-29T20:31:51.695511+00:00",
+  "generated_at": "2026-01-01T03:50:55.848744+00:00",
   "model_stats": {
     "providers": 74,
-    "total_models": 1924
+    "total_models": 1929
   },
   "models": {
     "aihubmix/DeepSeek-V3.2-Exp": {
@@ -5668,10 +5668,7 @@
     "azure_cognitive_services/gpt-5.1-codex-mini": {
       "cache_read_cost_per_1k": 2.5e-05,
       "capabilities": [
-        "audio_input",
-        "audio_output",
         "function_calling",
-        "image_output",
         "reasoning",
         "vision"
       ],
@@ -5681,7 +5678,7 @@
       "knowledge_cutoff": "2024-09-30",
       "max_input_tokens": 400000,
       "max_output_tokens": 128000,
-      "mode": "image",
+      "mode": "chat",
       "name": "GPT-5.1 Codex Mini",
       "output_cost_per_1k": 0.002,
       "provider": "azure_cognitive_services",
@@ -7324,10 +7321,7 @@
     "azure_openai/gpt-5.1-codex-mini": {
       "cache_read_cost_per_1k": 2.5e-05,
       "capabilities": [
-        "audio_input",
-        "audio_output",
         "function_calling",
-        "image_output",
         "reasoning",
         "vision"
       ],
@@ -7337,7 +7331,7 @@
       "knowledge_cutoff": "2024-09-30",
       "max_input_tokens": 400000,
       "max_output_tokens": 128000,
-      "mode": "image",
+      "mode": "chat",
       "name": "GPT-5.1 Codex Mini",
       "output_cost_per_1k": 0.002,
       "provider": "azure_openai",
@@ -17914,7 +17908,7 @@
       "max_input_tokens": 32000,
       "max_output_tokens": 4096,
       "mode": "embedding",
-      "name": "Qwen 3 Embedding 4B",
+      "name": "Qwen 3 Embedding 8B",
       "open_weights": true,
       "output_cost_per_1k": 0.0,
       "provider": "huggingface",
@@ -22634,7 +22628,6 @@
       "cache_read_cost_per_1k": 2.5e-05,
       "capabilities": [
         "function_calling",
-        "image_output",
         "json_mode",
         "reasoning",
         "vision"
@@ -22645,7 +22638,7 @@
       "knowledge_cutoff": "2024-09-30",
       "max_input_tokens": 400000,
       "max_output_tokens": 128000,
-      "mode": "image",
+      "mode": "chat",
       "name": "GPT-5.1 Codex mini",
       "output_cost_per_1k": 0.002,
       "provider": "openai",
@@ -23084,7 +23077,7 @@
       "name": "Claude Opus 4.5",
       "output_cost_per_1k": 0.025,
       "provider": "opencode",
-      "release_date": "2025-11-01"
+      "release_date": "2025-11-24"
     },
     "opencode/claude-sonnet-4": {
       "cache_read_cost_per_1k": 0.0003,
@@ -23256,7 +23249,7 @@
       "name": "GPT-5 Codex",
       "output_cost_per_1k": 0.0085,
       "provider": "opencode",
-      "release_date": "2025-08-07"
+      "release_date": "2025-09-15"
     },
     "opencode/gpt-5-nano": {
       "cache_read_cost_per_1k": 0.0,
@@ -23296,7 +23289,7 @@
       "name": "GPT-5.1",
       "output_cost_per_1k": 0.0085,
       "provider": "opencode",
-      "release_date": "2025-11-12"
+      "release_date": "2025-11-13"
     },
     "opencode/gpt-5.1-codex": {
       "cache_read_cost_per_1k": 0.000107,
@@ -23316,7 +23309,7 @@
       "name": "GPT-5.1 Codex",
       "output_cost_per_1k": 0.0085,
       "provider": "opencode",
-      "release_date": "2025-11-12"
+      "release_date": "2025-11-13"
     },
     "opencode/gpt-5.1-codex-max": {
       "cache_read_cost_per_1k": 0.000125,
@@ -23336,7 +23329,27 @@
       "name": "GPT-5.1 Codex Max",
       "output_cost_per_1k": 0.01,
       "provider": "opencode",
-      "release_date": "2025-11-12"
+      "release_date": "2025-11-13"
+    },
+    "opencode/gpt-5.1-codex-mini": {
+      "cache_read_cost_per_1k": 2.5e-05,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5-codex-mini",
+      "id": "gpt-5.1-codex-mini",
+      "input_cost_per_1k": 0.00025,
+      "knowledge_cutoff": "2024-09-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5.1 Codex Mini",
+      "output_cost_per_1k": 0.002,
+      "provider": "opencode",
+      "release_date": "2025-11-13"
     },
     "opencode/gpt-5.2": {
       "cache_read_cost_per_1k": 0.000175,
@@ -23356,7 +23369,7 @@
       "name": "GPT-5.2",
       "output_cost_per_1k": 0.014,
       "provider": "opencode",
-      "release_date": "2025-11-12"
+      "release_date": "2025-12-11"
     },
     "opencode/grok-code": {
       "cache_read_cost_per_1k": 0.0,
@@ -28685,6 +28698,8 @@
       "release_date": "2024-03-13"
     },
     "sap_ai_core/anthropic--claude-3-opus": {
+      "cache_read_cost_per_1k": 0.0015,
+      "cache_write_cost_per_1k": 0.01875,
       "capabilities": [
         "function_calling",
         "pdf_input",
@@ -28704,6 +28719,8 @@
       "release_date": "2024-02-29"
     },
     "sap_ai_core/anthropic--claude-3-sonnet": {
+      "cache_read_cost_per_1k": 0.0003,
+      "cache_write_cost_per_1k": 0.0003,
       "capabilities": [
         "function_calling",
         "pdf_input",
@@ -28808,6 +28825,28 @@
       "output_cost_per_1k": 0.015,
       "provider": "sap_ai_core",
       "release_date": "2025-05-22"
+    },
+    "sap_ai_core/anthropic--claude-4.5-haiku": {
+      "cache_read_cost_per_1k": 0.0001,
+      "cache_write_cost_per_1k": 0.00125,
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-haiku",
+      "id": "anthropic--claude-4.5-haiku",
+      "input_cost_per_1k": 0.001,
+      "knowledge_cutoff": "2025-02-28",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 64000,
+      "mode": "chat",
+      "name": "anthropic--claude-4.5-haiku",
+      "output_cost_per_1k": 0.005,
+      "provider": "sap_ai_core",
+      "release_date": "2025-10-01"
     },
     "sap_ai_core/anthropic--claude-4.5-sonnet": {
       "cache_read_cost_per_1k": 0.0003,
@@ -29170,31 +29209,14 @@
       "provider": "scaleway",
       "release_date": "2023-09-01"
     },
-    "siliconflow/baidu-ernie-4.5-300b-a47b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "ernie-4",
-      "id": "baidu-ernie-4.5-300b-a47b",
-      "input_cost_per_1k": 0.00028,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "baidu/ERNIE-4.5-300B-A47B",
-      "output_cost_per_1k": 0.0011,
-      "provider": "siliconflow",
-      "release_date": "2025-07-02"
-    },
-    "siliconflow/bytedance-seed-seed-oss-36b-instruct": {
+    "siliconflow/ByteDance-Seed/Seed-OSS-36B-Instruct": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "bytedance-seed-seed-oss",
-      "id": "bytedance-seed-seed-oss-36b-instruct",
+      "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
       "input_cost_per_1k": 0.00021,
       "max_input_tokens": 262000,
       "max_output_tokens": 262000,
@@ -29204,237 +29226,7 @@
       "provider": "siliconflow",
       "release_date": "2025-09-04"
     },
-    "siliconflow/deepseek-ai-deepseek-r1": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-r1",
-      "id": "deepseek-ai-deepseek-r1",
-      "input_cost_per_1k": 0.0005,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1",
-      "output_cost_per_1k": 0.00218,
-      "provider": "siliconflow",
-      "release_date": "2025-05-28"
-    },
-    "siliconflow/deepseek-ai-deepseek-r1-distill-qwen-14b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen",
-      "id": "deepseek-ai-deepseek-r1-distill-qwen-14b",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
-      "output_cost_per_1k": 0.0001,
-      "provider": "siliconflow",
-      "release_date": "2025-01-20"
-    },
-    "siliconflow/deepseek-ai-deepseek-r1-distill-qwen-32b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen",
-      "id": "deepseek-ai-deepseek-r1-distill-qwen-32b",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow",
-      "release_date": "2025-01-20"
-    },
-    "siliconflow/deepseek-ai-deepseek-r1-distill-qwen-7b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen",
-      "id": "deepseek-ai-deepseek-r1-distill-qwen-7b",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 16000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
-      "output_cost_per_1k": 5e-05,
-      "provider": "siliconflow",
-      "release_date": "2025-01-20"
-    },
-    "siliconflow/deepseek-ai-deepseek-v3": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3",
-      "input_cost_per_1k": 0.00025,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow",
-      "release_date": "2024-12-26"
-    },
-    "siliconflow/deepseek-ai-deepseek-v3.1": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3.1",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3.1",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow",
-      "release_date": "2025-08-25"
-    },
-    "siliconflow/deepseek-ai-deepseek-v3.1-terminus": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3.1-terminus",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3.1-Terminus",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow",
-      "release_date": "2025-09-29"
-    },
-    "siliconflow/deepseek-ai-deepseek-v3.2-exp": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3.2-exp",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3.2-Exp",
-      "output_cost_per_1k": 0.00041,
-      "provider": "siliconflow",
-      "release_date": "2025-10-10"
-    },
-    "siliconflow/deepseek-ai-deepseek-vl2": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "deepseek",
-      "id": "deepseek-ai-deepseek-vl2",
-      "input_cost_per_1k": 0.00015,
-      "max_input_tokens": 4000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "deepseek-ai/deepseek-vl2",
-      "output_cost_per_1k": 0.00015,
-      "provider": "siliconflow",
-      "release_date": "2024-12-13"
-    },
-    "siliconflow/inclusionai-ling-flash-2.0": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "inclusionai-ling-flash",
-      "id": "inclusionai-ling-flash-2.0",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "inclusionAI/Ling-flash-2.0",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow",
-      "release_date": "2025-09-18"
-    },
-    "siliconflow/inclusionai-ling-mini-2.0": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "inclusionai-ling-mini",
-      "id": "inclusionai-ling-mini-2.0",
-      "input_cost_per_1k": 7e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "inclusionAI/Ling-mini-2.0",
-      "output_cost_per_1k": 0.00028,
-      "provider": "siliconflow",
-      "release_date": "2025-09-10"
-    },
-    "siliconflow/inclusionai-ring-flash-2.0": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "inclusionai-ring-flash",
-      "id": "inclusionai-ring-flash-2.0",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "inclusionAI/Ring-flash-2.0",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow",
-      "release_date": "2025-09-29"
-    },
-    "siliconflow/meta-llama-meta-llama-3.1-8b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "llama-3.1",
-      "id": "meta-llama-meta-llama-3.1-8b-instruct",
-      "input_cost_per_1k": 6e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-      "output_cost_per_1k": 6e-05,
-      "provider": "siliconflow",
-      "release_date": "2025-04-23"
-    },
-    "siliconflow/minimaxai-minimax-m1-80k": {
+    "siliconflow/MiniMaxAI/MiniMax-M1-80k": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -29442,7 +29234,7 @@
         "temperature"
       ],
       "family": "minimax",
-      "id": "minimaxai-minimax-m1-80k",
+      "id": "MiniMaxAI/MiniMax-M1-80k",
       "input_cost_per_1k": 0.00055,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -29452,14 +29244,14 @@
       "provider": "siliconflow",
       "release_date": "2025-06-17"
     },
-    "siliconflow/minimaxai-minimax-m2": {
+    "siliconflow/MiniMaxAI/MiniMax-M2": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "minimax",
-      "id": "minimaxai-minimax-m2",
+      "id": "MiniMaxAI/MiniMax-M2",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 197000,
       "max_output_tokens": 131000,
@@ -29469,715 +29261,7 @@
       "provider": "siliconflow",
       "release_date": "2025-10-28"
     },
-    "siliconflow/moonshotai-kimi-dev-72b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "kimi",
-      "id": "moonshotai-kimi-dev-72b",
-      "input_cost_per_1k": 0.00029,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-Dev-72B",
-      "output_cost_per_1k": 0.00115,
-      "provider": "siliconflow",
-      "release_date": "2025-06-19"
-    },
-    "siliconflow/moonshotai-kimi-k2-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "kimi-k2",
-      "id": "moonshotai-kimi-k2-instruct",
-      "input_cost_per_1k": 0.00058,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-K2-Instruct",
-      "output_cost_per_1k": 0.00229,
-      "provider": "siliconflow",
-      "release_date": "2025-07-13"
-    },
-    "siliconflow/moonshotai-kimi-k2-instruct-0905": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "kimi-k2",
-      "id": "moonshotai-kimi-k2-instruct-0905",
-      "input_cost_per_1k": 0.0004,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-K2-Instruct-0905",
-      "output_cost_per_1k": 0.002,
-      "provider": "siliconflow",
-      "release_date": "2025-09-08"
-    },
-    "siliconflow/moonshotai-kimi-k2-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "kimi-k2",
-      "id": "moonshotai-kimi-k2-thinking",
-      "input_cost_per_1k": 0.00055,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-K2-Thinking",
-      "output_cost_per_1k": 0.0025,
-      "provider": "siliconflow",
-      "release_date": "2025-11-07"
-    },
-    "siliconflow/nex-agi-deepseek-v3.1-nex-n1": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "nex-agi-deepseek-v3.1-nex-n1",
-      "input_cost_per_1k": 0.0005,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "nex-agi/DeepSeek-V3.1-Nex-N1",
-      "output_cost_per_1k": 0.002,
-      "provider": "siliconflow",
-      "release_date": "2025-01-01"
-    },
-    "siliconflow/openai-gpt-oss-120b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "openai-gpt-oss",
-      "id": "openai-gpt-oss-120b",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 8000,
-      "mode": "chat",
-      "name": "openai/gpt-oss-120b",
-      "output_cost_per_1k": 0.00045,
-      "provider": "siliconflow",
-      "release_date": "2025-08-13"
-    },
-    "siliconflow/openai-gpt-oss-20b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "openai-gpt-oss",
-      "id": "openai-gpt-oss-20b",
-      "input_cost_per_1k": 4e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 8000,
-      "mode": "chat",
-      "name": "openai/gpt-oss-20b",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow",
-      "release_date": "2025-08-13"
-    },
-    "siliconflow/qwen-qwen2.5-14b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-14b-instruct",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-14B-Instruct",
-      "output_cost_per_1k": 0.0001,
-      "provider": "siliconflow",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow/qwen-qwen2.5-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-32b-instruct",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-32B-Instruct",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow",
-      "release_date": "2024-09-19"
-    },
-    "siliconflow/qwen-qwen2.5-72b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-72b-instruct",
-      "input_cost_per_1k": 0.00059,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-72B-Instruct",
-      "output_cost_per_1k": 0.00059,
-      "provider": "siliconflow",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow/qwen-qwen2.5-72b-instruct-128k": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-72b-instruct-128k",
-      "input_cost_per_1k": 0.00059,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-72B-Instruct-128K",
-      "output_cost_per_1k": 0.00059,
-      "provider": "siliconflow",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow/qwen-qwen2.5-7b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-7b-instruct",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-7B-Instruct",
-      "output_cost_per_1k": 5e-05,
-      "provider": "siliconflow",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow/qwen-qwen2.5-coder-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5-coder",
-      "id": "qwen-qwen2.5-coder-32b-instruct",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-Coder-32B-Instruct",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow",
-      "release_date": "2024-11-11"
-    },
-    "siliconflow/qwen-qwen2.5-vl-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen2.5-vl",
-      "id": "qwen-qwen2.5-vl-32b-instruct",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-VL-32B-Instruct",
-      "output_cost_per_1k": 0.00027,
-      "provider": "siliconflow",
-      "release_date": "2025-03-24"
-    },
-    "siliconflow/qwen-qwen2.5-vl-72b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen2.5-vl",
-      "id": "qwen-qwen2.5-vl-72b-instruct",
-      "input_cost_per_1k": 0.00059,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-VL-72B-Instruct",
-      "output_cost_per_1k": 0.00059,
-      "provider": "siliconflow",
-      "release_date": "2025-01-28"
-    },
-    "siliconflow/qwen-qwen2.5-vl-7b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen2.5-vl",
-      "id": "qwen-qwen2.5-vl-7b-instruct",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-VL-7B-Instruct",
-      "output_cost_per_1k": 5e-05,
-      "provider": "siliconflow",
-      "release_date": "2025-01-28"
-    },
-    "siliconflow/qwen-qwen3-14b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-14b",
-      "input_cost_per_1k": 7e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-14B",
-      "output_cost_per_1k": 0.00028,
-      "provider": "siliconflow",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow/qwen-qwen3-235b-a22b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-235b-a22b",
-      "input_cost_per_1k": 0.00035,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-235B-A22B",
-      "output_cost_per_1k": 0.00142,
-      "provider": "siliconflow",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow/qwen-qwen3-235b-a22b-instruct-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-235b-a22b-instruct-2507",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-235B-A22B-Instruct-2507",
-      "output_cost_per_1k": 0.0006,
-      "provider": "siliconflow",
-      "release_date": "2025-07-23"
-    },
-    "siliconflow/qwen-qwen3-235b-a22b-thinking-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-235b-a22b-thinking-2507",
-      "input_cost_per_1k": 0.00013,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-235B-A22B-Thinking-2507",
-      "output_cost_per_1k": 0.0006,
-      "provider": "siliconflow",
-      "release_date": "2025-07-28"
-    },
-    "siliconflow/qwen-qwen3-30b-a3b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-30b-a3b",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-30B-A3B",
-      "output_cost_per_1k": 0.00045,
-      "provider": "siliconflow",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow/qwen-qwen3-30b-a3b-instruct-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-30b-a3b-instruct-2507",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
-      "output_cost_per_1k": 0.0003,
-      "provider": "siliconflow",
-      "release_date": "2025-07-30"
-    },
-    "siliconflow/qwen-qwen3-30b-a3b-thinking-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-30b-a3b-thinking-2507",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-30B-A3B-Thinking-2507",
-      "output_cost_per_1k": 0.0003,
-      "provider": "siliconflow",
-      "release_date": "2025-07-31"
-    },
-    "siliconflow/qwen-qwen3-32b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-32b",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-32B",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow/qwen-qwen3-8b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-8b",
-      "input_cost_per_1k": 6e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-8B",
-      "output_cost_per_1k": 6e-05,
-      "provider": "siliconflow",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow/qwen-qwen3-coder-30b-a3b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3-coder",
-      "id": "qwen-qwen3-coder-30b-a3b-instruct",
-      "input_cost_per_1k": 7e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
-      "output_cost_per_1k": 0.00028,
-      "provider": "siliconflow",
-      "release_date": "2025-08-01"
-    },
-    "siliconflow/qwen-qwen3-coder-480b-a35b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3-coder",
-      "id": "qwen-qwen3-coder-480b-a35b-instruct",
-      "input_cost_per_1k": 0.00025,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow",
-      "release_date": "2025-07-31"
-    },
-    "siliconflow/qwen-qwen3-next-80b-a3b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-next-80b-a3b-instruct",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Next-80B-A3B-Instruct",
-      "output_cost_per_1k": 0.0014,
-      "provider": "siliconflow",
-      "release_date": "2025-09-18"
-    },
-    "siliconflow/qwen-qwen3-next-80b-a3b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-next-80b-a3b-thinking",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Next-80B-A3B-Thinking",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow",
-      "release_date": "2025-09-25"
-    },
-    "siliconflow/qwen-qwen3-omni-30b-a3b-captioner": {
-      "capabilities": [
-        "audio_input",
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-omni",
-      "id": "qwen-qwen3-omni-30b-a3b-captioner",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Omni-30B-A3B-Captioner",
-      "output_cost_per_1k": 0.0004,
-      "provider": "siliconflow",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow/qwen-qwen3-omni-30b-a3b-instruct": {
-      "capabilities": [
-        "audio_input",
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-omni",
-      "id": "qwen-qwen3-omni-30b-a3b-instruct",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
-      "output_cost_per_1k": 0.0004,
-      "provider": "siliconflow",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow/qwen-qwen3-omni-30b-a3b-thinking": {
-      "capabilities": [
-        "audio_input",
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-omni",
-      "id": "qwen-qwen3-omni-30b-a3b-thinking",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
-      "output_cost_per_1k": 0.0004,
-      "provider": "siliconflow",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow/qwen-qwen3-vl-235b-a22b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-235b-a22b-instruct",
-      "input_cost_per_1k": 0.0003,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-235B-A22B-Instruct",
-      "output_cost_per_1k": 0.0015,
-      "provider": "siliconflow",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow/qwen-qwen3-vl-235b-a22b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-235b-a22b-thinking",
-      "input_cost_per_1k": 0.00045,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-235B-A22B-Thinking",
-      "output_cost_per_1k": 0.0035,
-      "provider": "siliconflow",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow/qwen-qwen3-vl-30b-a3b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-30b-a3b-instruct",
-      "input_cost_per_1k": 0.00029,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-30B-A3B-Instruct",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow",
-      "release_date": "2025-10-05"
-    },
-    "siliconflow/qwen-qwen3-vl-30b-a3b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-30b-a3b-thinking",
-      "input_cost_per_1k": 0.00029,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-30B-A3B-Thinking",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow",
-      "release_date": "2025-10-11"
-    },
-    "siliconflow/qwen-qwen3-vl-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-32b-instruct",
-      "input_cost_per_1k": 0.0002,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-32B-Instruct",
-      "output_cost_per_1k": 0.0006,
-      "provider": "siliconflow",
-      "release_date": "2025-10-21"
-    },
-    "siliconflow/qwen-qwen3-vl-32b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-32b-thinking",
-      "input_cost_per_1k": 0.0002,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-32B-Thinking",
-      "output_cost_per_1k": 0.0015,
-      "provider": "siliconflow",
-      "release_date": "2025-10-21"
-    },
-    "siliconflow/qwen-qwen3-vl-8b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-8b-instruct",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-8B-Instruct",
-      "output_cost_per_1k": 0.00068,
-      "provider": "siliconflow",
-      "release_date": "2025-10-15"
-    },
-    "siliconflow/qwen-qwen3-vl-8b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-8b-thinking",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-8B-Thinking",
-      "output_cost_per_1k": 0.002,
-      "provider": "siliconflow",
-      "release_date": "2025-10-15"
-    },
-    "siliconflow/qwen-qwq-32b": {
+    "siliconflow/Qwen/QwQ-32B": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -30185,7 +29269,7 @@
         "temperature"
       ],
       "family": "qwq",
-      "id": "qwen-qwq-32b",
+      "id": "Qwen/QwQ-32B",
       "input_cost_per_1k": 0.00015,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30195,66 +29279,600 @@
       "provider": "siliconflow",
       "release_date": "2025-03-06"
     },
-    "siliconflow/stepfun-ai-step3": {
+    "siliconflow/Qwen/Qwen2.5-14B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-14B-Instruct",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-14B-Instruct",
+      "output_cost_per_1k": 0.0001,
+      "provider": "siliconflow",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow/Qwen/Qwen2.5-32B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-32B-Instruct",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-32B-Instruct",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow",
+      "release_date": "2024-09-19"
+    },
+    "siliconflow/Qwen/Qwen2.5-72B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-72B-Instruct",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-72B-Instruct",
+      "output_cost_per_1k": 0.00059,
+      "provider": "siliconflow",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow/Qwen/Qwen2.5-72B-Instruct-128K": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-72B-Instruct-128K",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-72B-Instruct-128K",
+      "output_cost_per_1k": 0.00059,
+      "provider": "siliconflow",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow/Qwen/Qwen2.5-7B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-7B-Instruct",
+      "output_cost_per_1k": 5e-05,
+      "provider": "siliconflow",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow/Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5-coder",
+      "id": "Qwen/Qwen2.5-Coder-32B-Instruct",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow",
+      "release_date": "2024-11-11"
+    },
+    "siliconflow/Qwen/Qwen2.5-VL-32B-Instruct": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "stepfun-ai-step3",
-      "id": "stepfun-ai-step3",
-      "input_cost_per_1k": 0.00057,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
+      "family": "qwen2.5-vl",
+      "id": "Qwen/Qwen2.5-VL-32B-Instruct",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
       "mode": "chat",
-      "name": "stepfun-ai/step3",
-      "output_cost_per_1k": 0.00142,
+      "name": "Qwen/Qwen2.5-VL-32B-Instruct",
+      "output_cost_per_1k": 0.00027,
       "provider": "siliconflow",
-      "release_date": "2025-08-06"
+      "release_date": "2025-03-24"
     },
-    "siliconflow/tencent-hunyuan-a13b-instruct": {
+    "siliconflow/Qwen/Qwen2.5-VL-72B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen2.5-vl",
+      "id": "Qwen/Qwen2.5-VL-72B-Instruct",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-VL-72B-Instruct",
+      "output_cost_per_1k": 0.00059,
+      "provider": "siliconflow",
+      "release_date": "2025-01-28"
+    },
+    "siliconflow/Qwen/Qwen2.5-VL-7B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen2.5-vl",
+      "id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "output_cost_per_1k": 5e-05,
+      "provider": "siliconflow",
+      "release_date": "2025-01-28"
+    },
+    "siliconflow/Qwen/Qwen3-14B": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
-      "family": "hunyuan",
-      "id": "tencent-hunyuan-a13b-instruct",
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-14B",
+      "input_cost_per_1k": 7e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-14B",
+      "output_cost_per_1k": 0.00028,
+      "provider": "siliconflow",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow/Qwen/Qwen3-235B-A22B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-235B-A22B",
+      "input_cost_per_1k": 0.00035,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-235B-A22B",
+      "output_cost_per_1k": 0.00142,
+      "provider": "siliconflow",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow/Qwen/Qwen3-235B-A22B-Instruct-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "output_cost_per_1k": 0.0006,
+      "provider": "siliconflow",
+      "release_date": "2025-07-23"
+    },
+    "siliconflow/Qwen/Qwen3-235B-A22B-Thinking-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+      "input_cost_per_1k": 0.00013,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+      "output_cost_per_1k": 0.0006,
+      "provider": "siliconflow",
+      "release_date": "2025-07-28"
+    },
+    "siliconflow/Qwen/Qwen3-30B-A3B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-30B-A3B",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-30B-A3B",
+      "output_cost_per_1k": 0.00045,
+      "provider": "siliconflow",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow/Qwen/Qwen3-30B-A3B-Instruct-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "output_cost_per_1k": 0.0003,
+      "provider": "siliconflow",
+      "release_date": "2025-07-30"
+    },
+    "siliconflow/Qwen/Qwen3-30B-A3B-Thinking-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "output_cost_per_1k": 0.0003,
+      "provider": "siliconflow",
+      "release_date": "2025-07-31"
+    },
+    "siliconflow/Qwen/Qwen3-32B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-32B",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
       "mode": "chat",
-      "name": "tencent/Hunyuan-A13B-Instruct",
+      "name": "Qwen/Qwen3-32B",
       "output_cost_per_1k": 0.00057,
       "provider": "siliconflow",
-      "release_date": "2025-06-30"
+      "release_date": "2025-04-30"
     },
-    "siliconflow/tencent-hunyuan-mt-7b": {
+    "siliconflow/Qwen/Qwen3-8B": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
-      "family": "hunyuan",
-      "id": "tencent-hunyuan-mt-7b",
-      "input_cost_per_1k": 0.0,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 33000,
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-8B",
+      "input_cost_per_1k": 6e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
       "mode": "chat",
-      "name": "tencent/Hunyuan-MT-7B",
-      "output_cost_per_1k": 0.0,
+      "name": "Qwen/Qwen3-8B",
+      "output_cost_per_1k": 6e-05,
+      "provider": "siliconflow",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow/Qwen/Qwen3-Coder-30B-A3B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3-coder",
+      "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "input_cost_per_1k": 7e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "output_cost_per_1k": 0.00028,
+      "provider": "siliconflow",
+      "release_date": "2025-08-01"
+    },
+    "siliconflow/Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3-coder",
+      "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "input_cost_per_1k": 0.00025,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow",
+      "release_date": "2025-07-31"
+    },
+    "siliconflow/Qwen/Qwen3-Next-80B-A3B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "output_cost_per_1k": 0.0014,
       "provider": "siliconflow",
       "release_date": "2025-09-18"
     },
-    "siliconflow/thudm-glm-4-32b-0414": {
+    "siliconflow/Qwen/Qwen3-Next-80B-A3B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-Next-80B-A3B-Thinking",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Next-80B-A3B-Thinking",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow",
+      "release_date": "2025-09-25"
+    },
+    "siliconflow/Qwen/Qwen3-Omni-30B-A3B-Captioner": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-omni",
+      "id": "Qwen/Qwen3-Omni-30B-A3B-Captioner",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Omni-30B-A3B-Captioner",
+      "output_cost_per_1k": 0.0004,
+      "provider": "siliconflow",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow/Qwen/Qwen3-Omni-30B-A3B-Instruct": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-omni",
+      "id": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+      "output_cost_per_1k": 0.0004,
+      "provider": "siliconflow",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow/Qwen/Qwen3-Omni-30B-A3B-Thinking": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-omni",
+      "id": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
+      "output_cost_per_1k": 0.0004,
+      "provider": "siliconflow",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow/Qwen/Qwen3-VL-235B-A22B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "input_cost_per_1k": 0.0003,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "output_cost_per_1k": 0.0015,
+      "provider": "siliconflow",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow/Qwen/Qwen3-VL-235B-A22B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-235B-A22B-Thinking",
+      "input_cost_per_1k": 0.00045,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-235B-A22B-Thinking",
+      "output_cost_per_1k": 0.0035,
+      "provider": "siliconflow",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow/Qwen/Qwen3-VL-30B-A3B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow",
+      "release_date": "2025-10-05"
+    },
+    "siliconflow/Qwen/Qwen3-VL-30B-A3B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow",
+      "release_date": "2025-10-11"
+    },
+    "siliconflow/Qwen/Qwen3-VL-32B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-32B-Instruct",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-32B-Instruct",
+      "output_cost_per_1k": 0.0006,
+      "provider": "siliconflow",
+      "release_date": "2025-10-21"
+    },
+    "siliconflow/Qwen/Qwen3-VL-32B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-32B-Thinking",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-32B-Thinking",
+      "output_cost_per_1k": 0.0015,
+      "provider": "siliconflow",
+      "release_date": "2025-10-21"
+    },
+    "siliconflow/Qwen/Qwen3-VL-8B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-8B-Instruct",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-8B-Instruct",
+      "output_cost_per_1k": 0.00068,
+      "provider": "siliconflow",
+      "release_date": "2025-10-15"
+    },
+    "siliconflow/Qwen/Qwen3-VL-8B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-8B-Thinking",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-8B-Thinking",
+      "output_cost_per_1k": 0.002,
+      "provider": "siliconflow",
+      "release_date": "2025-10-15"
+    },
+    "siliconflow/THUDM/GLM-4-32B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4",
-      "id": "thudm-glm-4-32b-0414",
+      "id": "THUDM/GLM-4-32B-0414",
       "input_cost_per_1k": 0.00027,
       "max_input_tokens": 33000,
       "max_output_tokens": 33000,
@@ -30264,14 +29882,14 @@
       "provider": "siliconflow",
       "release_date": "2025-04-18"
     },
-    "siliconflow/thudm-glm-4-9b-0414": {
+    "siliconflow/THUDM/GLM-4-9B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4",
-      "id": "thudm-glm-4-9b-0414",
+      "id": "THUDM/GLM-4-9B-0414",
       "input_cost_per_1k": 8.6e-05,
       "max_input_tokens": 33000,
       "max_output_tokens": 33000,
@@ -30281,7 +29899,7 @@
       "provider": "siliconflow",
       "release_date": "2025-04-18"
     },
-    "siliconflow/thudm-glm-4.1v-9b-thinking": {
+    "siliconflow/THUDM/GLM-4.1V-9B-Thinking": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -30290,7 +29908,7 @@
         "vision"
       ],
       "family": "glm-4v",
-      "id": "thudm-glm-4.1v-9b-thinking",
+      "id": "THUDM/GLM-4.1V-9B-Thinking",
       "input_cost_per_1k": 3.5e-05,
       "max_input_tokens": 66000,
       "max_output_tokens": 66000,
@@ -30300,7 +29918,7 @@
       "provider": "siliconflow",
       "release_date": "2025-07-04"
     },
-    "siliconflow/thudm-glm-z1-32b-0414": {
+    "siliconflow/THUDM/GLM-Z1-32B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -30308,7 +29926,7 @@
         "temperature"
       ],
       "family": "glm-z1",
-      "id": "thudm-glm-z1-32b-0414",
+      "id": "THUDM/GLM-Z1-32B-0414",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30318,7 +29936,7 @@
       "provider": "siliconflow",
       "release_date": "2025-04-18"
     },
-    "siliconflow/thudm-glm-z1-9b-0414": {
+    "siliconflow/THUDM/GLM-Z1-9B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -30326,7 +29944,7 @@
         "temperature"
       ],
       "family": "glm-z1",
-      "id": "thudm-glm-z1-9b-0414",
+      "id": "THUDM/GLM-Z1-9B-0414",
       "input_cost_per_1k": 8.6e-05,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30336,14 +29954,435 @@
       "provider": "siliconflow",
       "release_date": "2025-04-18"
     },
-    "siliconflow/z-ai-glm-4.5": {
+    "siliconflow/baidu/ERNIE-4.5-300B-A47B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "ernie-4",
+      "id": "baidu/ERNIE-4.5-300B-A47B",
+      "input_cost_per_1k": 0.00028,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "baidu/ERNIE-4.5-300B-A47B",
+      "output_cost_per_1k": 0.0011,
+      "provider": "siliconflow",
+      "release_date": "2025-07-02"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-R1": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-r1",
+      "id": "deepseek-ai/DeepSeek-R1",
+      "input_cost_per_1k": 0.0005,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1",
+      "output_cost_per_1k": 0.00218,
+      "provider": "siliconflow",
+      "release_date": "2025-05-28"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+      "output_cost_per_1k": 0.0001,
+      "provider": "siliconflow",
+      "release_date": "2025-01-20"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow",
+      "release_date": "2025-01-20"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 16000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "output_cost_per_1k": 5e-05,
+      "provider": "siliconflow",
+      "release_date": "2025-01-20"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-V3": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3",
+      "input_cost_per_1k": 0.00025,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow",
+      "release_date": "2024-12-26"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-V3.1": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3.1",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3.1",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow",
+      "release_date": "2025-08-25"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-V3.1-Terminus": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3.1-Terminus",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3.1-Terminus",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow",
+      "release_date": "2025-09-29"
+    },
+    "siliconflow/deepseek-ai/DeepSeek-V3.2-Exp": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3.2-Exp",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3.2-Exp",
+      "output_cost_per_1k": 0.00041,
+      "provider": "siliconflow",
+      "release_date": "2025-10-10"
+    },
+    "siliconflow/deepseek-ai/deepseek-vl2": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "deepseek",
+      "id": "deepseek-ai/deepseek-vl2",
+      "input_cost_per_1k": 0.00015,
+      "max_input_tokens": 4000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "deepseek-ai/deepseek-vl2",
+      "output_cost_per_1k": 0.00015,
+      "provider": "siliconflow",
+      "release_date": "2024-12-13"
+    },
+    "siliconflow/inclusionAI/Ling-flash-2.0": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "inclusionai-ling-flash",
+      "id": "inclusionAI/Ling-flash-2.0",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "inclusionAI/Ling-flash-2.0",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow",
+      "release_date": "2025-09-18"
+    },
+    "siliconflow/inclusionAI/Ling-mini-2.0": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "inclusionai-ling-mini",
+      "id": "inclusionAI/Ling-mini-2.0",
+      "input_cost_per_1k": 7e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "inclusionAI/Ling-mini-2.0",
+      "output_cost_per_1k": 0.00028,
+      "provider": "siliconflow",
+      "release_date": "2025-09-10"
+    },
+    "siliconflow/inclusionAI/Ring-flash-2.0": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "inclusionai-ring-flash",
+      "id": "inclusionAI/Ring-flash-2.0",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "inclusionAI/Ring-flash-2.0",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow",
+      "release_date": "2025-09-29"
+    },
+    "siliconflow/meta-llama/Meta-Llama-3.1-8B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "llama-3.1",
+      "id": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "input_cost_per_1k": 6e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "output_cost_per_1k": 6e-05,
+      "provider": "siliconflow",
+      "release_date": "2025-04-23"
+    },
+    "siliconflow/moonshotai/Kimi-Dev-72B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "kimi",
+      "id": "moonshotai/Kimi-Dev-72B",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-Dev-72B",
+      "output_cost_per_1k": 0.00115,
+      "provider": "siliconflow",
+      "release_date": "2025-06-19"
+    },
+    "siliconflow/moonshotai/Kimi-K2-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "moonshotai/Kimi-K2-Instruct",
+      "input_cost_per_1k": 0.00058,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-K2-Instruct",
+      "output_cost_per_1k": 0.00229,
+      "provider": "siliconflow",
+      "release_date": "2025-07-13"
+    },
+    "siliconflow/moonshotai/Kimi-K2-Instruct-0905": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "moonshotai/Kimi-K2-Instruct-0905",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-K2-Instruct-0905",
+      "output_cost_per_1k": 0.002,
+      "provider": "siliconflow",
+      "release_date": "2025-09-08"
+    },
+    "siliconflow/moonshotai/Kimi-K2-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "moonshotai/Kimi-K2-Thinking",
+      "input_cost_per_1k": 0.00055,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-K2-Thinking",
+      "output_cost_per_1k": 0.0025,
+      "provider": "siliconflow",
+      "release_date": "2025-11-07"
+    },
+    "siliconflow/nex-agi/DeepSeek-V3.1-Nex-N1": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "nex-agi/DeepSeek-V3.1-Nex-N1",
+      "input_cost_per_1k": 0.0005,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "nex-agi/DeepSeek-V3.1-Nex-N1",
+      "output_cost_per_1k": 0.002,
+      "provider": "siliconflow",
+      "release_date": "2025-01-01"
+    },
+    "siliconflow/openai/gpt-oss-120b": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "openai-gpt-oss",
+      "id": "openai/gpt-oss-120b",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 8000,
+      "mode": "chat",
+      "name": "openai/gpt-oss-120b",
+      "output_cost_per_1k": 0.00045,
+      "provider": "siliconflow",
+      "release_date": "2025-08-13"
+    },
+    "siliconflow/openai/gpt-oss-20b": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "openai-gpt-oss",
+      "id": "openai/gpt-oss-20b",
+      "input_cost_per_1k": 4e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 8000,
+      "mode": "chat",
+      "name": "openai/gpt-oss-20b",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow",
+      "release_date": "2025-08-13"
+    },
+    "siliconflow/stepfun-ai/step3": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "stepfun-ai-step3",
+      "id": "stepfun-ai/step3",
+      "input_cost_per_1k": 0.00057,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "stepfun-ai/step3",
+      "output_cost_per_1k": 0.00142,
+      "provider": "siliconflow",
+      "release_date": "2025-08-06"
+    },
+    "siliconflow/tencent/Hunyuan-A13B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "hunyuan",
+      "id": "tencent/Hunyuan-A13B-Instruct",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "tencent/Hunyuan-A13B-Instruct",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow",
+      "release_date": "2025-06-30"
+    },
+    "siliconflow/tencent/Hunyuan-MT-7B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "hunyuan",
+      "id": "tencent/Hunyuan-MT-7B",
+      "input_cost_per_1k": 0.0,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 33000,
+      "mode": "chat",
+      "name": "tencent/Hunyuan-MT-7B",
+      "output_cost_per_1k": 0.0,
+      "provider": "siliconflow",
+      "release_date": "2025-09-18"
+    },
+    "siliconflow/z-ai/GLM-4.5": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5",
-      "id": "z-ai-glm-4.5",
+      "id": "z-ai/GLM-4.5",
       "input_cost_per_1k": 0.0004,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30353,14 +30392,14 @@
       "provider": "siliconflow",
       "release_date": "2025-07-28"
     },
-    "siliconflow/z-ai-glm-4.5-air": {
+    "siliconflow/z-ai/GLM-4.5-Air": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5-air",
-      "id": "z-ai-glm-4.5-air",
+      "id": "z-ai/GLM-4.5-Air",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30370,14 +30409,14 @@
       "provider": "siliconflow",
       "release_date": "2025-07-28"
     },
-    "siliconflow/zai-org-glm-4.5": {
+    "siliconflow/zai-org/GLM-4.5": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5",
-      "id": "zai-org-glm-4.5",
+      "id": "zai-org/GLM-4.5",
       "input_cost_per_1k": 0.0004,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30387,14 +30426,14 @@
       "provider": "siliconflow",
       "release_date": "2025-07-28"
     },
-    "siliconflow/zai-org-glm-4.5-air": {
+    "siliconflow/zai-org/GLM-4.5-Air": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5-air",
-      "id": "zai-org-glm-4.5-air",
+      "id": "zai-org/GLM-4.5-Air",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30404,7 +30443,7 @@
       "provider": "siliconflow",
       "release_date": "2025-07-28"
     },
-    "siliconflow/zai-org-glm-4.5v": {
+    "siliconflow/zai-org/GLM-4.5V": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -30412,7 +30451,7 @@
         "vision"
       ],
       "family": "glm-4.5v",
-      "id": "zai-org-glm-4.5v",
+      "id": "zai-org/GLM-4.5V",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 66000,
       "max_output_tokens": 66000,
@@ -30422,14 +30461,14 @@
       "provider": "siliconflow",
       "release_date": "2025-08-13"
     },
-    "siliconflow/zai-org-glm-4.6": {
+    "siliconflow/zai-org/GLM-4.6": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.6",
-      "id": "zai-org-glm-4.6",
+      "id": "zai-org/GLM-4.6",
       "input_cost_per_1k": 0.0005,
       "max_input_tokens": 205000,
       "max_output_tokens": 205000,
@@ -30439,31 +30478,14 @@
       "provider": "siliconflow",
       "release_date": "2025-10-04"
     },
-    "siliconflow_cn/baidu-ernie-4.5-300b-a47b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "ernie-4",
-      "id": "baidu-ernie-4.5-300b-a47b",
-      "input_cost_per_1k": 0.00028,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "baidu/ERNIE-4.5-300B-A47B",
-      "output_cost_per_1k": 0.0011,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-02"
-    },
-    "siliconflow_cn/bytedance-seed-seed-oss-36b-instruct": {
+    "siliconflow_cn/ByteDance-Seed/Seed-OSS-36B-Instruct": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "bytedance-seed-seed-oss",
-      "id": "bytedance-seed-seed-oss-36b-instruct",
+      "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
       "input_cost_per_1k": 0.00021,
       "max_input_tokens": 262000,
       "max_output_tokens": 262000,
@@ -30473,237 +30495,7 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-09-04"
     },
-    "siliconflow_cn/deepseek-ai-deepseek-r1": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-r1",
-      "id": "deepseek-ai-deepseek-r1",
-      "input_cost_per_1k": 0.0005,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1",
-      "output_cost_per_1k": 0.00218,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-05-28"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-r1-distill-qwen-14b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen",
-      "id": "deepseek-ai-deepseek-r1-distill-qwen-14b",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
-      "output_cost_per_1k": 0.0001,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-01-20"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-r1-distill-qwen-32b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen",
-      "id": "deepseek-ai-deepseek-r1-distill-qwen-32b",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-01-20"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-r1-distill-qwen-7b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen",
-      "id": "deepseek-ai-deepseek-r1-distill-qwen-7b",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 16000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
-      "output_cost_per_1k": 5e-05,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-01-20"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-v3": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3",
-      "input_cost_per_1k": 0.00025,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-12-26"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-v3.1": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3.1",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3.1",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-08-25"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-v3.1-terminus": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3.1-terminus",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3.1-Terminus",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-29"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-v3.2-exp": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai-deepseek-v3.2-exp",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 164000,
-      "max_output_tokens": 164000,
-      "mode": "chat",
-      "name": "deepseek-ai/DeepSeek-V3.2-Exp",
-      "output_cost_per_1k": 0.00041,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-10"
-    },
-    "siliconflow_cn/deepseek-ai-deepseek-vl2": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "deepseek",
-      "id": "deepseek-ai-deepseek-vl2",
-      "input_cost_per_1k": 0.00015,
-      "max_input_tokens": 4000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "deepseek-ai/deepseek-vl2",
-      "output_cost_per_1k": 0.00015,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-12-13"
-    },
-    "siliconflow_cn/inclusionai-ling-flash-2.0": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "inclusionai-ling-flash",
-      "id": "inclusionai-ling-flash-2.0",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "inclusionAI/Ling-flash-2.0",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-18"
-    },
-    "siliconflow_cn/inclusionai-ling-mini-2.0": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "inclusionai-ling-mini",
-      "id": "inclusionai-ling-mini-2.0",
-      "input_cost_per_1k": 7e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "inclusionAI/Ling-mini-2.0",
-      "output_cost_per_1k": 0.00028,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-10"
-    },
-    "siliconflow_cn/inclusionai-ring-flash-2.0": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "inclusionai-ring-flash",
-      "id": "inclusionai-ring-flash-2.0",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "inclusionAI/Ring-flash-2.0",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-29"
-    },
-    "siliconflow_cn/meta-llama-meta-llama-3.1-8b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "llama-3.1",
-      "id": "meta-llama-meta-llama-3.1-8b-instruct",
-      "input_cost_per_1k": 6e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-      "output_cost_per_1k": 6e-05,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-04-23"
-    },
-    "siliconflow_cn/minimaxai-minimax-m1-80k": {
+    "siliconflow_cn/MiniMaxAI/MiniMax-M1-80k": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -30711,7 +30503,7 @@
         "temperature"
       ],
       "family": "minimax",
-      "id": "minimaxai-minimax-m1-80k",
+      "id": "MiniMaxAI/MiniMax-M1-80k",
       "input_cost_per_1k": 0.00055,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -30721,14 +30513,14 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-06-17"
     },
-    "siliconflow_cn/minimaxai-minimax-m2": {
+    "siliconflow_cn/MiniMaxAI/MiniMax-M2": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "minimax",
-      "id": "minimaxai-minimax-m2",
+      "id": "MiniMaxAI/MiniMax-M2",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 197000,
       "max_output_tokens": 131000,
@@ -30738,715 +30530,7 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-10-28"
     },
-    "siliconflow_cn/moonshotai-kimi-dev-72b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "kimi",
-      "id": "moonshotai-kimi-dev-72b",
-      "input_cost_per_1k": 0.00029,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-Dev-72B",
-      "output_cost_per_1k": 0.00115,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-06-19"
-    },
-    "siliconflow_cn/moonshotai-kimi-k2-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "kimi-k2",
-      "id": "moonshotai-kimi-k2-instruct",
-      "input_cost_per_1k": 0.00058,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-K2-Instruct",
-      "output_cost_per_1k": 0.00229,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-13"
-    },
-    "siliconflow_cn/moonshotai-kimi-k2-instruct-0905": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "kimi-k2",
-      "id": "moonshotai-kimi-k2-instruct-0905",
-      "input_cost_per_1k": 0.0004,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-K2-Instruct-0905",
-      "output_cost_per_1k": 0.002,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-08"
-    },
-    "siliconflow_cn/moonshotai-kimi-k2-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "kimi-k2",
-      "id": "moonshotai-kimi-k2-thinking",
-      "input_cost_per_1k": 0.00055,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "moonshotai/Kimi-K2-Thinking",
-      "output_cost_per_1k": 0.0025,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-11-07"
-    },
-    "siliconflow_cn/nex-agi-deepseek-v3.1-nex-n1": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "nex-agi-deepseek-v3.1-nex-n1",
-      "input_cost_per_1k": 0.0005,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "nex-agi/DeepSeek-V3.1-Nex-N1",
-      "output_cost_per_1k": 0.002,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-01-01"
-    },
-    "siliconflow_cn/openai-gpt-oss-120b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "openai-gpt-oss",
-      "id": "openai-gpt-oss-120b",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 8000,
-      "mode": "chat",
-      "name": "openai/gpt-oss-120b",
-      "output_cost_per_1k": 0.00045,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-08-13"
-    },
-    "siliconflow_cn/openai-gpt-oss-20b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "openai-gpt-oss",
-      "id": "openai-gpt-oss-20b",
-      "input_cost_per_1k": 4e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 8000,
-      "mode": "chat",
-      "name": "openai/gpt-oss-20b",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-08-13"
-    },
-    "siliconflow_cn/qwen-qwen2.5-14b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-14b-instruct",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-14B-Instruct",
-      "output_cost_per_1k": 0.0001,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow_cn/qwen-qwen2.5-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-32b-instruct",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-32B-Instruct",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-09-19"
-    },
-    "siliconflow_cn/qwen-qwen2.5-72b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-72b-instruct",
-      "input_cost_per_1k": 0.00059,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-72B-Instruct",
-      "output_cost_per_1k": 0.00059,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow_cn/qwen-qwen2.5-72b-instruct-128k": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-72b-instruct-128k",
-      "input_cost_per_1k": 0.00059,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-72B-Instruct-128K",
-      "output_cost_per_1k": 0.00059,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow_cn/qwen-qwen2.5-7b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5",
-      "id": "qwen-qwen2.5-7b-instruct",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-7B-Instruct",
-      "output_cost_per_1k": 5e-05,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-09-18"
-    },
-    "siliconflow_cn/qwen-qwen2.5-coder-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen2.5-coder",
-      "id": "qwen-qwen2.5-coder-32b-instruct",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-Coder-32B-Instruct",
-      "output_cost_per_1k": 0.00018,
-      "provider": "siliconflow_cn",
-      "release_date": "2024-11-11"
-    },
-    "siliconflow_cn/qwen-qwen2.5-vl-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen2.5-vl",
-      "id": "qwen-qwen2.5-vl-32b-instruct",
-      "input_cost_per_1k": 0.00027,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-VL-32B-Instruct",
-      "output_cost_per_1k": 0.00027,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-03-24"
-    },
-    "siliconflow_cn/qwen-qwen2.5-vl-72b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen2.5-vl",
-      "id": "qwen-qwen2.5-vl-72b-instruct",
-      "input_cost_per_1k": 0.00059,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-VL-72B-Instruct",
-      "output_cost_per_1k": 0.00059,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-01-28"
-    },
-    "siliconflow_cn/qwen-qwen2.5-vl-7b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen2.5-vl",
-      "id": "qwen-qwen2.5-vl-7b-instruct",
-      "input_cost_per_1k": 5e-05,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 4000,
-      "mode": "chat",
-      "name": "Qwen/Qwen2.5-VL-7B-Instruct",
-      "output_cost_per_1k": 5e-05,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-01-28"
-    },
-    "siliconflow_cn/qwen-qwen3-14b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-14b",
-      "input_cost_per_1k": 7e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-14B",
-      "output_cost_per_1k": 0.00028,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow_cn/qwen-qwen3-235b-a22b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-235b-a22b",
-      "input_cost_per_1k": 0.00035,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-235B-A22B",
-      "output_cost_per_1k": 0.00142,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow_cn/qwen-qwen3-235b-a22b-instruct-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-235b-a22b-instruct-2507",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-235B-A22B-Instruct-2507",
-      "output_cost_per_1k": 0.0006,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-23"
-    },
-    "siliconflow_cn/qwen-qwen3-235b-a22b-thinking-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-235b-a22b-thinking-2507",
-      "input_cost_per_1k": 0.00013,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-235B-A22B-Thinking-2507",
-      "output_cost_per_1k": 0.0006,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-28"
-    },
-    "siliconflow_cn/qwen-qwen3-30b-a3b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-30b-a3b",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-30B-A3B",
-      "output_cost_per_1k": 0.00045,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow_cn/qwen-qwen3-30b-a3b-instruct-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-30b-a3b-instruct-2507",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
-      "output_cost_per_1k": 0.0003,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-30"
-    },
-    "siliconflow_cn/qwen-qwen3-30b-a3b-thinking-2507": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-30b-a3b-thinking-2507",
-      "input_cost_per_1k": 9e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-30B-A3B-Thinking-2507",
-      "output_cost_per_1k": 0.0003,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-31"
-    },
-    "siliconflow_cn/qwen-qwen3-32b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-32b",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-32B",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow_cn/qwen-qwen3-8b": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-8b",
-      "input_cost_per_1k": 6e-05,
-      "max_input_tokens": 131000,
-      "max_output_tokens": 131000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-8B",
-      "output_cost_per_1k": 6e-05,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-04-30"
-    },
-    "siliconflow_cn/qwen-qwen3-coder-30b-a3b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3-coder",
-      "id": "qwen-qwen3-coder-30b-a3b-instruct",
-      "input_cost_per_1k": 7e-05,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
-      "output_cost_per_1k": 0.00028,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-08-01"
-    },
-    "siliconflow_cn/qwen-qwen3-coder-480b-a35b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3-coder",
-      "id": "qwen-qwen3-coder-480b-a35b-instruct",
-      "input_cost_per_1k": 0.00025,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-07-31"
-    },
-    "siliconflow_cn/qwen-qwen3-next-80b-a3b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-next-80b-a3b-instruct",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Next-80B-A3B-Instruct",
-      "output_cost_per_1k": 0.0014,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-18"
-    },
-    "siliconflow_cn/qwen-qwen3-next-80b-a3b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "qwen-qwen3-next-80b-a3b-thinking",
-      "input_cost_per_1k": 0.00014,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Next-80B-A3B-Thinking",
-      "output_cost_per_1k": 0.00057,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-09-25"
-    },
-    "siliconflow_cn/qwen-qwen3-omni-30b-a3b-captioner": {
-      "capabilities": [
-        "audio_input",
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-omni",
-      "id": "qwen-qwen3-omni-30b-a3b-captioner",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Omni-30B-A3B-Captioner",
-      "output_cost_per_1k": 0.0004,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow_cn/qwen-qwen3-omni-30b-a3b-instruct": {
-      "capabilities": [
-        "audio_input",
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-omni",
-      "id": "qwen-qwen3-omni-30b-a3b-instruct",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
-      "output_cost_per_1k": 0.0004,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow_cn/qwen-qwen3-omni-30b-a3b-thinking": {
-      "capabilities": [
-        "audio_input",
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-omni",
-      "id": "qwen-qwen3-omni-30b-a3b-thinking",
-      "input_cost_per_1k": 0.0001,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
-      "output_cost_per_1k": 0.0004,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-235b-a22b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-235b-a22b-instruct",
-      "input_cost_per_1k": 0.0003,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-235B-A22B-Instruct",
-      "output_cost_per_1k": 0.0015,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-235b-a22b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-235b-a22b-thinking",
-      "input_cost_per_1k": 0.00045,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-235B-A22B-Thinking",
-      "output_cost_per_1k": 0.0035,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-04"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-30b-a3b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-30b-a3b-instruct",
-      "input_cost_per_1k": 0.00029,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-30B-A3B-Instruct",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-05"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-30b-a3b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-30b-a3b-thinking",
-      "input_cost_per_1k": 0.00029,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-30B-A3B-Thinking",
-      "output_cost_per_1k": 0.001,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-11"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-32b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-32b-instruct",
-      "input_cost_per_1k": 0.0002,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-32B-Instruct",
-      "output_cost_per_1k": 0.0006,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-21"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-32b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-32b-thinking",
-      "input_cost_per_1k": 0.0002,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-32B-Thinking",
-      "output_cost_per_1k": 0.0015,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-21"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-8b-instruct": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-8b-instruct",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-8B-Instruct",
-      "output_cost_per_1k": 0.00068,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-15"
-    },
-    "siliconflow_cn/qwen-qwen3-vl-8b-thinking": {
-      "capabilities": [
-        "function_calling",
-        "json_mode",
-        "reasoning",
-        "temperature",
-        "vision"
-      ],
-      "family": "qwen3-vl",
-      "id": "qwen-qwen3-vl-8b-thinking",
-      "input_cost_per_1k": 0.00018,
-      "max_input_tokens": 262000,
-      "max_output_tokens": 262000,
-      "mode": "chat",
-      "name": "Qwen/Qwen3-VL-8B-Thinking",
-      "output_cost_per_1k": 0.002,
-      "provider": "siliconflow_cn",
-      "release_date": "2025-10-15"
-    },
-    "siliconflow_cn/qwen-qwq-32b": {
+    "siliconflow_cn/Qwen/QwQ-32B": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -31454,7 +30538,7 @@
         "temperature"
       ],
       "family": "qwq",
-      "id": "qwen-qwq-32b",
+      "id": "Qwen/QwQ-32B",
       "input_cost_per_1k": 0.00015,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31464,66 +30548,600 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-03-06"
     },
-    "siliconflow_cn/stepfun-ai-step3": {
+    "siliconflow_cn/Qwen/Qwen2.5-14B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-14B-Instruct",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-14B-Instruct",
+      "output_cost_per_1k": 0.0001,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-32B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-32B-Instruct",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-32B-Instruct",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-09-19"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-72B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-72B-Instruct",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-72B-Instruct",
+      "output_cost_per_1k": 0.00059,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-72B-Instruct-128K": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-72B-Instruct-128K",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-72B-Instruct-128K",
+      "output_cost_per_1k": 0.00059,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-7B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5",
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-7B-Instruct",
+      "output_cost_per_1k": 5e-05,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-09-18"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen2.5-coder",
+      "id": "Qwen/Qwen2.5-Coder-32B-Instruct",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-11-11"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-VL-32B-Instruct": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "stepfun-ai-step3",
-      "id": "stepfun-ai-step3",
-      "input_cost_per_1k": 0.00057,
-      "max_input_tokens": 66000,
-      "max_output_tokens": 66000,
+      "family": "qwen2.5-vl",
+      "id": "Qwen/Qwen2.5-VL-32B-Instruct",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
       "mode": "chat",
-      "name": "stepfun-ai/step3",
-      "output_cost_per_1k": 0.00142,
+      "name": "Qwen/Qwen2.5-VL-32B-Instruct",
+      "output_cost_per_1k": 0.00027,
       "provider": "siliconflow_cn",
-      "release_date": "2025-08-06"
+      "release_date": "2025-03-24"
     },
-    "siliconflow_cn/tencent-hunyuan-a13b-instruct": {
+    "siliconflow_cn/Qwen/Qwen2.5-VL-72B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen2.5-vl",
+      "id": "Qwen/Qwen2.5-VL-72B-Instruct",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-VL-72B-Instruct",
+      "output_cost_per_1k": 0.00059,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-01-28"
+    },
+    "siliconflow_cn/Qwen/Qwen2.5-VL-7B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen2.5-vl",
+      "id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "output_cost_per_1k": 5e-05,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-01-28"
+    },
+    "siliconflow_cn/Qwen/Qwen3-14B": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
-      "family": "hunyuan",
-      "id": "tencent-hunyuan-a13b-instruct",
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-14B",
+      "input_cost_per_1k": 7e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-14B",
+      "output_cost_per_1k": 0.00028,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow_cn/Qwen/Qwen3-235B-A22B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-235B-A22B",
+      "input_cost_per_1k": 0.00035,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-235B-A22B",
+      "output_cost_per_1k": 0.00142,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow_cn/Qwen/Qwen3-235B-A22B-Instruct-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "output_cost_per_1k": 0.0006,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-23"
+    },
+    "siliconflow_cn/Qwen/Qwen3-235B-A22B-Thinking-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+      "input_cost_per_1k": 0.00013,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+      "output_cost_per_1k": 0.0006,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-28"
+    },
+    "siliconflow_cn/Qwen/Qwen3-30B-A3B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-30B-A3B",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-30B-A3B",
+      "output_cost_per_1k": 0.00045,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow_cn/Qwen/Qwen3-30B-A3B-Instruct-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "output_cost_per_1k": 0.0003,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-30"
+    },
+    "siliconflow_cn/Qwen/Qwen3-30B-A3B-Thinking-2507": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "output_cost_per_1k": 0.0003,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-31"
+    },
+    "siliconflow_cn/Qwen/Qwen3-32B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-32B",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
       "mode": "chat",
-      "name": "tencent/Hunyuan-A13B-Instruct",
+      "name": "Qwen/Qwen3-32B",
       "output_cost_per_1k": 0.00057,
       "provider": "siliconflow_cn",
-      "release_date": "2025-06-30"
+      "release_date": "2025-04-30"
     },
-    "siliconflow_cn/tencent-hunyuan-mt-7b": {
+    "siliconflow_cn/Qwen/Qwen3-8B": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
-      "family": "hunyuan",
-      "id": "tencent-hunyuan-mt-7b",
-      "input_cost_per_1k": 0.0,
-      "max_input_tokens": 33000,
-      "max_output_tokens": 33000,
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-8B",
+      "input_cost_per_1k": 6e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
       "mode": "chat",
-      "name": "tencent/Hunyuan-MT-7B",
-      "output_cost_per_1k": 0.0,
+      "name": "Qwen/Qwen3-8B",
+      "output_cost_per_1k": 6e-05,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-04-30"
+    },
+    "siliconflow_cn/Qwen/Qwen3-Coder-30B-A3B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3-coder",
+      "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "input_cost_per_1k": 7e-05,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "output_cost_per_1k": 0.00028,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-08-01"
+    },
+    "siliconflow_cn/Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3-coder",
+      "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "input_cost_per_1k": 0.00025,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-31"
+    },
+    "siliconflow_cn/Qwen/Qwen3-Next-80B-A3B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "output_cost_per_1k": 0.0014,
       "provider": "siliconflow_cn",
       "release_date": "2025-09-18"
     },
-    "siliconflow_cn/thudm-glm-4-32b-0414": {
+    "siliconflow_cn/Qwen/Qwen3-Next-80B-A3B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen3",
+      "id": "Qwen/Qwen3-Next-80B-A3B-Thinking",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Next-80B-A3B-Thinking",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-25"
+    },
+    "siliconflow_cn/Qwen/Qwen3-Omni-30B-A3B-Captioner": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-omni",
+      "id": "Qwen/Qwen3-Omni-30B-A3B-Captioner",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Omni-30B-A3B-Captioner",
+      "output_cost_per_1k": 0.0004,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow_cn/Qwen/Qwen3-Omni-30B-A3B-Instruct": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-omni",
+      "id": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+      "output_cost_per_1k": 0.0004,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow_cn/Qwen/Qwen3-Omni-30B-A3B-Thinking": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-omni",
+      "id": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-Omni-30B-A3B-Thinking",
+      "output_cost_per_1k": 0.0004,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-235B-A22B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "input_cost_per_1k": 0.0003,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "output_cost_per_1k": 0.0015,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-235B-A22B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-235B-A22B-Thinking",
+      "input_cost_per_1k": 0.00045,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-235B-A22B-Thinking",
+      "output_cost_per_1k": 0.0035,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-04"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-30B-A3B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-05"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-30B-A3B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-11"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-32B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-32B-Instruct",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-32B-Instruct",
+      "output_cost_per_1k": 0.0006,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-21"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-32B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-32B-Thinking",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-32B-Thinking",
+      "output_cost_per_1k": 0.0015,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-21"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-8B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-8B-Instruct",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-8B-Instruct",
+      "output_cost_per_1k": 0.00068,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-15"
+    },
+    "siliconflow_cn/Qwen/Qwen3-VL-8B-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "qwen3-vl",
+      "id": "Qwen/Qwen3-VL-8B-Thinking",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "Qwen/Qwen3-VL-8B-Thinking",
+      "output_cost_per_1k": 0.002,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-15"
+    },
+    "siliconflow_cn/THUDM/GLM-4-32B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4",
-      "id": "thudm-glm-4-32b-0414",
+      "id": "THUDM/GLM-4-32B-0414",
       "input_cost_per_1k": 0.00027,
       "max_input_tokens": 33000,
       "max_output_tokens": 33000,
@@ -31533,14 +31151,14 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-04-18"
     },
-    "siliconflow_cn/thudm-glm-4-9b-0414": {
+    "siliconflow_cn/THUDM/GLM-4-9B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4",
-      "id": "thudm-glm-4-9b-0414",
+      "id": "THUDM/GLM-4-9B-0414",
       "input_cost_per_1k": 8.6e-05,
       "max_input_tokens": 33000,
       "max_output_tokens": 33000,
@@ -31550,7 +31168,7 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-04-18"
     },
-    "siliconflow_cn/thudm-glm-4.1v-9b-thinking": {
+    "siliconflow_cn/THUDM/GLM-4.1V-9B-Thinking": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -31559,7 +31177,7 @@
         "vision"
       ],
       "family": "glm-4v",
-      "id": "thudm-glm-4.1v-9b-thinking",
+      "id": "THUDM/GLM-4.1V-9B-Thinking",
       "input_cost_per_1k": 3.5e-05,
       "max_input_tokens": 66000,
       "max_output_tokens": 66000,
@@ -31569,7 +31187,7 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-07-04"
     },
-    "siliconflow_cn/thudm-glm-z1-32b-0414": {
+    "siliconflow_cn/THUDM/GLM-Z1-32B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -31577,7 +31195,7 @@
         "temperature"
       ],
       "family": "glm-z1",
-      "id": "thudm-glm-z1-32b-0414",
+      "id": "THUDM/GLM-Z1-32B-0414",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31587,7 +31205,7 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-04-18"
     },
-    "siliconflow_cn/thudm-glm-z1-9b-0414": {
+    "siliconflow_cn/THUDM/GLM-Z1-9B-0414": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -31595,7 +31213,7 @@
         "temperature"
       ],
       "family": "glm-z1",
-      "id": "thudm-glm-z1-9b-0414",
+      "id": "THUDM/GLM-Z1-9B-0414",
       "input_cost_per_1k": 8.6e-05,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31605,14 +31223,435 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-04-18"
     },
-    "siliconflow_cn/z-ai-glm-4.5": {
+    "siliconflow_cn/baidu/ERNIE-4.5-300B-A47B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "ernie-4",
+      "id": "baidu/ERNIE-4.5-300B-A47B",
+      "input_cost_per_1k": 0.00028,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "baidu/ERNIE-4.5-300B-A47B",
+      "output_cost_per_1k": 0.0011,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-02"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-R1": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-r1",
+      "id": "deepseek-ai/DeepSeek-R1",
+      "input_cost_per_1k": 0.0005,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1",
+      "output_cost_per_1k": 0.00218,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-05-28"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+      "output_cost_per_1k": 0.0001,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-01-20"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "input_cost_per_1k": 0.00018,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-01-20"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 16000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "output_cost_per_1k": 5e-05,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-01-20"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-V3": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3",
+      "input_cost_per_1k": 0.00025,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-12-26"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-V3.1": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3.1",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3.1",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-08-25"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-V3.1-Terminus": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3.1-Terminus",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3.1-Terminus",
+      "output_cost_per_1k": 0.001,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-29"
+    },
+    "siliconflow_cn/deepseek-ai/DeepSeek-V3.2-Exp": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai/DeepSeek-V3.2-Exp",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 164000,
+      "max_output_tokens": 164000,
+      "mode": "chat",
+      "name": "deepseek-ai/DeepSeek-V3.2-Exp",
+      "output_cost_per_1k": 0.00041,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-10-10"
+    },
+    "siliconflow_cn/deepseek-ai/deepseek-vl2": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "deepseek",
+      "id": "deepseek-ai/deepseek-vl2",
+      "input_cost_per_1k": 0.00015,
+      "max_input_tokens": 4000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "deepseek-ai/deepseek-vl2",
+      "output_cost_per_1k": 0.00015,
+      "provider": "siliconflow_cn",
+      "release_date": "2024-12-13"
+    },
+    "siliconflow_cn/inclusionAI/Ling-flash-2.0": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "inclusionai-ling-flash",
+      "id": "inclusionAI/Ling-flash-2.0",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "inclusionAI/Ling-flash-2.0",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-18"
+    },
+    "siliconflow_cn/inclusionAI/Ling-mini-2.0": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "inclusionai-ling-mini",
+      "id": "inclusionAI/Ling-mini-2.0",
+      "input_cost_per_1k": 7e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "inclusionAI/Ling-mini-2.0",
+      "output_cost_per_1k": 0.00028,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-10"
+    },
+    "siliconflow_cn/inclusionAI/Ring-flash-2.0": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "inclusionai-ring-flash",
+      "id": "inclusionAI/Ring-flash-2.0",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "inclusionAI/Ring-flash-2.0",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-29"
+    },
+    "siliconflow_cn/meta-llama/Meta-Llama-3.1-8B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "llama-3.1",
+      "id": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "input_cost_per_1k": 6e-05,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 4000,
+      "mode": "chat",
+      "name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "output_cost_per_1k": 6e-05,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-04-23"
+    },
+    "siliconflow_cn/moonshotai/Kimi-Dev-72B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "kimi",
+      "id": "moonshotai/Kimi-Dev-72B",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-Dev-72B",
+      "output_cost_per_1k": 0.00115,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-06-19"
+    },
+    "siliconflow_cn/moonshotai/Kimi-K2-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "moonshotai/Kimi-K2-Instruct",
+      "input_cost_per_1k": 0.00058,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-K2-Instruct",
+      "output_cost_per_1k": 0.00229,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-07-13"
+    },
+    "siliconflow_cn/moonshotai/Kimi-K2-Instruct-0905": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "moonshotai/Kimi-K2-Instruct-0905",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-K2-Instruct-0905",
+      "output_cost_per_1k": 0.002,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-08"
+    },
+    "siliconflow_cn/moonshotai/Kimi-K2-Thinking": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "moonshotai/Kimi-K2-Thinking",
+      "input_cost_per_1k": 0.00055,
+      "max_input_tokens": 262000,
+      "max_output_tokens": 262000,
+      "mode": "chat",
+      "name": "moonshotai/Kimi-K2-Thinking",
+      "output_cost_per_1k": 0.0025,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-11-07"
+    },
+    "siliconflow_cn/nex-agi/DeepSeek-V3.1-Nex-N1": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "nex-agi/DeepSeek-V3.1-Nex-N1",
+      "input_cost_per_1k": 0.0005,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "nex-agi/DeepSeek-V3.1-Nex-N1",
+      "output_cost_per_1k": 0.002,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-01-01"
+    },
+    "siliconflow_cn/openai/gpt-oss-120b": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "openai-gpt-oss",
+      "id": "openai/gpt-oss-120b",
+      "input_cost_per_1k": 5e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 8000,
+      "mode": "chat",
+      "name": "openai/gpt-oss-120b",
+      "output_cost_per_1k": 0.00045,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-08-13"
+    },
+    "siliconflow_cn/openai/gpt-oss-20b": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "openai-gpt-oss",
+      "id": "openai/gpt-oss-20b",
+      "input_cost_per_1k": 4e-05,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 8000,
+      "mode": "chat",
+      "name": "openai/gpt-oss-20b",
+      "output_cost_per_1k": 0.00018,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-08-13"
+    },
+    "siliconflow_cn/stepfun-ai/step3": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature",
+        "vision"
+      ],
+      "family": "stepfun-ai-step3",
+      "id": "stepfun-ai/step3",
+      "input_cost_per_1k": 0.00057,
+      "max_input_tokens": 66000,
+      "max_output_tokens": 66000,
+      "mode": "chat",
+      "name": "stepfun-ai/step3",
+      "output_cost_per_1k": 0.00142,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-08-06"
+    },
+    "siliconflow_cn/tencent/Hunyuan-A13B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "hunyuan",
+      "id": "tencent/Hunyuan-A13B-Instruct",
+      "input_cost_per_1k": 0.00014,
+      "max_input_tokens": 131000,
+      "max_output_tokens": 131000,
+      "mode": "chat",
+      "name": "tencent/Hunyuan-A13B-Instruct",
+      "output_cost_per_1k": 0.00057,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-06-30"
+    },
+    "siliconflow_cn/tencent/Hunyuan-MT-7B": {
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "hunyuan",
+      "id": "tencent/Hunyuan-MT-7B",
+      "input_cost_per_1k": 0.0,
+      "max_input_tokens": 33000,
+      "max_output_tokens": 33000,
+      "mode": "chat",
+      "name": "tencent/Hunyuan-MT-7B",
+      "output_cost_per_1k": 0.0,
+      "provider": "siliconflow_cn",
+      "release_date": "2025-09-18"
+    },
+    "siliconflow_cn/z-ai/GLM-4.5": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5",
-      "id": "z-ai-glm-4.5",
+      "id": "z-ai/GLM-4.5",
       "input_cost_per_1k": 0.0004,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31622,14 +31661,14 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-07-28"
     },
-    "siliconflow_cn/z-ai-glm-4.5-air": {
+    "siliconflow_cn/z-ai/GLM-4.5-Air": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5-air",
-      "id": "z-ai-glm-4.5-air",
+      "id": "z-ai/GLM-4.5-Air",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31639,14 +31678,14 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-07-28"
     },
-    "siliconflow_cn/zai-org-glm-4.5": {
+    "siliconflow_cn/zai-org/GLM-4.5": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5",
-      "id": "zai-org-glm-4.5",
+      "id": "zai-org/GLM-4.5",
       "input_cost_per_1k": 0.0004,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31656,14 +31695,14 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-07-28"
     },
-    "siliconflow_cn/zai-org-glm-4.5-air": {
+    "siliconflow_cn/zai-org/GLM-4.5-Air": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.5-air",
-      "id": "zai-org-glm-4.5-air",
+      "id": "zai-org/GLM-4.5-Air",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 131000,
       "max_output_tokens": 131000,
@@ -31673,7 +31712,7 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-07-28"
     },
-    "siliconflow_cn/zai-org-glm-4.5v": {
+    "siliconflow_cn/zai-org/GLM-4.5V": {
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -31681,7 +31720,7 @@
         "vision"
       ],
       "family": "glm-4.5v",
-      "id": "zai-org-glm-4.5v",
+      "id": "zai-org/GLM-4.5V",
       "input_cost_per_1k": 0.00014,
       "max_input_tokens": 66000,
       "max_output_tokens": 66000,
@@ -31691,14 +31730,14 @@
       "provider": "siliconflow_cn",
       "release_date": "2025-08-13"
     },
-    "siliconflow_cn/zai-org-glm-4.6": {
+    "siliconflow_cn/zai-org/GLM-4.6": {
       "capabilities": [
         "function_calling",
         "json_mode",
         "temperature"
       ],
       "family": "glm-4.6",
-      "id": "zai-org-glm-4.6",
+      "id": "zai-org/GLM-4.6",
       "input_cost_per_1k": 0.0005,
       "max_input_tokens": 205000,
       "max_output_tokens": 205000,
@@ -31879,6 +31918,24 @@
       "output_cost_per_1k": 0.00219,
       "provider": "synthetic",
       "release_date": "2025-10-27"
+    },
+    "synthetic/hf:MiniMaxAI/MiniMax-M2.1": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "minimax",
+      "id": "hf:MiniMaxAI/MiniMax-M2.1",
+      "input_cost_per_1k": 0.00055,
+      "max_input_tokens": 204800,
+      "max_output_tokens": 131072,
+      "mode": "chat",
+      "name": "MiniMax-M2.1",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00219,
+      "provider": "synthetic",
+      "release_date": "2025-12-23"
     },
     "synthetic/hf:Qwen/Qwen2.5-Coder-32B-Instruct": {
       "capabilities": [
@@ -32615,7 +32672,7 @@
       "name": "Claude Opus 4.5",
       "output_cost_per_1k": 0.03,
       "provider": "venice",
-      "release_date": "2024-12-05"
+      "release_date": "2025-12-06"
     },
     "venice/deepseek-v3.2": {
       "cache_read_cost_per_1k": 0.0002,
@@ -32634,9 +32691,10 @@
       "open_weights": true,
       "output_cost_per_1k": 0.001,
       "provider": "venice",
-      "release_date": "2025-12-07"
+      "release_date": "2025-12-04"
     },
     "venice/gemini-3-flash-preview": {
+      "cache_read_cost_per_1k": 7e-05,
       "capabilities": [
         "audio_input",
         "function_calling",
@@ -32657,7 +32715,7 @@
       "name": "Gemini 3 Flash Preview",
       "output_cost_per_1k": 0.00375,
       "provider": "venice",
-      "release_date": "2025-12-13"
+      "release_date": "2025-12-19"
     },
     "venice/gemini-3-pro-preview": {
       "cache_read_cost_per_1k": 0.000625,
@@ -32680,7 +32738,7 @@
       "name": "Gemini 3 Pro Preview",
       "output_cost_per_1k": 0.015,
       "provider": "venice",
-      "release_date": "2024-06-07"
+      "release_date": "2025-12-02"
     },
     "venice/google-gemma-3-27b-it": {
       "capabilities": [
@@ -32700,7 +32758,7 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0002,
       "provider": "venice",
-      "release_date": "2024-04-01"
+      "release_date": "2025-11-04"
     },
     "venice/grok-41-fast": {
       "cache_read_cost_per_1k": 0.000125,
@@ -32721,7 +32779,27 @@
       "name": "Grok 4.1 Fast",
       "output_cost_per_1k": 0.00125,
       "provider": "venice",
-      "release_date": "2025-04-29"
+      "release_date": "2025-12-01"
+    },
+    "venice/grok-code-fast-1": {
+      "cache_read_cost_per_1k": 3e-05,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "grok",
+      "id": "grok-code-fast-1",
+      "input_cost_per_1k": 0.00025,
+      "max_input_tokens": 262144,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "Grok Code Fast 1",
+      "output_cost_per_1k": 0.00187,
+      "provider": "venice",
+      "release_date": "2025-12-01"
     },
     "venice/hermes-3-llama-3.1-405b": {
       "capabilities": [
@@ -32738,10 +32816,10 @@
       "open_weights": true,
       "output_cost_per_1k": 0.003,
       "provider": "venice",
-      "release_date": "2024-04-01"
+      "release_date": "2025-09-25"
     },
     "venice/kimi-k2-thinking": {
-      "cache_read_cost_per_1k": 0.0001875,
+      "cache_read_cost_per_1k": 0.000375,
       "capabilities": [
         "function_calling",
         "json_mode",
@@ -32759,7 +32837,7 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0032,
       "provider": "venice",
-      "release_date": "2024-06-07"
+      "release_date": "2025-12-10"
     },
     "venice/llama-3.2-3b": {
       "capabilities": [
@@ -32796,7 +32874,27 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0028,
       "provider": "venice",
-      "release_date": "2024-12-09"
+      "release_date": "2025-04-06"
+    },
+    "venice/minimax-m21": {
+      "cache_read_cost_per_1k": 4e-05,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": null,
+      "id": "minimax-m21",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 202752,
+      "max_output_tokens": 50688,
+      "mode": "chat",
+      "name": "MiniMax M2.1",
+      "output_cost_per_1k": 0.0016,
+      "provider": "venice",
+      "release_date": "2025-12-01"
     },
     "venice/mistral-31-24b": {
       "capabilities": [
@@ -32836,7 +32934,7 @@
       "name": "GPT-5.2",
       "output_cost_per_1k": 0.0175,
       "provider": "venice",
-      "release_date": "2024-12-11"
+      "release_date": "2025-12-13"
     },
     "venice/openai-gpt-oss-120b": {
       "capabilities": [
@@ -32854,7 +32952,7 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0003,
       "provider": "venice",
-      "release_date": "2024-04-01"
+      "release_date": "2025-11-06"
     },
     "venice/qwen3-235b-a22b-instruct-2507": {
       "capabilities": [
@@ -32988,7 +33086,7 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00275,
       "provider": "venice",
-      "release_date": "2024-04-01"
+      "release_date": "2025-10-18"
     },
     "venice/zai-org-glm-4.6v": {
       "capabilities": [
@@ -33007,7 +33105,7 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00113,
       "provider": "venice",
-      "release_date": "2024-12-10"
+      "release_date": "2025-12-11"
     },
     "venice/zai-org-glm-4.7": {
       "capabilities": [
@@ -33026,7 +33124,7 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00275,
       "provider": "venice",
-      "release_date": "2024-04-01"
+      "release_date": "2025-12-24"
     },
     "vercel/alibaba/qwen3-coder-plus": {
       "capabilities": [
