@@ -853,12 +853,962 @@
       ]
     }
   },
-  "generated_at": "2026-01-01T03:50:55.848744+00:00",
+  "generated_at": "2026-01-04T03:51:55.634878+00:00",
   "model_stats": {
-    "providers": 74,
-    "total_models": 1929
+    "providers": 75,
+    "total_models": 1997
   },
   "models": {
+    "abacus/Qwen-QwQ-32B": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwq",
+      "id": "Qwen-QwQ-32B",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 32768,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "QwQ 32B",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0004,
+      "provider": "abacus",
+      "release_date": "2024-11-28"
+    },
+    "abacus/Qwen-Qwen2.5-72B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "qwen-2.5",
+      "id": "Qwen-Qwen2.5-72B-Instruct",
+      "input_cost_per_1k": 0.00011,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Qwen 2.5 72B Instruct",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00038,
+      "provider": "abacus",
+      "release_date": "2024-09-19"
+    },
+    "abacus/Qwen-Qwen3-235B-A22B-Instruct-2507": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen-3",
+      "id": "Qwen-Qwen3-235B-A22B-Instruct-2507",
+      "input_cost_per_1k": 0.00013,
+      "max_input_tokens": 262144,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Qwen3 235B A22B Instruct",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0006,
+      "provider": "abacus",
+      "release_date": "2025-07-01"
+    },
+    "abacus/Qwen-Qwen3-32B": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen-3",
+      "id": "Qwen-Qwen3-32B",
+      "input_cost_per_1k": 9e-05,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Qwen3 32B",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00029,
+      "provider": "abacus",
+      "release_date": "2025-04-29"
+    },
+    "abacus/claude-3-7-sonnet-20250219": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-sonnet",
+      "id": "claude-3-7-sonnet-20250219",
+      "input_cost_per_1k": 0.003,
+      "knowledge_cutoff": "2024-10-31",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 64000,
+      "mode": "chat",
+      "name": "Claude Sonnet 3.7",
+      "output_cost_per_1k": 0.015,
+      "provider": "abacus",
+      "release_date": "2025-02-19"
+    },
+    "abacus/claude-haiku-4-5-20251001": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-haiku",
+      "id": "claude-haiku-4-5-20251001",
+      "input_cost_per_1k": 0.001,
+      "knowledge_cutoff": "2025-02-28",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 64000,
+      "mode": "chat",
+      "name": "Claude Haiku 4.5",
+      "output_cost_per_1k": 0.005,
+      "provider": "abacus",
+      "release_date": "2025-10-15"
+    },
+    "abacus/claude-opus-4-1-20250805": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-opus",
+      "id": "claude-opus-4-1-20250805",
+      "input_cost_per_1k": 0.015,
+      "max_input_tokens": 200000,
+      "max_output_tokens": 32000,
+      "mode": "chat",
+      "name": "Claude Opus 4.1",
+      "output_cost_per_1k": 0.075,
+      "provider": "abacus",
+      "release_date": "2025-08-05"
+    },
+    "abacus/claude-opus-4-20250514": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-opus",
+      "id": "claude-opus-4-20250514",
+      "input_cost_per_1k": 0.015,
+      "max_input_tokens": 200000,
+      "max_output_tokens": 32000,
+      "mode": "chat",
+      "name": "Claude Opus 4",
+      "output_cost_per_1k": 0.075,
+      "provider": "abacus",
+      "release_date": "2025-05-14"
+    },
+    "abacus/claude-opus-4-5-20251101": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-opus",
+      "id": "claude-opus-4-5-20251101",
+      "input_cost_per_1k": 0.005,
+      "knowledge_cutoff": "2025-03-31",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 64000,
+      "mode": "chat",
+      "name": "Claude Opus 4.5",
+      "output_cost_per_1k": 0.025,
+      "provider": "abacus",
+      "release_date": "2025-11-01"
+    },
+    "abacus/claude-sonnet-4-20250514": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-sonnet",
+      "id": "claude-sonnet-4-20250514",
+      "input_cost_per_1k": 0.003,
+      "max_input_tokens": 200000,
+      "max_output_tokens": 64000,
+      "mode": "chat",
+      "name": "Claude Sonnet 4",
+      "output_cost_per_1k": 0.015,
+      "provider": "abacus",
+      "release_date": "2025-05-14"
+    },
+    "abacus/claude-sonnet-4-5-20250929": {
+      "capabilities": [
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "claude-sonnet",
+      "id": "claude-sonnet-4-5-20250929",
+      "input_cost_per_1k": 0.003,
+      "knowledge_cutoff": "2025-07-31",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 64000,
+      "mode": "chat",
+      "name": "Claude Sonnet 4.5",
+      "output_cost_per_1k": 0.015,
+      "provider": "abacus",
+      "release_date": "2025-09-29"
+    },
+    "abacus/deepseek-ai-DeepSeek-R1": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-r1",
+      "id": "deepseek-ai-DeepSeek-R1",
+      "input_cost_per_1k": 0.003,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "DeepSeek R1",
+      "open_weights": true,
+      "output_cost_per_1k": 0.007,
+      "provider": "abacus",
+      "release_date": "2025-01-20"
+    },
+    "abacus/deepseek-ai-DeepSeek-V3.1-Terminus": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai-DeepSeek-V3.1-Terminus",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "DeepSeek V3.1 Terminus",
+      "open_weights": true,
+      "output_cost_per_1k": 0.001,
+      "provider": "abacus",
+      "release_date": "2025-06-01"
+    },
+    "abacus/deepseek-ai-DeepSeek-V3.2": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-ai-DeepSeek-V3.2",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "DeepSeek V3.2",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0004,
+      "provider": "abacus",
+      "release_date": "2025-06-15"
+    },
+    "abacus/deepseek-deepseek-v3.1": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-v3",
+      "id": "deepseek-deepseek-v3.1",
+      "input_cost_per_1k": 0.00055,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "DeepSeek V3.1",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00166,
+      "provider": "abacus",
+      "release_date": "2025-08-01"
+    },
+    "abacus/gemini-2.0-flash-001": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "temperature",
+        "video_input",
+        "vision"
+      ],
+      "family": "gemini-flash",
+      "id": "gemini-2.0-flash-001",
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 1000000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Gemini 2.0 Flash",
+      "output_cost_per_1k": 0.0004,
+      "provider": "abacus",
+      "release_date": "2025-02-05"
+    },
+    "abacus/gemini-2.0-pro-exp-02-05": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "temperature",
+        "video_input",
+        "vision"
+      ],
+      "family": "gemini-pro",
+      "id": "gemini-2.0-pro-exp-02-05",
+      "max_input_tokens": 2000000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Gemini 2.0 Pro Exp",
+      "provider": "abacus",
+      "release_date": "2025-02-05"
+    },
+    "abacus/gemini-2.5-flash": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "video_input",
+        "vision"
+      ],
+      "family": "gemini-flash",
+      "id": "gemini-2.5-flash",
+      "input_cost_per_1k": 0.0003,
+      "knowledge_cutoff": "2025-01",
+      "max_input_tokens": 1048576,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "Gemini 2.5 Flash",
+      "output_cost_per_1k": 0.0025,
+      "provider": "abacus",
+      "release_date": "2025-03-20"
+    },
+    "abacus/gemini-2.5-pro": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "video_input",
+        "vision"
+      ],
+      "family": "gemini-pro",
+      "id": "gemini-2.5-pro",
+      "input_cost_per_1k": 0.00125,
+      "knowledge_cutoff": "2025-01",
+      "max_input_tokens": 1048576,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "Gemini 2.5 Pro",
+      "output_cost_per_1k": 0.01,
+      "provider": "abacus",
+      "release_date": "2025-03-25"
+    },
+    "abacus/gemini-3-flash-preview": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "pdf_input",
+        "reasoning",
+        "temperature",
+        "video_input",
+        "vision"
+      ],
+      "family": "gemini-flash",
+      "id": "gemini-3-flash-preview",
+      "input_cost_per_1k": 0.0005,
+      "knowledge_cutoff": "2025-01",
+      "max_input_tokens": 1048576,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "Gemini 3 Flash Preview",
+      "output_cost_per_1k": 0.003,
+      "provider": "abacus",
+      "release_date": "2025-12-17"
+    },
+    "abacus/gemini-3-pro-preview": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "reasoning",
+        "temperature",
+        "video_input",
+        "vision"
+      ],
+      "family": "gemini-pro",
+      "id": "gemini-3-pro-preview",
+      "input_cost_per_1k": 0.002,
+      "max_input_tokens": 1000000,
+      "max_output_tokens": 65000,
+      "mode": "chat",
+      "name": "Gemini 3 Pro Preview",
+      "output_cost_per_1k": 0.012,
+      "provider": "abacus",
+      "release_date": "2025-06-01"
+    },
+    "abacus/gpt-4.1": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "gpt-4.1",
+      "id": "gpt-4.1",
+      "input_cost_per_1k": 0.002,
+      "knowledge_cutoff": "2024-04",
+      "max_input_tokens": 1047576,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "GPT-4.1",
+      "output_cost_per_1k": 0.008,
+      "provider": "abacus",
+      "release_date": "2025-04-14"
+    },
+    "abacus/gpt-4.1-mini": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "gpt-4.1",
+      "id": "gpt-4.1-mini",
+      "input_cost_per_1k": 0.0004,
+      "knowledge_cutoff": "2024-04",
+      "max_input_tokens": 1047576,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "GPT-4.1 Mini",
+      "output_cost_per_1k": 0.0016,
+      "provider": "abacus",
+      "release_date": "2025-04-14"
+    },
+    "abacus/gpt-4.1-nano": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "gpt-4.1",
+      "id": "gpt-4.1-nano",
+      "input_cost_per_1k": 0.0001,
+      "knowledge_cutoff": "2024-04",
+      "max_input_tokens": 1047576,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "GPT-4.1 Nano",
+      "output_cost_per_1k": 0.0004,
+      "provider": "abacus",
+      "release_date": "2025-04-14"
+    },
+    "abacus/gpt-4o-2024-11-20": {
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "gpt-4o",
+      "id": "gpt-4o-2024-11-20",
+      "input_cost_per_1k": 0.0025,
+      "knowledge_cutoff": "2024-10",
+      "max_input_tokens": 128000,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "GPT-4o (2024-11-20)",
+      "output_cost_per_1k": 0.01,
+      "provider": "abacus",
+      "release_date": "2024-11-20"
+    },
+    "abacus/gpt-4o-mini": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "gpt-4o",
+      "id": "gpt-4o-mini",
+      "input_cost_per_1k": 0.00015,
+      "knowledge_cutoff": "2024-04",
+      "max_input_tokens": 128000,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "GPT-4o Mini",
+      "output_cost_per_1k": 0.0006,
+      "provider": "abacus",
+      "release_date": "2024-07-18"
+    },
+    "abacus/gpt-5": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5",
+      "id": "gpt-5",
+      "input_cost_per_1k": 0.00125,
+      "knowledge_cutoff": "2024-09-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5",
+      "output_cost_per_1k": 0.01,
+      "provider": "abacus",
+      "release_date": "2025-08-07"
+    },
+    "abacus/gpt-5-mini": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5-mini",
+      "id": "gpt-5-mini",
+      "input_cost_per_1k": 0.00025,
+      "knowledge_cutoff": "2024-05-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5 Mini",
+      "output_cost_per_1k": 0.002,
+      "provider": "abacus",
+      "release_date": "2025-08-07"
+    },
+    "abacus/gpt-5-nano": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5-nano",
+      "id": "gpt-5-nano",
+      "input_cost_per_1k": 5e-05,
+      "knowledge_cutoff": "2024-05-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5 Nano",
+      "output_cost_per_1k": 0.0004,
+      "provider": "abacus",
+      "release_date": "2025-08-07"
+    },
+    "abacus/gpt-5.1": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5",
+      "id": "gpt-5.1",
+      "input_cost_per_1k": 0.00125,
+      "knowledge_cutoff": "2024-09-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5.1",
+      "output_cost_per_1k": 0.01,
+      "provider": "abacus",
+      "release_date": "2025-11-13"
+    },
+    "abacus/gpt-5.1-chat-latest": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5",
+      "id": "gpt-5.1-chat-latest",
+      "input_cost_per_1k": 0.00125,
+      "knowledge_cutoff": "2024-09-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5.1 Chat Latest",
+      "output_cost_per_1k": 0.01,
+      "provider": "abacus",
+      "release_date": "2025-11-13"
+    },
+    "abacus/gpt-5.2": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "gpt-5",
+      "id": "gpt-5.2",
+      "input_cost_per_1k": 0.00175,
+      "knowledge_cutoff": "2025-08-31",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5.2",
+      "output_cost_per_1k": 0.014,
+      "provider": "abacus",
+      "release_date": "2025-12-11"
+    },
+    "abacus/grok-4-0709": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "grok-4",
+      "id": "grok-4-0709",
+      "input_cost_per_1k": 0.003,
+      "max_input_tokens": 256000,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "Grok 4",
+      "output_cost_per_1k": 0.015,
+      "provider": "abacus",
+      "release_date": "2025-07-09"
+    },
+    "abacus/grok-4-1-fast-non-reasoning": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "grok-4.1",
+      "id": "grok-4-1-fast-non-reasoning",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 2000000,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "Grok 4.1 Fast (Non-Reasoning)",
+      "output_cost_per_1k": 0.0005,
+      "provider": "abacus",
+      "release_date": "2025-11-17"
+    },
+    "abacus/grok-4-fast-non-reasoning": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "grok-4",
+      "id": "grok-4-fast-non-reasoning",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 2000000,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "Grok 4 Fast (Non-Reasoning)",
+      "output_cost_per_1k": 0.0005,
+      "provider": "abacus",
+      "release_date": "2025-07-09"
+    },
+    "abacus/grok-code-fast-1": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "grok-code",
+      "id": "grok-code-fast-1",
+      "input_cost_per_1k": 0.0002,
+      "max_input_tokens": 256000,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "Grok Code Fast 1",
+      "output_cost_per_1k": 0.0015,
+      "provider": "abacus",
+      "release_date": "2025-09-01"
+    },
+    "abacus/kimi-k2-turbo-preview": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "kimi-k2",
+      "id": "kimi-k2-turbo-preview",
+      "input_cost_per_1k": 0.00015,
+      "max_input_tokens": 256000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Kimi K2 Turbo Preview",
+      "output_cost_per_1k": 0.008,
+      "provider": "abacus",
+      "release_date": "2025-07-08"
+    },
+    "abacus/llama-3.3-70b-versatile": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "llama-3.3",
+      "id": "llama-3.3-70b-versatile",
+      "input_cost_per_1k": 0.00059,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "Llama 3.3 70B Versatile",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00079,
+      "provider": "abacus",
+      "release_date": "2024-12-06"
+    },
+    "abacus/meta-llama-Llama-4-Maverick-17B-128E-Instruct-FP8": {
+      "capabilities": [
+        "function_calling",
+        "temperature",
+        "vision"
+      ],
+      "family": "llama-4",
+      "id": "meta-llama-Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "input_cost_per_1k": 0.00014,
+      "knowledge_cutoff": "2024-08",
+      "max_input_tokens": 1000000,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "Llama 4 Maverick 17B 128E Instruct FP8",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00059,
+      "provider": "abacus",
+      "release_date": "2025-04-05"
+    },
+    "abacus/meta-llama-Meta-Llama-3.1-405B-Instruct-Turbo": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "llama-3.1",
+      "id": "meta-llama-Meta-Llama-3.1-405B-Instruct-Turbo",
+      "input_cost_per_1k": 0.0035,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 4096,
+      "mode": "chat",
+      "name": "Llama 3.1 405B Instruct Turbo",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0035,
+      "provider": "abacus",
+      "release_date": "2024-07-23"
+    },
+    "abacus/meta-llama-Meta-Llama-3.1-70B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "llama-3.1",
+      "id": "meta-llama-Meta-Llama-3.1-70B-Instruct",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 4096,
+      "mode": "chat",
+      "name": "Llama 3.1 70B Instruct",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0004,
+      "provider": "abacus",
+      "release_date": "2024-07-23"
+    },
+    "abacus/meta-llama-Meta-Llama-3.1-8B-Instruct": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "llama-3.1",
+      "id": "meta-llama-Meta-Llama-3.1-8B-Instruct",
+      "input_cost_per_1k": 2e-05,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 4096,
+      "mode": "chat",
+      "name": "Llama 3.1 8B Instruct",
+      "open_weights": true,
+      "output_cost_per_1k": 5e-05,
+      "provider": "abacus",
+      "release_date": "2024-07-23"
+    },
+    "abacus/o3": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "o3",
+      "id": "o3",
+      "input_cost_per_1k": 0.002,
+      "knowledge_cutoff": "2024-05",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 100000,
+      "mode": "chat",
+      "name": "o3",
+      "output_cost_per_1k": 0.008,
+      "provider": "abacus",
+      "release_date": "2025-04-16"
+    },
+    "abacus/o3-mini": {
+      "capabilities": [
+        "function_calling",
+        "reasoning"
+      ],
+      "family": "o3-mini",
+      "id": "o3-mini",
+      "input_cost_per_1k": 0.0011,
+      "knowledge_cutoff": "2024-05",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 100000,
+      "mode": "chat",
+      "name": "o3-mini",
+      "output_cost_per_1k": 0.0044,
+      "provider": "abacus",
+      "release_date": "2024-12-20"
+    },
+    "abacus/o3-pro": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "o3-pro",
+      "id": "o3-pro",
+      "input_cost_per_1k": 0.02,
+      "knowledge_cutoff": "2024-05",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 100000,
+      "mode": "chat",
+      "name": "o3-pro",
+      "output_cost_per_1k": 0.08,
+      "provider": "abacus",
+      "release_date": "2025-06-10"
+    },
+    "abacus/o4-mini": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": "o4-mini",
+      "id": "o4-mini",
+      "input_cost_per_1k": 0.0011,
+      "knowledge_cutoff": "2024-05",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 100000,
+      "mode": "chat",
+      "name": "o4-mini",
+      "output_cost_per_1k": 0.0044,
+      "provider": "abacus",
+      "release_date": "2025-04-16"
+    },
+    "abacus/openai-gpt-oss-120b": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": "gpt-oss",
+      "id": "openai-gpt-oss-120b",
+      "input_cost_per_1k": 8e-05,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "GPT-OSS 120B",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00044,
+      "provider": "abacus",
+      "release_date": "2025-08-05"
+    },
+    "abacus/qwen-2.5-coder-32b": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "qwen-2.5",
+      "id": "qwen-2.5-coder-32b",
+      "input_cost_per_1k": 0.00079,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "Qwen 2.5 Coder 32B",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00079,
+      "provider": "abacus",
+      "release_date": "2024-11-11"
+    },
+    "abacus/qwen-qwen3-Max": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen-3",
+      "id": "qwen-qwen3-Max",
+      "input_cost_per_1k": 0.0012,
+      "max_input_tokens": 131072,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "Qwen3 Max",
+      "output_cost_per_1k": 0.006,
+      "provider": "abacus",
+      "release_date": "2025-05-28"
+    },
+    "abacus/qwen-qwen3-coder-480b-a35b-instruct": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "qwen-3-coder",
+      "id": "qwen-qwen3-coder-480b-a35b-instruct",
+      "input_cost_per_1k": 0.00029,
+      "max_input_tokens": 262144,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "Qwen3 Coder 480B A35B Instruct",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0012,
+      "provider": "abacus",
+      "release_date": "2025-07-22"
+    },
+    "abacus/zai-org-glm-4.5": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "glm-4",
+      "id": "zai-org-glm-4.5",
+      "input_cost_per_1k": 0.0006,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "GLM-4.5",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0022,
+      "provider": "abacus",
+      "release_date": "2025-07-28"
+    },
+    "abacus/zai-org-glm-4.6": {
+      "capabilities": [
+        "function_calling",
+        "temperature"
+      ],
+      "family": "glm-4",
+      "id": "zai-org-glm-4.6",
+      "input_cost_per_1k": 0.0006,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 8192,
+      "mode": "chat",
+      "name": "GLM-4.6",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0022,
+      "provider": "abacus",
+      "release_date": "2025-03-01"
+    },
     "aihubmix/DeepSeek-V3.2-Exp": {
       "capabilities": [
         "function_calling",
@@ -958,6 +1908,27 @@
       "provider": "aihubmix",
       "release_date": "2025-08-05"
     },
+    "aihubmix/claude-opus-4-5": {
+      "cache_read_cost_per_1k": 0.0005,
+      "cache_write_cost_per_1k": 0.00625,
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": null,
+      "id": "claude-opus-4-5",
+      "input_cost_per_1k": 0.005,
+      "knowledge_cutoff": "2025-03",
+      "max_input_tokens": 200000,
+      "max_output_tokens": 32000,
+      "mode": "chat",
+      "name": "Claude Opus 4.5",
+      "output_cost_per_1k": 0.025,
+      "provider": "aihubmix",
+      "release_date": "2025-11-25"
+    },
     "aihubmix/claude-sonnet-4-5": {
       "cache_read_cost_per_1k": 0.0003,
       "cache_write_cost_per_1k": 0.00375,
@@ -979,6 +1950,27 @@
       "output_cost_per_1k": 0.0165,
       "provider": "aihubmix",
       "release_date": "2025-09-29"
+    },
+    "aihubmix/coding-glm-4.6-free": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature"
+      ],
+      "family": null,
+      "id": "coding-glm-4.6-free",
+      "input_cost_per_1k": 0.0,
+      "knowledge_cutoff": "2025-04",
+      "max_input_tokens": 204800,
+      "max_output_tokens": 131072,
+      "mode": "chat",
+      "name": "Coding GLM-4.6 Free",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0,
+      "provider": "aihubmix",
+      "release_date": "2025-09-30"
     },
     "aihubmix/gemini-2.5-flash": {
       "cache_read_cost_per_1k": 2e-05,
@@ -1058,7 +2050,7 @@
       "input_cost_per_1k": 0.00027,
       "knowledge_cutoff": "2025-04",
       "max_input_tokens": 204800,
-      "max_output_tokens": 204800,
+      "max_output_tokens": 131072,
       "mode": "chat",
       "name": "GLM-4.6",
       "open_weights": true,
@@ -1298,6 +2290,26 @@
       "output_cost_per_1k": 0.01,
       "provider": "aihubmix",
       "release_date": "2025-11-15"
+    },
+    "aihubmix/gpt-5.1-codex-max": {
+      "cache_read_cost_per_1k": 0.000125,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "vision"
+      ],
+      "family": null,
+      "id": "gpt-5.1-codex-max",
+      "input_cost_per_1k": 0.00125,
+      "knowledge_cutoff": "2024-09-30",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 128000,
+      "mode": "chat",
+      "name": "GPT-5.1-Codex-Max",
+      "output_cost_per_1k": 0.01,
+      "provider": "aihubmix",
+      "release_date": "2025-11-13"
     },
     "aihubmix/gpt-5.1-codex-mini": {
       "cache_read_cost_per_1k": 3e-05,
@@ -8410,50 +9422,60 @@
       "release_date": "2025-11-05"
     },
     "chutes/Alibaba-NLP/Tongyi-DeepResearch-30B-A3B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "yi",
+      "family": "alibaba-nlp",
       "id": "Alibaba-NLP/Tongyi-DeepResearch-30B-A3B",
-      "input_cost_per_1k": 0.0,
+      "input_cost_per_1k": 0.0001,
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
       "name": "Tongyi DeepResearch 30B A3B",
       "open_weights": true,
-      "output_cost_per_1k": 0.0,
+      "output_cost_per_1k": 0.00039,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.000585,
+      "release_date": "2025-12-29"
     },
     "chutes/ArliAI/QwQ-32B-ArliAI-RpR-v1": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "qwq",
+      "family": "arliai",
       "id": "ArliAI/QwQ-32B-ArliAI-RpR-v1",
       "input_cost_per_1k": 3e-05,
       "max_input_tokens": 32768,
       "max_output_tokens": 32768,
       "mode": "chat",
-      "name": "QwQ 32B ArliAI RpR V1",
+      "name": "QwQ 32B ArliAI RpR v1",
       "open_weights": true,
       "output_cost_per_1k": 0.00011,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.000165,
+      "release_date": "2025-12-29"
     },
     "chutes/MiniMaxAI/MiniMax-M2": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "minimax",
+      "family": "minimaxai",
       "id": "MiniMaxAI/MiniMax-M2",
       "input_cost_per_1k": 0.00026,
-      "knowledge_cutoff": "2024-10",
       "max_input_tokens": 196608,
       "max_output_tokens": 196608,
       "mode": "chat",
@@ -8461,32 +9483,61 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00102,
       "provider": "chutes",
-      "release_date": "2025-10-27"
+      "reasoning_cost_per_1k": 0.00153,
+      "release_date": "2025-12-29"
     },
-    "chutes/NousResearch/DeepHermes-3-Mistral-24B-Preview": {
+    "chutes/MiniMaxAI/MiniMax-M2.1-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
+        "reasoning",
         "temperature"
       ],
-      "family": "mistral",
+      "family": "minimaxai",
+      "id": "MiniMaxAI/MiniMax-M2.1-TEE",
+      "input_cost_per_1k": 0.0003,
+      "max_input_tokens": 196608,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "MiniMax M2.1 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0012,
+      "provider": "chutes",
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
+    },
+    "chutes/NousResearch/DeepHermes-3-Mistral-24B-Preview": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "nousresearch",
       "id": "NousResearch/DeepHermes-3-Mistral-24B-Preview",
-      "input_cost_per_1k": 5e-05,
+      "input_cost_per_1k": 2e-05,
       "max_input_tokens": 32768,
       "max_output_tokens": 32768,
       "mode": "chat",
       "name": "DeepHermes 3 Mistral 24B Preview",
       "open_weights": true,
-      "output_cost_per_1k": 0.0002,
+      "output_cost_per_1k": 0.0001,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/NousResearch/Hermes-4-14B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "hermes",
+      "family": "nousresearch",
       "id": "NousResearch/Hermes-4-14B",
       "input_cost_per_1k": 1e-05,
       "max_input_tokens": 40960,
@@ -8496,15 +9547,19 @@
       "open_weights": true,
       "output_cost_per_1k": 5e-05,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 7.5e-05,
+      "release_date": "2025-12-29"
     },
     "chutes/NousResearch/Hermes-4-405B-FP8": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "hermes",
+      "family": "nousresearch",
       "id": "NousResearch/Hermes-4-405B-FP8",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 131072,
@@ -8514,15 +9569,37 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
+    },
+    "chutes/NousResearch/Hermes-4-405B-FP8-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "temperature"
+      ],
+      "family": "nousresearch",
+      "id": "NousResearch/Hermes-4-405B-FP8-TEE",
+      "input_cost_per_1k": 0.0003,
+      "max_input_tokens": 40960,
+      "max_output_tokens": 40960,
+      "mode": "chat",
+      "name": "Hermes 4 405B FP8 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0012,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
     },
     "chutes/NousResearch/Hermes-4-70B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "hermes",
+      "family": "nousresearch",
       "id": "NousResearch/Hermes-4-70B",
       "input_cost_per_1k": 0.00011,
       "max_input_tokens": 131072,
@@ -8532,30 +9609,36 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00038,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.00057,
+      "release_date": "2025-12-29"
     },
     "chutes/NousResearch/Hermes-4.3-36B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "temperature"
       ],
-      "family": "hermes",
+      "family": "nousresearch",
       "id": "NousResearch/Hermes-4.3-36B",
-      "input_cost_per_1k": 0.00015,
-      "max_input_tokens": 32768,
-      "max_output_tokens": 8192,
+      "input_cost_per_1k": 0.0001,
+      "max_input_tokens": 40960,
+      "max_output_tokens": 40960,
       "mode": "chat",
       "name": "Hermes 4.3 36B",
       "open_weights": true,
-      "output_cost_per_1k": 0.0006,
+      "output_cost_per_1k": 0.00039,
       "provider": "chutes",
-      "release_date": "2025-12-11"
+      "release_date": "2025-12-29"
     },
     "chutes/OpenGVLab/InternVL3-78B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "internvl",
+      "family": "opengvlab",
       "id": "OpenGVLab/InternVL3-78B",
       "input_cost_per_1k": 0.0001,
       "max_input_tokens": 32768,
@@ -8565,30 +9648,36 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00039,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen2.5-72B-Instruct": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature"
       ],
-      "family": "qwen2.5",
+      "family": "qwen",
       "id": "Qwen/Qwen2.5-72B-Instruct",
-      "input_cost_per_1k": 7e-05,
+      "input_cost_per_1k": 0.00013,
       "max_input_tokens": 32768,
       "max_output_tokens": 32768,
       "mode": "chat",
       "name": "Qwen2.5 72B Instruct",
       "open_weights": true,
-      "output_cost_per_1k": 0.00026,
+      "output_cost_per_1k": 0.00052,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature"
       ],
-      "family": "qwen2.5-coder",
+      "family": "qwen",
       "id": "Qwen/Qwen2.5-Coder-32B-Instruct",
       "input_cost_per_1k": 3e-05,
       "max_input_tokens": 32768,
@@ -8598,14 +9687,17 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00011,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen2.5-VL-32B-Instruct": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "qwen2.5-vl",
+      "family": "qwen",
       "id": "Qwen/Qwen2.5-VL-32B-Instruct",
       "input_cost_per_1k": 5e-05,
       "max_input_tokens": 16384,
@@ -8615,32 +9707,56 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00022,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen2.5-VL-72B-Instruct": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "qwen2.5-vl",
+      "family": "qwen",
       "id": "Qwen/Qwen2.5-VL-72B-Instruct",
-      "input_cost_per_1k": 3e-05,
+      "input_cost_per_1k": 7e-05,
       "max_input_tokens": 32768,
       "max_output_tokens": 32768,
       "mode": "chat",
       "name": "Qwen2.5 VL 72B Instruct",
       "open_weights": true,
-      "output_cost_per_1k": 0.00013,
+      "output_cost_per_1k": 0.00026,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
+    },
+    "chutes/Qwen/Qwen2.5-VL-72B-Instruct-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "Qwen/Qwen2.5-VL-72B-Instruct-TEE",
+      "input_cost_per_1k": 0.00015,
+      "max_input_tokens": 40960,
+      "max_output_tokens": 40960,
+      "mode": "chat",
+      "name": "Qwen2.5 VL 72B Instruct TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0006,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-14B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-14B",
       "input_cost_per_1k": 5e-05,
       "max_input_tokens": 40960,
@@ -8650,15 +9766,19 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00022,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.00033,
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-235B-A22B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-235B-A22B",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 40960,
@@ -8668,17 +9788,20 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-235B-A22B-Instruct-2507": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
       "input_cost_per_1k": 8e-05,
-      "knowledge_cutoff": "2025-04",
       "max_input_tokens": 262144,
       "max_output_tokens": 262144,
       "mode": "chat",
@@ -8686,37 +9809,62 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00055,
       "provider": "chutes",
-      "release_date": "2025-04-28"
+      "release_date": "2025-12-29"
     },
-    "chutes/Qwen/Qwen3-235B-A22B-Thinking-2507": {
+    "chutes/Qwen/Qwen3-235B-A22B-Instruct-2507-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "Qwen/Qwen3-235B-A22B-Instruct-2507-TEE",
+      "input_cost_per_1k": 8e-05,
+      "max_input_tokens": 262144,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "Qwen3 235B A22B Instruct 2507 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00055,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
+    },
+    "chutes/Qwen/Qwen3-235B-A22B-Thinking-2507": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-235B-A22B-Thinking-2507",
       "input_cost_per_1k": 0.00011,
-      "knowledge_cutoff": "2025-04",
       "max_input_tokens": 262144,
       "max_output_tokens": 262144,
       "mode": "chat",
-      "name": "Qwen3-235B-A22B-Thinking-2507",
+      "name": "Qwen3 235B A22B Thinking 2507",
       "open_weights": true,
       "output_cost_per_1k": 0.0006,
       "provider": "chutes",
-      "release_date": "2025-07-25"
+      "reasoning_cost_per_1k": 0.0009,
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-30B-A3B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-30B-A3B",
       "input_cost_per_1k": 6e-05,
-      "knowledge_cutoff": "2025-04",
       "max_input_tokens": 40960,
       "max_output_tokens": 40960,
       "mode": "chat",
@@ -8724,17 +9872,20 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00022,
       "provider": "chutes",
-      "release_date": "2025-04-28"
+      "reasoning_cost_per_1k": 0.00033,
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-30B-A3B-Instruct-2507": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
       "input_cost_per_1k": 8e-05,
-      "knowledge_cutoff": "2025-04",
       "max_input_tokens": 262144,
       "max_output_tokens": 262144,
       "mode": "chat",
@@ -8742,15 +9893,18 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00033,
       "provider": "chutes",
-      "release_date": "2025-07-25"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-32B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-32B",
       "input_cost_per_1k": 8e-05,
       "max_input_tokens": 40960,
@@ -8760,51 +9914,40 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00024,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.00036,
+      "release_date": "2025-12-29"
     },
-    "chutes/Qwen/Qwen3-Coder-30B-A3B-Instruct": {
+    "chutes/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature"
       ],
-      "family": "qwen3-coder",
-      "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
-      "input_cost_per_1k": 6e-05,
-      "knowledge_cutoff": "2025-04",
-      "max_input_tokens": 262144,
-      "max_output_tokens": 262144,
-      "mode": "chat",
-      "name": "Qwen3 Coder 30B A3B Instruct",
-      "open_weights": true,
-      "output_cost_per_1k": 0.00025,
-      "provider": "chutes",
-      "release_date": "2025-07-25"
-    },
-    "chutes/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8": {
-      "capabilities": [
-        "function_calling",
-        "temperature"
-      ],
-      "family": "qwen3-coder",
-      "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+      "family": "qwen",
+      "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8-TEE",
       "input_cost_per_1k": 0.00022,
       "max_input_tokens": 262144,
       "max_output_tokens": 262144,
       "mode": "chat",
-      "name": "Qwen3 Coder 480B A35B Instruct (FP8)",
+      "name": "Qwen3 Coder 480B A35B Instruct FP8 TEE",
+      "open_weights": true,
       "output_cost_per_1k": 0.00095,
       "provider": "chutes",
-      "release_date": "2025-08-01"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-Next-80B-A3B-Instruct": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature"
       ],
-      "family": "qwen3",
+      "family": "qwen",
       "id": "Qwen/Qwen3-Next-80B-A3B-Instruct",
       "input_cost_per_1k": 0.0001,
-      "knowledge_cutoff": "2025-04",
       "max_input_tokens": 262144,
       "max_output_tokens": 262144,
       "mode": "chat",
@@ -8812,15 +9955,17 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0008,
       "provider": "chutes",
-      "release_date": "2025-09-11"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-VL-235B-A22B-Instruct": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
         "temperature",
         "vision"
       ],
-      "family": "qwen3-vl",
+      "family": "qwen",
       "id": "Qwen/Qwen3-VL-235B-A22B-Instruct",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 262144,
@@ -8830,16 +9975,19 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/Qwen/Qwen3-VL-235B-A22B-Thinking": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature",
         "vision"
       ],
-      "family": "qwen3-vl",
+      "family": "qwen",
       "id": "Qwen/Qwen3-VL-235B-A22B-Thinking",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 262144,
@@ -8849,15 +9997,55 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
+    },
+    "chutes/Qwen/Qwen3Guard-Gen-0.6B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "temperature"
+      ],
+      "family": "qwen",
+      "id": "Qwen/Qwen3Guard-Gen-0.6B",
+      "input_cost_per_1k": 1e-05,
+      "max_input_tokens": 40960,
+      "max_output_tokens": 40960,
+      "mode": "chat",
+      "name": "Qwen3Guard Gen 0.6B",
+      "open_weights": true,
+      "output_cost_per_1k": 1e-05,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
+    },
+    "chutes/XiaomiMiMo/MiMo-V2-Flash": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "temperature"
+      ],
+      "family": "xiaomimimo",
+      "id": "XiaomiMiMo/MiMo-V2-Flash",
+      "input_cost_per_1k": 0.00017,
+      "max_input_tokens": 40960,
+      "max_output_tokens": 40960,
+      "mode": "chat",
+      "name": "MiMo V2 Flash",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00065,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
     },
     "chutes/chutesai/Mistral-Small-3.1-24B-Instruct-2503": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "mistral-small",
+      "family": "chutesai",
       "id": "chutesai/Mistral-Small-3.1-24B-Instruct-2503",
       "input_cost_per_1k": 3e-05,
       "max_input_tokens": 131072,
@@ -8867,102 +10055,102 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00011,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/chutesai/Mistral-Small-3.2-24B-Instruct-2506": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "mistral-small",
+      "family": "chutesai",
       "id": "chutesai/Mistral-Small-3.2-24B-Instruct-2506",
       "input_cost_per_1k": 6e-05,
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
-      "name": "Mistral Small 3.2 24B Instruct (2506)",
+      "name": "Mistral Small 3.2 24B Instruct 2506",
       "open_weights": true,
       "output_cost_per_1k": 0.00018,
       "provider": "chutes",
-      "release_date": "2025-06-20"
+      "release_date": "2025-12-29"
     },
-    "chutes/deepseek-ai/DeepSeek-R1": {
-      "capabilities": [
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-r1",
-      "id": "deepseek-ai/DeepSeek-R1",
-      "input_cost_per_1k": 0.0003,
-      "max_input_tokens": 163840,
-      "max_output_tokens": 163840,
-      "mode": "chat",
-      "name": "DeepSeek R1",
-      "open_weights": true,
-      "output_cost_per_1k": 0.0012,
-      "provider": "chutes",
-      "release_date": "2025-11-08"
-    },
-    "chutes/deepseek-ai/DeepSeek-R1-0528": {
+    "chutes/deepseek-ai/DeepSeek-R1-0528-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-r1",
-      "id": "deepseek-ai/DeepSeek-R1-0528",
+      "family": "deepseek-ai",
+      "id": "deepseek-ai/DeepSeek-R1-0528-TEE",
       "input_cost_per_1k": 0.0004,
       "max_input_tokens": 163840,
       "max_output_tokens": 163840,
       "mode": "chat",
-      "name": "DeepSeek R1 (0528)",
+      "name": "DeepSeek R1 0528 TEE",
+      "open_weights": true,
       "output_cost_per_1k": 0.00175,
       "provider": "chutes",
-      "release_date": "2025-08-01"
-    },
-    "chutes/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
-      "capabilities": [
-        "reasoning",
-        "temperature"
-      ],
-      "family": "qwen3",
-      "id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
-      "input_cost_per_1k": 2e-05,
-      "knowledge_cutoff": "2025-05",
-      "max_input_tokens": 32768,
-      "max_output_tokens": 32768,
-      "mode": "chat",
-      "name": "DeepSeek R1 0528 Qwen3 8B",
-      "open_weights": true,
-      "output_cost_per_1k": 0.0001,
-      "provider": "chutes",
-      "release_date": "2025-05-29"
+      "reasoning_cost_per_1k": 0.002625,
+      "release_date": "2025-12-29"
     },
     "chutes/deepseek-ai/DeepSeek-R1-Distill-Llama-70B": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-r1-distill-llama",
+      "family": "deepseek-ai",
       "id": "deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
       "input_cost_per_1k": 3e-05,
-      "knowledge_cutoff": "2024-10",
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
       "name": "DeepSeek R1 Distill Llama 70B",
       "open_weights": true,
-      "output_cost_per_1k": 0.00013,
+      "output_cost_per_1k": 0.00011,
       "provider": "chutes",
-      "release_date": "2025-01-23"
+      "reasoning_cost_per_1k": 0.000165,
+      "release_date": "2025-12-29"
     },
-    "chutes/deepseek-ai/DeepSeek-V3": {
+    "chutes/deepseek-ai/DeepSeek-R1-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
+        "reasoning",
         "temperature"
       ],
-      "family": "deepseek-v3",
+      "family": "deepseek-ai",
+      "id": "deepseek-ai/DeepSeek-R1-TEE",
+      "input_cost_per_1k": 0.0003,
+      "max_input_tokens": 163840,
+      "max_output_tokens": 163840,
+      "mode": "chat",
+      "name": "DeepSeek R1 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0012,
+      "provider": "chutes",
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
+    },
+    "chutes/deepseek-ai/DeepSeek-V3": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "json_mode",
+        "temperature"
+      ],
+      "family": "deepseek-ai",
       "id": "deepseek-ai/DeepSeek-V3",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 163840,
@@ -8972,84 +10160,103 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
-    "chutes/deepseek-ai/DeepSeek-V3-0324": {
-      "capabilities": [
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai/DeepSeek-V3-0324",
-      "input_cost_per_1k": 0.00024,
-      "max_input_tokens": 163840,
-      "max_output_tokens": 163840,
-      "mode": "chat",
-      "name": "DeepSeek V3 (0324)",
-      "output_cost_per_1k": 0.00084,
-      "provider": "chutes",
-      "release_date": "2025-08-01"
-    },
-    "chutes/deepseek-ai/DeepSeek-V3.1": {
+    "chutes/deepseek-ai/DeepSeek-V3-0324-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "deepseek-ai",
+      "id": "deepseek-ai/DeepSeek-V3-0324-TEE",
+      "input_cost_per_1k": 0.00024,
+      "max_input_tokens": 163840,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "DeepSeek V3 0324 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00084,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
+    },
+    "chutes/deepseek-ai/DeepSeek-V3.1": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-v3",
+      "family": "deepseek-ai",
       "id": "deepseek-ai/DeepSeek-V3.1",
       "input_cost_per_1k": 0.0002,
       "max_input_tokens": 163840,
-      "max_output_tokens": 163840,
+      "max_output_tokens": 65536,
       "mode": "chat",
       "name": "DeepSeek V3.1",
+      "open_weights": true,
       "output_cost_per_1k": 0.0008,
       "provider": "chutes",
-      "release_date": "2025-08-21"
+      "reasoning_cost_per_1k": 0.0012,
+      "release_date": "2025-12-29"
     },
-    "chutes/deepseek-ai/DeepSeek-V3.1-Terminus": {
+    "chutes/deepseek-ai/DeepSeek-V3.1-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai/DeepSeek-V3.1-Terminus",
-      "input_cost_per_1k": 0.00023,
-      "knowledge_cutoff": "2025-07",
+      "family": "deepseek-ai",
+      "id": "deepseek-ai/DeepSeek-V3.1-TEE",
+      "input_cost_per_1k": 0.0002,
       "max_input_tokens": 163840,
-      "max_output_tokens": 163840,
+      "max_output_tokens": 65536,
       "mode": "chat",
-      "name": "DeepSeek V3.1 Terminus",
+      "name": "DeepSeek V3.1 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0008,
+      "provider": "chutes",
+      "reasoning_cost_per_1k": 0.0012,
+      "release_date": "2025-12-29"
+    },
+    "chutes/deepseek-ai/DeepSeek-V3.1-Terminus-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "deepseek-ai",
+      "id": "deepseek-ai/DeepSeek-V3.1-Terminus-TEE",
+      "input_cost_per_1k": 0.00023,
+      "max_input_tokens": 163840,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "DeepSeek V3.1 Terminus TEE",
       "open_weights": true,
       "output_cost_per_1k": 0.0009,
       "provider": "chutes",
-      "release_date": "2025-09-22"
-    },
-    "chutes/deepseek-ai/DeepSeek-V3.2": {
-      "capabilities": [
-        "function_calling",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "deepseek-v3",
-      "id": "deepseek-ai/DeepSeek-V3.2",
-      "input_cost_per_1k": 0.00027,
-      "knowledge_cutoff": "2025-12",
-      "max_input_tokens": 163840,
-      "max_output_tokens": 16384,
-      "mode": "chat",
-      "name": "DeepSeek V3.2",
-      "open_weights": true,
-      "output_cost_per_1k": 0.00041,
-      "provider": "chutes",
-      "release_date": "2025-12-01"
+      "reasoning_cost_per_1k": 0.00135,
+      "release_date": "2025-12-29"
     },
     "chutes/deepseek-ai/DeepSeek-V3.2-Speciale-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-v3",
+      "family": "deepseek-ai",
       "id": "deepseek-ai/DeepSeek-V3.2-Speciale-TEE",
       "input_cost_per_1k": 0.00027,
       "max_input_tokens": 163840,
@@ -9059,121 +10266,188 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00041,
       "provider": "chutes",
-      "release_date": "2025-12-11"
+      "reasoning_cost_per_1k": 0.000615,
+      "release_date": "2025-12-29"
     },
-    "chutes/mistralai/Devstral-2-123B-Instruct-2512": {
+    "chutes/deepseek-ai/DeepSeek-V3.2-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
+        "reasoning",
         "temperature"
       ],
-      "family": "devstral",
+      "family": "deepseek-ai",
+      "id": "deepseek-ai/DeepSeek-V3.2-TEE",
+      "input_cost_per_1k": 0.00027,
+      "max_input_tokens": 163840,
+      "max_output_tokens": 16384,
+      "mode": "chat",
+      "name": "DeepSeek V3.2 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00041,
+      "provider": "chutes",
+      "reasoning_cost_per_1k": 0.000615,
+      "release_date": "2025-12-29"
+    },
+    "chutes/mistralai/Devstral-2-123B-Instruct-2512": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "mistralai",
       "id": "mistralai/Devstral-2-123B-Instruct-2512",
-      "input_cost_per_1k": 0.00015,
+      "input_cost_per_1k": 5e-05,
       "max_input_tokens": 262144,
       "max_output_tokens": 65536,
       "mode": "chat",
       "name": "Devstral 2 123B Instruct 2512",
       "open_weights": true,
-      "output_cost_per_1k": 0.0006,
+      "output_cost_per_1k": 0.00022,
       "provider": "chutes",
-      "release_date": "2025-12-11"
+      "release_date": "2025-12-29"
     },
     "chutes/moonshotai/Kimi-K2-Instruct-0905": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature"
       ],
-      "family": "kimi-k2",
+      "family": "moonshotai",
       "id": "moonshotai/Kimi-K2-Instruct-0905",
       "input_cost_per_1k": 0.00039,
       "max_input_tokens": 262144,
       "max_output_tokens": 262144,
       "mode": "chat",
       "name": "Kimi K2 Instruct 0905",
+      "open_weights": true,
       "output_cost_per_1k": 0.0019,
       "provider": "chutes",
-      "release_date": "2024-09-05"
+      "release_date": "2025-12-29"
     },
-    "chutes/moonshotai/Kimi-K2-Thinking": {
+    "chutes/moonshotai/Kimi-K2-Thinking-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "kimi-k2",
-      "id": "moonshotai/Kimi-K2-Thinking",
-      "input_cost_per_1k": 0.00045,
+      "family": "moonshotai",
+      "id": "moonshotai/Kimi-K2-Thinking-TEE",
+      "input_cost_per_1k": 0.0004,
       "max_input_tokens": 262144,
-      "max_output_tokens": 16384,
+      "max_output_tokens": 65535,
       "mode": "chat",
-      "name": "Kimi K2 Thinking",
+      "name": "Kimi K2 Thinking TEE",
       "open_weights": true,
-      "output_cost_per_1k": 0.00235,
+      "output_cost_per_1k": 0.00175,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.002625,
+      "release_date": "2025-12-29"
     },
-    "chutes/openai/gpt-oss-120b": {
+    "chutes/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
+        "temperature"
+      ],
+      "family": "nvidia",
+      "id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "input_cost_per_1k": 6e-05,
+      "max_input_tokens": 262144,
+      "max_output_tokens": 262144,
+      "mode": "chat",
+      "name": "NVIDIA Nemotron 3 Nano 30B A3B BF16",
+      "open_weights": true,
+      "output_cost_per_1k": 0.00024,
+      "provider": "chutes",
+      "release_date": "2025-12-29"
+    },
+    "chutes/openai/gpt-oss-120b-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "gpt-oss",
-      "id": "openai/gpt-oss-120b",
+      "family": "openai",
+      "id": "openai/gpt-oss-120b-TEE",
       "input_cost_per_1k": 4e-05,
       "max_input_tokens": 131072,
-      "max_output_tokens": 131072,
+      "max_output_tokens": 65536,
       "mode": "chat",
-      "name": "GPT OSS 120B",
+      "name": "gpt oss 120b TEE",
       "open_weights": true,
-      "output_cost_per_1k": 0.0004,
+      "output_cost_per_1k": 0.00025,
       "provider": "chutes",
-      "release_date": "2025-08-05"
+      "reasoning_cost_per_1k": 0.000375,
+      "release_date": "2025-12-29"
     },
     "chutes/openai/gpt-oss-20b": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "gpt-oss",
+      "family": "openai",
       "id": "openai/gpt-oss-20b",
-      "input_cost_per_1k": 0.0,
+      "input_cost_per_1k": 2e-05,
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
-      "name": "Gpt Oss 20b",
+      "name": "gpt oss 20b",
       "open_weights": true,
-      "output_cost_per_1k": 0.0,
+      "output_cost_per_1k": 0.0001,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "reasoning_cost_per_1k": 0.00015,
+      "release_date": "2025-12-29"
     },
     "chutes/rednote-hilab/dots.ocr": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "dots.ocr",
+      "family": "rednote-hilab",
       "id": "rednote-hilab/dots.ocr",
       "input_cost_per_1k": 1e-05,
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
-      "name": "Dots.Ocr",
+      "name": "dots.ocr",
       "open_weights": true,
       "output_cost_per_1k": 1e-05,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/tngtech/DeepSeek-R1T-Chimera": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-r1",
+      "family": "tngtech",
       "id": "tngtech/DeepSeek-R1T-Chimera",
       "input_cost_per_1k": 0.0003,
-      "knowledge_cutoff": "2025-04",
       "max_input_tokens": 163840,
       "max_output_tokens": 163840,
       "mode": "chat",
@@ -9181,18 +10455,21 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-04-26"
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
     },
     "chutes/tngtech/DeepSeek-TNG-R1T2-Chimera": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "deepseek-r1",
+      "family": "tngtech",
       "id": "tngtech/DeepSeek-TNG-R1T2-Chimera",
       "input_cost_per_1k": 0.0003,
-      "knowledge_cutoff": "2025-07",
       "max_input_tokens": 163840,
       "max_output_tokens": 163840,
       "mode": "chat",
@@ -9200,31 +10477,39 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-07-08"
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
     },
     "chutes/tngtech/TNG-R1T-Chimera-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "tng-r1t-chimera-tee",
+      "family": "tngtech",
       "id": "tngtech/TNG-R1T-Chimera-TEE",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 163840,
-      "max_output_tokens": 163840,
+      "max_output_tokens": 65536,
       "mode": "chat",
       "name": "TNG R1T Chimera TEE",
       "open_weights": true,
       "output_cost_per_1k": 0.0012,
       "provider": "chutes",
-      "release_date": "2025-12-11"
+      "reasoning_cost_per_1k": 0.0018,
+      "release_date": "2025-12-29"
     },
     "chutes/unsloth/Mistral-Nemo-Instruct-2407": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature"
       ],
-      "family": "mistral-nemo",
+      "family": "unsloth",
       "id": "unsloth/Mistral-Nemo-Instruct-2407",
       "input_cost_per_1k": 2e-05,
       "max_input_tokens": 131072,
@@ -9234,15 +10519,18 @@
       "open_weights": true,
       "output_cost_per_1k": 4e-05,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/unsloth/Mistral-Small-24B-Instruct-2501": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "mistral-small",
+      "family": "unsloth",
       "id": "unsloth/Mistral-Small-24B-Instruct-2501",
       "input_cost_per_1k": 3e-05,
       "max_input_tokens": 32768,
@@ -9252,141 +10540,145 @@
       "open_weights": true,
       "output_cost_per_1k": 0.00011,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/unsloth/gemma-3-12b-it": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "temperature",
         "vision"
       ],
-      "family": "gemma-3",
+      "family": "unsloth",
       "id": "unsloth/gemma-3-12b-it",
       "input_cost_per_1k": 3e-05,
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
-      "name": "Gemma 3 12b It",
+      "name": "gemma 3 12b it",
       "open_weights": true,
       "output_cost_per_1k": 0.0001,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/unsloth/gemma-3-27b-it": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "gemma-3",
+      "family": "unsloth",
       "id": "unsloth/gemma-3-27b-it",
       "input_cost_per_1k": 4e-05,
       "max_input_tokens": 96000,
       "max_output_tokens": 96000,
       "mode": "chat",
-      "name": "Gemma 3 27b It",
+      "name": "gemma 3 27b it",
       "open_weights": true,
       "output_cost_per_1k": 0.00015,
       "provider": "chutes",
-      "release_date": "2025-11-08"
+      "release_date": "2025-12-29"
     },
     "chutes/unsloth/gemma-3-4b-it": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "json_mode",
         "temperature",
         "vision"
       ],
-      "family": "gemma-3",
+      "family": "unsloth",
       "id": "unsloth/gemma-3-4b-it",
-      "input_cost_per_1k": 0.0,
+      "input_cost_per_1k": 1e-05,
       "max_input_tokens": 96000,
       "max_output_tokens": 96000,
       "mode": "chat",
-      "name": "Gemma 3 4b It",
+      "name": "gemma 3 4b it",
       "open_weights": true,
-      "output_cost_per_1k": 0.0,
+      "output_cost_per_1k": 3e-05,
       "provider": "chutes",
-      "release_date": "2025-11-08"
-    },
-    "chutes/zai-org/GLM-4.5": {
-      "capabilities": [
-        "function_calling",
-        "reasoning",
-        "temperature"
-      ],
-      "family": "glm-4.5",
-      "id": "zai-org/GLM-4.5",
-      "input_cost_per_1k": 0.00035,
-      "knowledge_cutoff": "2025-04",
-      "max_input_tokens": 131072,
-      "max_output_tokens": 131072,
-      "mode": "chat",
-      "name": "GLM 4.5",
-      "open_weights": true,
-      "output_cost_per_1k": 0.00155,
-      "provider": "chutes",
-      "release_date": "2025-10-30"
+      "release_date": "2025-12-29"
     },
     "chutes/zai-org/GLM-4.5-Air": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "glm-4.5-air",
+      "family": "zai-org",
       "id": "zai-org/GLM-4.5-Air",
-      "input_cost_per_1k": 0.0,
-      "knowledge_cutoff": "2025-04",
+      "input_cost_per_1k": 5e-05,
       "max_input_tokens": 131072,
       "max_output_tokens": 131072,
       "mode": "chat",
       "name": "GLM 4.5 Air",
       "open_weights": true,
-      "output_cost_per_1k": 0.0,
+      "output_cost_per_1k": 0.00022,
       "provider": "chutes",
-      "release_date": "2025-07-28"
+      "reasoning_cost_per_1k": 0.00033,
+      "release_date": "2025-12-29"
     },
-    "chutes/zai-org/GLM-4.6": {
+    "chutes/zai-org/GLM-4.5-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature"
       ],
-      "family": "glm-4.6",
-      "id": "zai-org/GLM-4.6",
-      "input_cost_per_1k": 0.0004,
-      "knowledge_cutoff": "2025-04",
-      "max_input_tokens": 202752,
-      "max_output_tokens": 202752,
+      "family": "zai-org",
+      "id": "zai-org/GLM-4.5-TEE",
+      "input_cost_per_1k": 0.00035,
+      "max_input_tokens": 131072,
+      "max_output_tokens": 65536,
       "mode": "chat",
-      "name": "GLM 4.6",
+      "name": "GLM 4.5 TEE",
       "open_weights": true,
-      "output_cost_per_1k": 0.00175,
+      "output_cost_per_1k": 0.00155,
       "provider": "chutes",
-      "release_date": "2025-10-30"
+      "reasoning_cost_per_1k": 0.002325,
+      "release_date": "2025-12-29"
     },
     "chutes/zai-org/GLM-4.6-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
         "temperature"
       ],
-      "family": "glm-4.6",
+      "family": "zai-org",
       "id": "zai-org/GLM-4.6-TEE",
-      "input_cost_per_1k": 0.0003,
-      "max_input_tokens": 32768,
-      "max_output_tokens": 8192,
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 202752,
+      "max_output_tokens": 65536,
       "mode": "chat",
       "name": "GLM 4.6 TEE",
       "open_weights": true,
-      "output_cost_per_1k": 0.0012,
+      "output_cost_per_1k": 0.00175,
       "provider": "chutes",
-      "release_date": "2025-12-11"
+      "reasoning_cost_per_1k": 0.002625,
+      "release_date": "2025-12-29"
     },
     "chutes/zai-org/GLM-4.6V": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
       "capabilities": [
         "function_calling",
+        "json_mode",
         "reasoning",
         "temperature",
         "vision"
       ],
-      "family": "glm-4.6v",
+      "family": "zai-org",
       "id": "zai-org/GLM-4.6V",
       "input_cost_per_1k": 0.0003,
       "max_input_tokens": 131072,
@@ -9396,7 +10688,30 @@
       "open_weights": true,
       "output_cost_per_1k": 0.0009,
       "provider": "chutes",
-      "release_date": "2025-12-11"
+      "reasoning_cost_per_1k": 0.00135,
+      "release_date": "2025-12-29"
+    },
+    "chutes/zai-org/GLM-4.7-TEE": {
+      "cache_read_cost_per_1k": 0.0,
+      "cache_write_cost_per_1k": 0.0,
+      "capabilities": [
+        "function_calling",
+        "json_mode",
+        "reasoning",
+        "temperature"
+      ],
+      "family": "zai-org",
+      "id": "zai-org/GLM-4.7-TEE",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 202752,
+      "max_output_tokens": 65535,
+      "mode": "chat",
+      "name": "GLM 4.7 TEE",
+      "open_weights": true,
+      "output_cost_per_1k": 0.0015,
+      "provider": "chutes",
+      "reasoning_cost_per_1k": 0.00225,
+      "release_date": "2025-12-29"
     },
     "cloudflare_ai_gateway/anthropic/claude-3-5-haiku": {
       "cache_read_cost_per_1k": 8e-05,
@@ -26799,6 +28114,36 @@
       "provider": "poe",
       "release_date": "2025-09-26"
     },
+    "poe/cerebras/gpt-oss-120b-cs": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": null,
+      "id": "cerebras/gpt-oss-120b-cs",
+      "max_input_tokens": 0,
+      "max_output_tokens": 0,
+      "mode": "chat",
+      "name": "gpt-oss-120b-cs",
+      "provider": "poe",
+      "release_date": "2025-08-06"
+    },
+    "poe/cerebras/zai-glm-4.6-cs": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": null,
+      "id": "cerebras/zai-glm-4.6-cs",
+      "max_input_tokens": 131000,
+      "max_output_tokens": 40000,
+      "mode": "chat",
+      "name": "zai-glm-4.6-cs",
+      "provider": "poe",
+      "release_date": "2025-11-11"
+    },
     "poe/elevenlabs/elevenlabs-music": {
       "capabilities": [
         "audio_output",
@@ -26881,7 +28226,7 @@
       "release_date": "2025-02-05"
     },
     "poe/google/gemini-2.5-flash": {
-      "cache_read_cost_per_1k": 5.2e-05,
+      "cache_read_cost_per_1k": 2.1e-05,
       "capabilities": [
         "audio_input",
         "function_calling",
@@ -26920,7 +28265,7 @@
       "release_date": "2025-06-19"
     },
     "poe/google/gemini-2.5-pro": {
-      "cache_read_cost_per_1k": 0.00022,
+      "cache_read_cost_per_1k": 8.7e-05,
       "capabilities": [
         "audio_input",
         "function_calling",
@@ -26938,6 +28283,26 @@
       "output_cost_per_1k": 0.007,
       "provider": "poe",
       "release_date": "2025-02-05"
+    },
+    "poe/google/gemini-3-flash": {
+      "cache_read_cost_per_1k": 4e-05,
+      "capabilities": [
+        "audio_input",
+        "function_calling",
+        "reasoning",
+        "video_input",
+        "vision"
+      ],
+      "family": null,
+      "id": "google/gemini-3-flash",
+      "input_cost_per_1k": 0.0004,
+      "max_input_tokens": 1048576,
+      "max_output_tokens": 65536,
+      "mode": "chat",
+      "name": "gemini-3-flash",
+      "output_cost_per_1k": 0.0024,
+      "provider": "poe",
+      "release_date": "2025-10-07"
     },
     "poe/google/gemini-3-pro": {
       "cache_read_cost_per_1k": 0.00016,
@@ -27068,6 +28433,7 @@
       "release_date": "2025-06-04"
     },
     "poe/google/nano-banana": {
+      "cache_read_cost_per_1k": 2.1e-05,
       "capabilities": [
         "function_calling",
         "image_output",
@@ -27085,7 +28451,7 @@
       "release_date": "2025-08-21"
     },
     "poe/google/nano-banana-pro": {
-      "cache_read_cost_per_1k": 0.00016,
+      "cache_read_cost_per_1k": 0.00017,
       "capabilities": [
         "function_calling",
         "image_output",
@@ -27093,12 +28459,12 @@
       ],
       "family": "nano-banana-pro",
       "id": "google/nano-banana-pro",
-      "input_cost_per_1k": 0.0016,
+      "input_cost_per_1k": 0.0017,
       "max_input_tokens": 65536,
       "max_output_tokens": 0,
       "mode": "image",
       "name": "Nano-Banana-Pro",
-      "output_cost_per_1k": 0.0096,
+      "output_cost_per_1k": 0.01,
       "provider": "poe",
       "release_date": "2025-11-19"
     },
@@ -27274,6 +28640,51 @@
       "provider": "poe",
       "release_date": "2025-09-30"
     },
+    "poe/novita/glm-4.6v": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": null,
+      "id": "novita/glm-4.6v",
+      "max_input_tokens": 131000,
+      "max_output_tokens": 32768,
+      "mode": "chat",
+      "name": "glm-4.6v",
+      "provider": "poe",
+      "release_date": "2025-12-09"
+    },
+    "poe/novita/glm-4.7": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "temperature",
+        "vision"
+      ],
+      "family": null,
+      "id": "novita/glm-4.7",
+      "max_input_tokens": 205000,
+      "max_output_tokens": 131072,
+      "mode": "chat",
+      "name": "glm-4.7",
+      "provider": "poe",
+      "release_date": "2025-12-22"
+    },
+    "poe/novita/kat-coder-pro": {
+      "capabilities": [
+        "function_calling",
+        "vision"
+      ],
+      "family": null,
+      "id": "novita/kat-coder-pro",
+      "max_input_tokens": 256000,
+      "max_output_tokens": 0,
+      "mode": "chat",
+      "name": "kat-coder-pro",
+      "provider": "poe",
+      "release_date": "2025-12-16"
+    },
     "poe/novita/kimi-k2-thinking": {
       "capabilities": [
         "function_calling",
@@ -27288,6 +28699,21 @@
       "name": "kimi-k2-thinking",
       "provider": "poe",
       "release_date": "2025-11-07"
+    },
+    "poe/novita/minimax-m2.1": {
+      "capabilities": [
+        "function_calling",
+        "reasoning",
+        "vision"
+      ],
+      "family": null,
+      "id": "novita/minimax-m2.1",
+      "max_input_tokens": 205000,
+      "max_output_tokens": 131072,
+      "mode": "chat",
+      "name": "minimax-m2.1",
+      "provider": "poe",
+      "release_date": "2025-12-26"
     },
     "poe/openai/chatgpt-4o-latest": {
       "capabilities": [
@@ -27823,6 +29249,21 @@
       "provider": "poe",
       "release_date": "2025-08-26"
     },
+    "poe/openai/gpt-image-1.5": {
+      "capabilities": [
+        "function_calling",
+        "image_output",
+        "vision"
+      ],
+      "family": null,
+      "id": "openai/gpt-image-1.5",
+      "max_input_tokens": 128000,
+      "max_output_tokens": 0,
+      "mode": "image",
+      "name": "gpt-image-1.5",
+      "provider": "poe",
+      "release_date": "2025-12-16"
+    },
     "poe/openai/o1": {
       "capabilities": [
         "function_calling",
@@ -28094,22 +29535,6 @@
       "name": "Tako",
       "provider": "poe",
       "release_date": "2024-08-15"
-    },
-    "poe/xai/grok-2": {
-      "capabilities": [
-        "function_calling",
-        "vision"
-      ],
-      "family": "grok-2",
-      "id": "xai/grok-2",
-      "input_cost_per_1k": 0.002,
-      "max_input_tokens": 131072,
-      "max_output_tokens": 8192,
-      "mode": "chat",
-      "name": "Grok-2",
-      "output_cost_per_1k": 0.01,
-      "provider": "poe",
-      "release_date": "2025-01-14"
     },
     "poe/xai/grok-3": {
       "cache_read_cost_per_1k": 0.00075,
@@ -32787,8 +34212,7 @@
         "function_calling",
         "json_mode",
         "reasoning",
-        "temperature",
-        "vision"
+        "temperature"
       ],
       "family": "grok",
       "id": "grok-code-fast-1",
@@ -32882,10 +34306,9 @@
         "function_calling",
         "json_mode",
         "reasoning",
-        "temperature",
-        "vision"
+        "temperature"
       ],
-      "family": null,
+      "family": "minimax",
       "id": "minimax-m21",
       "input_cost_per_1k": 0.0004,
       "max_input_tokens": 202752,

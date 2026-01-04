@@ -1,9 +1,10 @@
 // OISP Model Registry Types
 // Auto-generated from models.dev - DO NOT EDIT MANUALLY
 // Source: https://models.dev/api.json
-// Generated: 2026-01-01T03:50:55.724406+00:00
+// Generated: 2026-01-04T03:51:55.515669+00:00
 
 export type AIProvider =
+  | 'abacus'
   | 'aihubmix'
   | 'alibaba'
   | 'alibaba_cn'
@@ -23,7 +24,6 @@ export type AIProvider =
   | 'deepseek'
   | 'fastrouter'
   | 'fireworks'
-  | 'friendli'
   | string;
 
 export type ModelMode =
