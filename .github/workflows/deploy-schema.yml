@@ -9,6 +9,8 @@ on:
       - 'semconv/**'
       - 'dist/**'
       - 'site/**'
+      - 'registry/**'
+      - 'scripts/**'
   
   # Allow manual trigger
   workflow_dispatch:
@@ -59,6 +61,12 @@ jobs:
           # Copy spec bundle (for https://oisp.dev/spec/v0.1/bundle.json)
           mkdir -p _site/spec/v0.1
           cp -r dist/* _site/spec/v0.1/
+
+          # Copy registry icons (for https://oisp.dev/registry/icons/)
+          mkdir -p _site/registry/icons
+          if [ -d "registry/icons" ] && [ "$(ls -A registry/icons 2>/dev/null)" ]; then
+            cp -r registry/icons/* _site/registry/icons/
+          fi
 
           # Create CNAME for custom domain
           echo "oisp.dev" > _site/CNAME
