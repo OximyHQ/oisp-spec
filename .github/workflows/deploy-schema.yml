@@ -7,8 +7,7 @@ on:
     paths:
       - 'schema/**'
       - 'semconv/**'
-      - 'docs/**'
-      - 'spec/**'
+      - 'dist/**'
       - 'site/**'
   
   # Allow manual trigger
@@ -39,23 +38,19 @@ jobs:
         run: |
           mkdir -p _site/schema/v0.1
           mkdir -p _site/semconv
-          mkdir -p _site/docs
-          
+
           # Copy landing page
           cp site/index.html _site/index.html
-          
+
           # Copy schemas
           cp -r schema/v0.1/* _site/schema/v0.1/
-          
+
           # Copy semantic conventions
           cp -r semconv/* _site/semconv/
-          
-          # Copy docs
-          cp -r docs/* _site/docs/
 
           # Copy spec bundle (for https://oisp.dev/spec/v0.1/bundle.json)
           mkdir -p _site/spec/v0.1
-          cp -r spec/v0.1/* _site/spec/v0.1/
+          cp -r dist/* _site/spec/v0.1/
 
           # Create CNAME for custom domain
           echo "oisp.dev" > _site/CNAME
