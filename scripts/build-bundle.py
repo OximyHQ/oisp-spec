@@ -28,12 +28,31 @@ from pathlib import Path
 SPEC_ROOT = Path(__file__).parent.parent
 PROVIDERS_DIR = SPEC_ROOT / "semconv" / "providers"
 SCHEMA_DIR = SPEC_ROOT / "schema" / "v0.1"
+REGISTRY_DIR = SPEC_ROOT / "registry"
 
 
 def load_json(path: Path) -> dict:
     """Load a JSON file."""
     with open(path) as f:
         return json.load(f)
+
+
+def load_registry() -> dict:
+    """Load app and website registries."""
+    result = {"version": "1.0.0", "apps": {}, "websites": {}}
+
+    apps_path = REGISTRY_DIR / "apps.json"
+    if apps_path.exists():
+        apps_data = load_json(apps_path)
+        result["version"] = apps_data.get("version", "1.0.0")
+        result["apps"] = apps_data.get("apps", {})
+
+    websites_path = REGISTRY_DIR / "websites.json"
+    if websites_path.exists():
+        websites_data = load_json(websites_path)
+        result["websites"] = websites_data.get("websites", {})
+
+    return result
 
 
 def load_models() -> dict:
@@ -48,11 +67,12 @@ def load_models() -> dict:
 def build_bundle() -> dict:
     """Build the complete spec bundle from generated models.json."""
     models_data = load_models()
+    registry_data = load_registry()
 
     bundle = {
         "$schema": "https://oisp.dev/schema/v0.1/bundle.schema.json",
         "version": models_data.get("version", "0.1"),
-        "bundle_version": "2.0.0",  # New version with parsers/domain_lookup
+        "bundle_version": "2.1.0",  # Includes registry (apps + websites)
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source": "oisp-spec",
         "source_url": models_data.get("source_url", "https://models.dev/api.json"),
@@ -75,6 +95,14 @@ def build_bundle() -> dict:
 
         # Model registry
         "models": models_data.get("models", {}),
+
+        # App and website registry
+        "registry": {
+            "version": registry_data.get("version", "1.0.0"),
+            "apps": registry_data.get("apps", {}),
+            "websites": registry_data.get("websites", {}),
+            "icons_url": "https://oisp.dev/registry/icons"
+        },
     }
 
     return bundle
@@ -109,6 +137,7 @@ def main():
 
     # Print stats
     stats = bundle.get("stats", {})
+    registry = bundle.get("registry", {})
     print(f"Bundle written to: {args.output}")
     print(f"  Version: {bundle['bundle_version']}")
     print(f"  Providers: {stats.get('providers', len(bundle['providers']))}")
@@ -117,6 +146,8 @@ def main():
     print(f"  Domains indexed: {len(bundle['domain_lookup'])}")
     print(f"  Domain patterns: {len(bundle['domain_patterns'])}")
     print(f"  Parsers: {', '.join(bundle['parsers'].keys())}")
+    print(f"  Apps: {len(registry.get('apps', {}))}")
+    print(f"  Websites: {len(registry.get('websites', {}))}")
 
     # Also write a minified version
     if not args.minify:

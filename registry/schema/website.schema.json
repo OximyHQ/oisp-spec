@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://oisp.dev/registry/schema/website.schema.json",
+  "title": "OISP Website Registry",
+  "description": "Schema for website profiles in the OISP registry",
+  "type": "object",
+  "required": ["version", "websites"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Registry version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "websites": {
+      "type": "object",
+      "description": "Map of website_id to website profile",
+      "additionalProperties": {
+        "$ref": "#/definitions/WebsiteProfile"
+      }
+    }
+  },
+  "definitions": {
+    "WebsiteProfile": {
+      "type": "object",
+      "required": ["name", "vendor", "category", "domains", "ai"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable website name"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Company/organization that runs the website"
+        },
+        "vendor_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Vendor website URL"
+        },
+        "category": {
+          "type": "string",
+          "description": "Website category",
+          "enum": ["ai-chat", "ai-search", "ai-creative", "ai-dev-tools", "productivity", "other"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the website"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon filename (PNG)"
+        },
+        "domains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Domains that identify this website (matched against Origin/Referer headers)"
+        },
+        "ai": {
+          "type": "string",
+          "enum": ["native", "embedded", "none"],
+          "description": "AI integration level: native (AI-first), embedded (AI features), none"
+        },
+        "api_type": {
+          "type": "string",
+          "enum": ["direct", "proxied"],
+          "description": "direct = browser calls AI API; proxied = browser calls backend which calls AI"
+        },
+        "providers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "AI providers this website uses (e.g., openai, anthropic)"
+        },
+        "features": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Feature"
+          },
+          "description": "Map of feature_id to feature definition"
+        },
+        "pricing": {
+          "$ref": "#/definitions/Pricing"
+        },
+        "detection": {
+          "$ref": "#/definitions/Detection"
+        },
+        "security": {
+          "$ref": "#/definitions/Security"
+        }
+      }
+    },
+    "Feature": {
+      "type": "object",
+      "required": ["name", "patterns"],
+      "properties": {
+        "name": { "type": "string", "description": "Human-readable feature name" },
+        "description": { "type": "string" },
+        "patterns": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FeaturePattern" },
+          "minItems": 1
+        }
+      }
+    },
+    "FeaturePattern": {
+      "type": "object",
+      "required": ["url"],
+      "properties": {
+        "url": { "type": "string", "description": "URL glob pattern (e.g., **/backend-api/conversation)" },
+        "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"] },
+        "body_contains": { "type": "string", "description": "String that must appear in request body" },
+        "response_body": { "type": "string", "description": "String that must appear in response body" }
+      }
+    },
+    "Pricing": {
+      "type": "object",
+      "required": ["model", "tiers"],
+      "properties": {
+        "model": {
+          "oneOf": [
+            { "type": "string", "enum": ["free", "subscription", "pay-per-use", "one-time"] },
+            { "type": "array", "items": { "type": "string", "enum": ["free", "subscription", "pay-per-use", "one-time"] } }
+          ],
+          "description": "Pricing model(s) - can be single or array for hybrid"
+        },
+        "tiers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PricingTier" }
+        }
+      }
+    },
+    "PricingTier": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string", "description": "Tier identifier (e.g., free, pro, enterprise)" },
+        "name": { "type": "string", "description": "Display name" },
+        "type": { "type": "string", "enum": ["free", "individual", "team", "enterprise"] },
+        "monthly_usd": { "type": ["number", "null"], "description": "Monthly price in USD (null for contact sales)" },
+        "annual_usd": { "type": "number", "description": "Annual price in USD" },
+        "self_serve": { "type": "boolean", "description": "Can sign up without sales contact" },
+        "features": { "type": "array", "items": { "type": "string" }, "description": "Key features in this tier" }
+      }
+    },
+    "Detection": {
+      "type": "object",
+      "properties": {
+        "subscription": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/DetectionRule" },
+          "description": "Rules for detecting user's subscription tier"
+        },
+        "tier_indicators": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/TierIndicator" }
+        }
+      }
+    },
+    "DetectionRule": {
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": { "type": "string", "enum": ["api_response", "header", "cookie"] },
+        "url": { "type": "string", "description": "URL pattern to match" },
+        "extract": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "JSONPath expressions to extract values"
+        }
+      }
+    },
+    "TierIndicator": {
+      "type": "object",
+      "required": ["url", "indicates"],
+      "properties": {
+        "url": { "type": "string" },
+        "response_contains": { "type": "string" },
+        "indicates": { "type": "string", "description": "Tier ID this indicates" }
+      }
+    },
+    "Security": {
+      "type": "object",
+      "properties": {
+        "compliances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string", "description": "Compliance name (e.g., SOC 2)" },
+              "url": { "type": "string", "format": "uri", "description": "Link to compliance info" }
+            }
+          }
+        },
+        "trains_on_data": { "type": "boolean", "description": "Whether vendor trains on user data" }
+      }
+    }
+  }
+}

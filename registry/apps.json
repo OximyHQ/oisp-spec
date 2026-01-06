@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "apps": {
+    "cursor": {
+      "name": "Cursor",
+      "vendor": "Anysphere Inc.",
+      "vendor_url": "https://cursor.sh",
+      "category": "ai-code-editor",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.todesktop.230313mzl4w4u92",
+          "team_id": "VDXQ22DGB9"
+        },
+        "windows": {
+          "exe": "Cursor.exe",
+          "publisher": "Anysphere Inc."
+        },
+        "linux": {
+          "exe": "cursor"
+        }
+      },
+      "ai": "native",
+      "providers": ["openai", "anthropic"],
+      "features": {
+        "chat": {
+          "name": "AI Chat",
+          "patterns": [
+            { "url": "**/conversation", "method": "POST" },
+            { "url": "**/chat/completions", "method": "POST" }
+          ]
+        },
+        "autocomplete": {
+          "name": "Code Autocomplete",
+          "patterns": [
+            { "url": "**/completions", "method": "POST" },
+            { "url": "**/fim/completions", "method": "POST" }
+          ]
+        },
+        "composer": {
+          "name": "Composer (Multi-file)",
+          "patterns": [
+            { "url": "**/composer/**", "method": "POST" },
+            { "url": "**/apply", "method": "POST" }
+          ]
+        }
+      },
+      "pricing": {
+        "model": ["subscription"],
+        "tiers": [
+          { "id": "free", "name": "Hobby", "type": "free", "monthly_usd": 0 },
+          { "id": "pro", "name": "Pro", "type": "individual", "monthly_usd": 20 },
+          { "id": "business", "name": "Business", "type": "team", "monthly_usd": 40 }
+        ]
+      }
+    }
+  }
+}
