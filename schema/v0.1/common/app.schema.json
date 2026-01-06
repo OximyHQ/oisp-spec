@@ -49,6 +49,17 @@
     "is_ai_host": {
       "type": "boolean",
       "description": "Whether this app hosts AI extensions (e.g., VSCode with Copilot)"
+    },
+    "type": {
+      "type": "string",
+      "description": "How the app runs/is accessed",
+      "enum": ["native", "web", "extension", "cli", "server"],
+      "examples": ["native", "web"]
+    },
+    "subscription": {
+      "type": "string",
+      "description": "Detected subscription tier (free-form, varies by app/provider). Examples: 'free', 'pro', 'team', 'enterprise'. Detection method varies by provider.",
+      "examples": ["free", "pro", "team", "enterprise", "plus"]
     }
   },
   "additionalProperties": true,

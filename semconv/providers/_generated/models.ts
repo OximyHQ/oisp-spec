@@ -1,9 +1,10 @@
 // OISP Model Registry Types
 // Auto-generated from models.dev - DO NOT EDIT MANUALLY
 // Source: https://models.dev/api.json
-// Generated: 2026-01-01T03:50:55.724406+00:00
+// Generated: 2026-01-06T20:38:56.771855+00:00
 
 export type AIProvider =
+  | 'abacus'
   | 'aihubmix'
   | 'alibaba'
   | 'alibaba_cn'
@@ -23,7 +24,6 @@ export type AIProvider =
   | 'deepseek'
   | 'fastrouter'
   | 'fireworks'
-  | 'friendli'
   | string;
 
 export type ModelMode =
@@ -71,11 +71,65 @@ export interface ModelInfo {
 export interface ProviderInfo {
   name: string;
   api_endpoint?: string;
+  api_format: ApiFormat;
   documentation?: string;
   env_vars: string[];
   logo_url?: string;
   model_count: number;
   models: string[];
+}
+
+export type ApiFormat = 'openai' | 'anthropic' | 'google' | 'bedrock' | 'cohere';
+
+export interface UsageExtraction {
+  prompt_tokens?: string;
+  completion_tokens?: string;
+  total_tokens?: string;
+  input_tokens?: string;
+  output_tokens?: string;
+  cache_creation_input_tokens?: string;
+  cache_read_input_tokens?: string;
+}
+
+export interface RequestParser {
+  model: string;
+  messages?: string;
+  contents?: string;
+  system?: string;
+  system_instruction?: string;
+  max_tokens?: string;
+  temperature?: string;
+  stream?: string;
+  tools?: string;
+  tool_choice?: string;
+  generation_config?: Record<string, string>;
+  message?: string;
+  chat_history?: string;
+}
+
+export interface ResponseParser {
+  model?: string;
+  usage: UsageExtraction;
+  finish_reason?: string;
+  stop_reason?: string;
+  content?: string;
+}
+
+export interface StreamingParser {
+  format: 'sse';
+  done_signal: string | null;
+  delta_path?: string;
+}
+
+export interface Parser {
+  request: RequestParser;
+  response: ResponseParser;
+  streaming?: StreamingParser;
+}
+
+export interface DomainPattern {
+  pattern: string;
+  provider: string;
 }
 
 export interface ModelRegistry {
@@ -87,9 +141,13 @@ export interface ModelRegistry {
   stats: {
     total_models: number;
     providers: number;
+    api_formats: number;
   };
   providers: Record<AIProvider, ProviderInfo>;
   models: Record<string, ModelInfo>;
+  parsers: Record<ApiFormat, Parser>;
+  domain_lookup: Record<string, string>;
+  domain_patterns: DomainPattern[];
 }
 
 /**
@@ -114,19 +172,68 @@ export function getProvider(
 }
 
 /**
- * Find provider by API endpoint URL.
- * Useful for detecting which provider a request is going to.
+ * Find provider by domain name.
+ * First tries exact domain lookup, then pattern matching for wildcards.
+ */
+export function findProviderByDomain(
+  registry: ModelRegistry,
+  domain: string
+): { providerId: AIProvider; provider: ProviderInfo } | undefined {
+  // Try exact domain lookup first
+  const providerId = registry.domain_lookup[domain];
+  if (providerId && registry.providers[providerId]) {
+    return { providerId: providerId as AIProvider, provider: registry.providers[providerId] };
+  }
+
+  // Try pattern matching for wildcards (Azure, Bedrock)
+  for (const pattern of registry.domain_patterns) {
+    if (new RegExp(pattern.pattern).test(domain)) {
+      const matchedProvider = registry.providers[pattern.provider];
+      if (matchedProvider) {
+        return { providerId: pattern.provider as AIProvider, provider: matchedProvider };
+      }
+    }
+  }
+
+  return undefined;
+}
+
+/**
+ * Find provider by full URL.
+ * Extracts domain from URL and uses findProviderByDomain.
  */
 export function findProviderByEndpoint(
   registry: ModelRegistry,
   url: string
 ): { providerId: AIProvider; provider: ProviderInfo } | undefined {
-  for (const [providerId, provider] of Object.entries(registry.providers)) {
-    if (provider.api_endpoint && url.includes(new URL(provider.api_endpoint).hostname)) {
-      return { providerId: providerId as AIProvider, provider };
-    }
+  try {
+    const domain = new URL(url).hostname;
+    return findProviderByDomain(registry, domain);
+  } catch {
+    return undefined;
   }
-  return undefined;
+}
+
+/**
+ * Get the parser for a provider's API format.
+ */
+export function getParser(
+  registry: ModelRegistry,
+  providerId: AIProvider
+): Parser | undefined {
+  const provider = registry.providers[providerId];
+  if (!provider) return undefined;
+  return registry.parsers[provider.api_format];
+}
+
+/**
+ * Get the API format for a provider.
+ */
+export function getApiFormat(
+  registry: ModelRegistry,
+  providerId: AIProvider
+): ApiFormat | undefined {
+  return registry.providers[providerId]?.api_format;
 }
 
 /**

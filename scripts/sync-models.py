@@ -91,6 +91,183 @@ PROVIDER_API_ENDPOINTS = {
     "moonshot": "https://api.moonshot.cn/v1",
 }
 
+# API format overrides - only 5 providers use non-OpenAI format
+# Everything else defaults to "openai" format (69+ providers)
+API_FORMAT_OVERRIDES = {
+    "anthropic": "anthropic",
+    "google": "google",
+    "google_vertex": "google",
+    "google_vertex_anthropic": "anthropic",
+    "aws_bedrock": "bedrock",
+    "cohere": "cohere",
+}
+
+# Domain patterns for wildcard matching (Azure, Bedrock)
+DOMAIN_PATTERNS = [
+    {"pattern": r".*\.openai\.azure\.com$", "provider": "azure_openai"},
+    {"pattern": r"bedrock-runtime\..*\.amazonaws\.com$", "provider": "aws_bedrock"},
+    {"pattern": r"bedrock\..*\.amazonaws\.com$", "provider": "aws_bedrock"},
+]
+
+# Parser definitions - JSONPath rules for extracting data from HTTP requests/responses
+# These are stable API contracts that rarely change
+PARSERS = {
+    "openai": {
+        "request": {
+            "model": "$.model",
+            "messages": "$.messages",
+            "stream": "$.stream",
+            "max_tokens": "$.max_tokens",
+            "temperature": "$.temperature",
+            "tools": "$.tools",
+            "tool_choice": "$.tool_choice",
+        },
+        "response": {
+            "model": "$.model",
+            "usage": {
+                "prompt_tokens": "$.usage.prompt_tokens",
+                "completion_tokens": "$.usage.completion_tokens",
+                "total_tokens": "$.usage.total_tokens",
+            },
+            "finish_reason": "$.choices[0].finish_reason",
+            "content": "$.choices[0].message.content",
+        },
+        "streaming": {
+            "format": "sse",
+            "done_signal": "[DONE]",
+            "delta_path": "$.choices[0].delta",
+        },
+    },
+    "anthropic": {
+        "request": {
+            "model": "$.model",
+            "messages": "$.messages",
+            "system": "$.system",
+            "max_tokens": "$.max_tokens",
+            "temperature": "$.temperature",
+            "stream": "$.stream",
+            "tools": "$.tools",
+            "tool_choice": "$.tool_choice",
+        },
+        "response": {
+            "model": "$.model",
+            "usage": {
+                "input_tokens": "$.usage.input_tokens",
+                "output_tokens": "$.usage.output_tokens",
+                "cache_creation_input_tokens": "$.usage.cache_creation_input_tokens",
+                "cache_read_input_tokens": "$.usage.cache_read_input_tokens",
+            },
+            "stop_reason": "$.stop_reason",
+            "content": "$.content",
+        },
+        "streaming": {
+            "format": "sse",
+            "done_signal": "message_stop",
+            "delta_path": "$.delta",
+        },
+    },
+    "google": {
+        "request": {
+            "model": "{url_path}",  # Model extracted from URL path
+            "contents": "$.contents",
+            "system_instruction": "$.systemInstruction",
+            "generation_config": {
+                "temperature": "$.generationConfig.temperature",
+                "max_output_tokens": "$.generationConfig.maxOutputTokens",
+                "top_p": "$.generationConfig.topP",
+                "top_k": "$.generationConfig.topK",
+            },
+            "tools": "$.tools",
+        },
+        "response": {
+            "usage": {
+                "prompt_tokens": "$.usageMetadata.promptTokenCount",
+                "completion_tokens": "$.usageMetadata.candidatesTokenCount",
+                "total_tokens": "$.usageMetadata.totalTokenCount",
+            },
+            "finish_reason": "$.candidates[0].finishReason",
+            "content": "$.candidates[0].content",
+        },
+        "streaming": {
+            "format": "sse",
+            "done_signal": None,
+        },
+    },
+    "bedrock": {
+        "request": {
+            "model": "$.modelId",
+            "messages": "$.messages",
+            "system": "$.system",
+            "max_tokens": "$.max_tokens",
+            "temperature": "$.temperature",
+        },
+        "response": {
+            "model": "$.modelId",
+            "usage": {
+                "input_tokens": "$.usage.inputTokens",
+                "output_tokens": "$.usage.outputTokens",
+                "total_tokens": "$.usage.totalTokens",
+            },
+            "stop_reason": "$.stopReason",
+            "content": "$.output.message.content",
+        },
+        "streaming": {
+            "format": "sse",
+            "done_signal": None,
+        },
+    },
+    "cohere": {
+        "request": {
+            "model": "$.model",
+            "message": "$.message",
+            "chat_history": "$.chat_history",
+            "temperature": "$.temperature",
+            "max_tokens": "$.max_tokens",
+            "stream": "$.stream",
+        },
+        "response": {
+            "usage": {
+                "input_tokens": "$.meta.tokens.input_tokens",
+                "output_tokens": "$.meta.tokens.output_tokens",
+            },
+            "finish_reason": "$.finish_reason",
+            "content": "$.text",
+        },
+        "streaming": {
+            "format": "sse",
+            "done_signal": None,
+        },
+    },
+}
+
+
+def get_api_format(provider_id: str) -> str:
+    """Get the API format for a provider. Defaults to 'openai' for most providers."""
+    return API_FORMAT_OVERRIDES.get(provider_id, "openai")
+
+
+def extract_domain(api_endpoint: str) -> str | None:
+    """Extract domain from API endpoint URL."""
+    if not api_endpoint:
+        return None
+    try:
+        from urllib.parse import urlparse
+        parsed = urlparse(api_endpoint)
+        return parsed.netloc
+    except Exception:
+        return None
+
+
+def build_domain_lookup(providers: dict) -> dict:
+    """Build domain → provider_id lookup from API endpoints."""
+    lookup = {}
+    for provider_id, provider in providers.items():
+        domain = extract_domain(provider.get("api_endpoint"))
+        if domain and "*" not in domain:  # Skip wildcard domains
+            lookup[domain] = provider_id
+    return lookup
+
+
 # Capability mapping from models.dev fields to OISP capabilities
 CAPABILITY_MAPPING = {
     "reasoning": "reasoning",
@@ -370,8 +547,11 @@ def generate_yaml(providers: dict, models_by_provider: dict, output_path: Path):
 
 
 def generate_json(providers: dict, models_by_provider: dict, all_models: list[dict], output_path: Path):
-    """Generate JSON output."""
+    """Generate JSON output with parsers, domain_lookup, and api_format."""
     total_models = sum(len(models) for models in models_by_provider.values())
+
+    # Build domain lookup from provider endpoints
+    domain_lookup = build_domain_lookup(providers)
 
     output = {
         "version": "0.1",
@@ -382,18 +562,24 @@ def generate_json(providers: dict, models_by_provider: dict, all_models: list[di
         "stats": {
             "total_models": total_models,
             "providers": len(providers),
+            "api_formats": len(set(get_api_format(p) for p in providers.keys())),
         },
         "providers": {},
         "models": {},
+        # New fields for spec-driven parsing
+        "parsers": PARSERS,
+        "domain_lookup": domain_lookup,
+        "domain_patterns": DOMAIN_PATTERNS,
     }
 
-    # Provider details
+    # Provider details with api_format
     for provider_id in sorted(providers.keys()):
         provider = providers[provider_id]
         models = models_by_provider.get(provider_id, [])
         output["providers"][provider_id] = {
             "name": provider["name"],
             "api_endpoint": provider.get("api_endpoint"),
+            "api_format": get_api_format(provider_id),  # Add API format
             "documentation": provider.get("documentation"),
             "env_vars": provider.get("env_vars", []),
             "logo_url": provider.get("logo_url"),
@@ -408,6 +594,8 @@ def generate_json(providers: dict, models_by_provider: dict, all_models: list[di
 
     output_path.write_text(json.dumps(output, indent=2) + "\n")
     print(f"Generated: {output_path}")
+    print(f"  - {len(domain_lookup)} domains mapped to providers")
+    print(f"  - {len(PARSERS)} API format parsers included")
 
 
 def generate_typescript_types(providers: dict, output_path: Path):
@@ -470,11 +658,65 @@ export interface ModelInfo {{
 export interface ProviderInfo {{
   name: string;
   api_endpoint?: string;
+  api_format: ApiFormat;
   documentation?: string;
   env_vars: string[];
   logo_url?: string;
   model_count: number;
   models: string[];
+}}
+
+export type ApiFormat = 'openai' | 'anthropic' | 'google' | 'bedrock' | 'cohere';
+
+export interface UsageExtraction {{
+  prompt_tokens?: string;
+  completion_tokens?: string;
+  total_tokens?: string;
+  input_tokens?: string;
+  output_tokens?: string;
+  cache_creation_input_tokens?: string;
+  cache_read_input_tokens?: string;
+}}
+
+export interface RequestParser {{
+  model: string;
+  messages?: string;
+  contents?: string;
+  system?: string;
+  system_instruction?: string;
+  max_tokens?: string;
+  temperature?: string;
+  stream?: string;
+  tools?: string;
+  tool_choice?: string;
+  generation_config?: Record<string, string>;
+  message?: string;
+  chat_history?: string;
+}}
+
+export interface ResponseParser {{
+  model?: string;
+  usage: UsageExtraction;
+  finish_reason?: string;
+  stop_reason?: string;
+  content?: string;
+}}
+
+export interface StreamingParser {{
+  format: 'sse';
+  done_signal: string | null;
+  delta_path?: string;
+}}
+
+export interface Parser {{
+  request: RequestParser;
+  response: ResponseParser;
+  streaming?: StreamingParser;
+}}
+
+export interface DomainPattern {{
+  pattern: string;
+  provider: string;
 }}
 
 export interface ModelRegistry {{
@@ -486,9 +728,13 @@ export interface ModelRegistry {{
   stats: {{
     total_models: number;
     providers: number;
+    api_formats: number;
   }};
   providers: Record<AIProvider, ProviderInfo>;
   models: Record<string, ModelInfo>;
+  parsers: Record<ApiFormat, Parser>;
+  domain_lookup: Record<string, string>;
+  domain_patterns: DomainPattern[];
 }}
 
 /**
@@ -513,19 +759,68 @@ export function getProvider(
 }}
 
 /**
- * Find provider by API endpoint URL.
- * Useful for detecting which provider a request is going to.
+ * Find provider by domain name.
+ * First tries exact domain lookup, then pattern matching for wildcards.
+ */
+export function findProviderByDomain(
+  registry: ModelRegistry,
+  domain: string
+): {{ providerId: AIProvider; provider: ProviderInfo }} | undefined {{
+  // Try exact domain lookup first
+  const providerId = registry.domain_lookup[domain];
+  if (providerId && registry.providers[providerId]) {{
+    return {{ providerId: providerId as AIProvider, provider: registry.providers[providerId] }};
+  }}
+
+  // Try pattern matching for wildcards (Azure, Bedrock)
+  for (const pattern of registry.domain_patterns) {{
+    if (new RegExp(pattern.pattern).test(domain)) {{
+      const matchedProvider = registry.providers[pattern.provider];
+      if (matchedProvider) {{
+        return {{ providerId: pattern.provider as AIProvider, provider: matchedProvider }};
+      }}
+    }}
+  }}
+
+  return undefined;
+}}
+
+/**
+ * Find provider by full URL.
+ * Extracts domain from URL and uses findProviderByDomain.
  */
 export function findProviderByEndpoint(
   registry: ModelRegistry,
   url: string
 ): {{ providerId: AIProvider; provider: ProviderInfo }} | undefined {{
-  for (const [providerId, provider] of Object.entries(registry.providers)) {{
-    if (provider.api_endpoint && url.includes(new URL(provider.api_endpoint).hostname)) {{
-      return {{ providerId: providerId as AIProvider, provider }};
-    }}
+  try {{
+    const domain = new URL(url).hostname;
+    return findProviderByDomain(registry, domain);
+  }} catch {{
+    return undefined;
   }}
-  return undefined;
+}}
+
+/**
+ * Get the parser for a provider's API format.
+ */
+export function getParser(
+  registry: ModelRegistry,
+  providerId: AIProvider
+): Parser | undefined {{
+  const provider = registry.providers[providerId];
+  if (!provider) return undefined;
+  return registry.parsers[provider.api_format];
+}}
+
+/**
+ * Get the API format for a provider.
+ */
+export function getApiFormat(
+  registry: ModelRegistry,
+  providerId: AIProvider
+): ApiFormat | undefined {{
+  return registry.providers[providerId]?.api_format;
 }}
 
 /**

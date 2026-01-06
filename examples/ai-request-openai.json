@@ -48,6 +48,7 @@
   
   "data": {
     "request_id": "req_01JFWK8X4J5K6L7M",
+    "conversation_id": "conv_01JFWK8X4A1B2C3D",
     "provider": {
       "name": "openai",
       "endpoint": "https://api.openai.com/v1/chat/completions",

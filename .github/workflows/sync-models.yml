@@ -1,16 +1,17 @@
 name: Sync Model Registry
 
 on:
-  # Run weekly on Sunday at midnight UTC
+  # Run nightly at midnight UTC for fresh pricing/model data
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '0 0 * * *'
 
-  # Run when the sync script changes
+  # Run when the sync script or bundle script changes
   push:
     branches:
       - main
     paths:
       - 'scripts/sync-models.py'
+      - 'scripts/build-bundle.py'
 
   # Allow manual trigger
   workflow_dispatch:

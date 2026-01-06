@@ -42,6 +42,7 @@
   
   "data": {
     "request_id": "req_01JFWK8X4J5K6L7M",
+    "conversation_id": "conv_01JFWK8X4A1B2C3D",
     "provider_request_id": "chatcmpl-abc123xyz789",
     "provider": {
       "name": "openai",
