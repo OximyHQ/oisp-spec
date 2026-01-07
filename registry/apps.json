@@ -21,38 +21,342 @@
         }
       },
       "ai": "native",
-      "providers": ["openai", "anthropic"],
-      "features": {
-        "chat": {
-          "name": "AI Chat",
-          "patterns": [
-            { "url": "**/conversation", "method": "POST" },
-            { "url": "**/chat/completions", "method": "POST" }
-          ]
-        },
-        "autocomplete": {
-          "name": "Code Autocomplete",
-          "patterns": [
-            { "url": "**/completions", "method": "POST" },
-            { "url": "**/fim/completions", "method": "POST" }
-          ]
-        },
-        "composer": {
-          "name": "Composer (Multi-file)",
-          "patterns": [
-            { "url": "**/composer/**", "method": "POST" },
-            { "url": "**/apply", "method": "POST" }
-          ]
+      "icon": "cursor.png"
+    },
+    "comet": {
+      "name": "Comet",
+      "vendor": "Perplexity AI",
+      "vendor_url": "https://perplexity.ai",
+      "category": "browser",
+      "platforms": ["macos"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "ai.perplexity.comet",
+          "team_id": "7S8W4W365S"
         }
       },
-      "pricing": {
-        "model": ["subscription"],
-        "tiers": [
-          { "id": "free", "name": "Hobby", "type": "free", "monthly_usd": 0 },
-          { "id": "pro", "name": "Pro", "type": "individual", "monthly_usd": 20 },
-          { "id": "business", "name": "Business", "type": "team", "monthly_usd": 40 }
-        ]
-      }
+      "ai": "native",
+      "icon": "comet.png"
+    },
+    "wispr-flow": {
+      "name": "Wispr Flow",
+      "vendor": "Wispr AI",
+      "vendor_url": "https://wispr.ai",
+      "category": "productivity",
+      "platforms": ["macos"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.electron.wispr-flow",
+          "team_id": "C9VQZ78H85"
+        }
+      },
+      "ai": "native",
+      "icon": "wispr-flow.png"
+    },
+    "granola": {
+      "name": "Granola",
+      "vendor": "Granola",
+      "vendor_url": "https://granola.ai",
+      "category": "productivity",
+      "platforms": ["macos"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.granola.app",
+          "team_id": "QZ7DHHLN25"
+        }
+      },
+      "ai": "native",
+      "icon": "granola.png"
+    },
+    "figma": {
+      "name": "Figma",
+      "vendor": "Figma Inc.",
+      "vendor_url": "https://figma.com",
+      "category": "creative",
+      "platforms": ["macos", "windows"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.figma.Desktop",
+          "team_id": "T8RA8NE3B7"
+        },
+        "windows": {
+          "exe": "Figma.exe",
+          "publisher": "Figma, Inc."
+        }
+      },
+      "ai": "enabled",
+      "icon": "figma.png"
+    },
+    "loom": {
+      "name": "Loom",
+      "vendor": "Loom Inc.",
+      "vendor_url": "https://loom.com",
+      "category": "productivity",
+      "platforms": ["macos", "windows"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.loom.desktop",
+          "team_id": "QGD2ZPXZZG"
+        },
+        "windows": {
+          "exe": "Loom.exe",
+          "publisher": "Loom, Inc."
+        }
+      },
+      "ai": "enabled",
+      "icon": "loom.png"
+    },
+    "microsoft-excel": {
+      "name": "Microsoft Excel",
+      "vendor": "Microsoft Corporation",
+      "vendor_url": "https://microsoft.com/excel",
+      "category": "productivity",
+      "platforms": ["macos", "windows"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.microsoft.Excel",
+          "team_id": "UBF8T346G9"
+        },
+        "windows": {
+          "exe": "EXCEL.EXE",
+          "publisher": "Microsoft Corporation"
+        }
+      },
+      "ai": "enabled",
+      "icon": "microsoft-excel.png"
+    },
+    "microsoft-powerpoint": {
+      "name": "Microsoft PowerPoint",
+      "vendor": "Microsoft Corporation",
+      "vendor_url": "https://microsoft.com/powerpoint",
+      "category": "productivity",
+      "platforms": ["macos", "windows"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.microsoft.Powerpoint",
+          "team_id": "UBF8T346G9"
+        },
+        "windows": {
+          "exe": "POWERPNT.EXE",
+          "publisher": "Microsoft Corporation"
+        }
+      },
+      "ai": "enabled",
+      "icon": "microsoft-powerpoint.png"
+    },
+    "microsoft-word": {
+      "name": "Microsoft Word",
+      "vendor": "Microsoft Corporation",
+      "vendor_url": "https://microsoft.com/word",
+      "category": "productivity",
+      "platforms": ["macos", "windows"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.microsoft.Word",
+          "team_id": "UBF8T346G9"
+        },
+        "windows": {
+          "exe": "WINWORD.EXE",
+          "publisher": "Microsoft Corporation"
+        }
+      },
+      "ai": "enabled",
+      "icon": "microsoft-word.png"
+    },
+    "microsoft-teams": {
+      "name": "Microsoft Teams",
+      "vendor": "Microsoft Corporation",
+      "vendor_url": "https://microsoft.com/teams",
+      "category": "productivity",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.microsoft.teams2",
+          "team_id": "UBF8T346G9"
+        },
+        "windows": {
+          "exe": "ms-teams.exe",
+          "publisher": "Microsoft Corporation"
+        },
+        "linux": {
+          "exe": "teams"
+        }
+      },
+      "ai": "enabled",
+      "icon": "microsoft-teams.png"
+    },
+    "postman": {
+      "name": "Postman",
+      "vendor": "Postman Inc.",
+      "vendor_url": "https://postman.com",
+      "category": "productivity",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.postmanlabs.mac",
+          "team_id": "H7H8Q7M5CK"
+        },
+        "windows": {
+          "exe": "Postman.exe",
+          "publisher": "Postman, Inc."
+        },
+        "linux": {
+          "exe": "postman"
+        }
+      },
+      "ai": "enabled",
+      "icon": "postman.png"
+    },
+    "raycast": {
+      "name": "Raycast",
+      "vendor": "Raycast Technologies Ltd",
+      "vendor_url": "https://raycast.com",
+      "category": "productivity",
+      "platforms": ["macos"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.raycast.macos",
+          "team_id": "SY64MV22J9"
+        }
+      },
+      "ai": "enabled",
+      "icon": "raycast.png"
+    },
+    "slack": {
+      "name": "Slack",
+      "vendor": "Salesforce (Slack Technologies)",
+      "vendor_url": "https://slack.com",
+      "category": "productivity",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.tinyspeck.slackmacgap",
+          "team_id": "BQR82RBBHL"
+        },
+        "windows": {
+          "exe": "slack.exe",
+          "publisher": "Slack Technologies LLC"
+        },
+        "linux": {
+          "exe": "slack"
+        }
+      },
+      "ai": "enabled",
+      "icon": "slack.png"
+    },
+    "zed": {
+      "name": "Zed",
+      "vendor": "Zed Industries",
+      "vendor_url": "https://zed.dev",
+      "category": "code-editor",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "dev.zed.Zed",
+          "team_id": "MQ55VZLNZQ"
+        },
+        "windows": {
+          "exe": "zed.exe",
+          "publisher": "Zed Industries"
+        },
+        "linux": {
+          "exe": "zed"
+        }
+      },
+      "ai": "enabled",
+      "icon": "zed.png"
+    },
+    "zoom": {
+      "name": "Zoom",
+      "vendor": "Zoom Video Communications",
+      "vendor_url": "https://zoom.us",
+      "category": "productivity",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "us.zoom.xos",
+          "team_id": "BJ4HAAB9B3"
+        },
+        "windows": {
+          "exe": "Zoom.exe",
+          "publisher": "Zoom Video Communications, Inc."
+        },
+        "linux": {
+          "exe": "zoom"
+        }
+      },
+      "ai": "enabled",
+      "icon": "zoom.png"
+    },
+    "whatsapp": {
+      "name": "WhatsApp",
+      "vendor": "Meta Platforms",
+      "vendor_url": "https://whatsapp.com",
+      "category": "productivity",
+      "platforms": ["macos", "windows"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "net.whatsapp.WhatsApp",
+          "team_id": "57T9237FN3"
+        },
+        "windows": {
+          "exe": "WhatsApp.exe",
+          "publisher": "WhatsApp LLC"
+        }
+      },
+      "ai": "enabled",
+      "icon": "whatsapp.png"
+    },
+    "google-chrome": {
+      "name": "Google Chrome",
+      "vendor": "Google LLC",
+      "vendor_url": "https://google.com/chrome",
+      "category": "browser",
+      "platforms": ["macos", "windows", "linux"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.google.Chrome",
+          "team_id": "EQHXZ8M8AV"
+        },
+        "windows": {
+          "exe": "chrome.exe",
+          "publisher": "Google LLC"
+        },
+        "linux": {
+          "exe": "google-chrome"
+        }
+      },
+      "ai": "host",
+      "icon": "google-chrome.png"
+    },
+    "safari": {
+      "name": "Safari",
+      "vendor": "Apple Inc.",
+      "vendor_url": "https://apple.com/safari",
+      "category": "browser",
+      "platforms": ["macos"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "com.apple.Safari"
+        }
+      },
+      "ai": "host",
+      "icon": "safari.png"
+    },
+    "orbstack": {
+      "name": "OrbStack",
+      "vendor": "OrbStack",
+      "vendor_url": "https://orbstack.dev",
+      "category": "productivity",
+      "platforms": ["macos"],
+      "signatures": {
+        "macos": {
+          "bundle_id": "dev.kdrag0n.MacVirt",
+          "team_id": "HUAQ24HBR6"
+        }
+      },
+      "ai": "host",
+      "icon": "orbstack.png"
     }
   }
 }
