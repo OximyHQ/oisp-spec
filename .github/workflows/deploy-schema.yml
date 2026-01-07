@@ -62,10 +62,26 @@ jobs:
           mkdir -p _site/spec/v0.1
           cp -r dist/* _site/spec/v0.1/
 
-          # Copy registry icons (for https://oisp.dev/registry/icons/)
+          # Copy registry (apps.json, icons, schema)
           mkdir -p _site/registry/icons
+          mkdir -p _site/registry/schema
+
+          # Copy apps.json and websites.json
+          if [ -f "registry/apps.json" ]; then
+            cp registry/apps.json _site/registry/apps.json
+          fi
+          if [ -f "registry/websites.json" ]; then
+            cp registry/websites.json _site/registry/websites.json
+          fi
+
+          # Copy icons
           if [ -d "registry/icons" ] && [ "$(ls -A registry/icons 2>/dev/null)" ]; then
             cp -r registry/icons/* _site/registry/icons/
+          fi
+
+          # Copy registry schemas
+          if [ -d "registry/schema" ] && [ "$(ls -A registry/schema 2>/dev/null)" ]; then
+            cp -r registry/schema/* _site/registry/schema/
           fi
 
           # Create CNAME for custom domain
